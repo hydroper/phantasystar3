@@ -1,22 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckewe5sw03jor"]
+[gd_scene load_steps=2 format=3 uid="uid://ckewe5sw03jor"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreen.gd" id="1_r6xri"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_brv5d"]
-friction = 0.0
-bounce = 0.3
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lso3q"]
-size = Vector2(177, 944)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5h136"]
-size = Vector2(1513, 262.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6m3qj"]
-size = Vector2(237.5, 1136.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1x143"]
-size = Vector2(123.495, 20)
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_r6xri")
@@ -24,50 +8,6 @@ script = ExtResource("1_r6xri")
 [node name="world" type="Node2D" parent="."]
 
 [node name="entities" type="Node2D" parent="world"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="world/entities"]
-physics_material_override = SubResource("PhysicsMaterial_brv5d")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="world/entities/StaticBody2D"]
-position = Vector2(-127.5, 309)
-shape = SubResource("RectangleShape2D_lso3q")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="world/entities/StaticBody2D"]
-position = Vector2(620.5, -174.25)
-shape = SubResource("RectangleShape2D_5h136")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="world/entities/StaticBody2D"]
-position = Vector2(1454.25, 295.75)
-shape = SubResource("RectangleShape2D_6m3qj")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="world/entities/StaticBody2D"]
-position = Vector2(638, 776)
-scale = Vector2(11.56, 6.48)
-shape = SubResource("RectangleShape2D_1x143")
-
-[node name="ColorRect" type="ColorRect" parent="world/entities/StaticBody2D"]
-offset_left = -228.0
-offset_top = -276.0
-offset_right = -31.0
-offset_bottom = 830.0
-
-[node name="ColorRect2" type="ColorRect" parent="world/entities/StaticBody2D"]
-offset_left = -205.0
-offset_top = -219.0
-offset_right = 1481.0
-offset_bottom = -46.0
-
-[node name="ColorRect3" type="ColorRect" parent="world/entities/StaticBody2D"]
-offset_left = 1337.0
-offset_top = -219.0
-offset_right = 1539.0
-offset_bottom = 853.0
-
-[node name="ColorRect4" type="ColorRect" parent="world/entities/StaticBody2D"]
-offset_left = -314.0
-offset_top = 714.0
-offset_right = 1515.0
-offset_bottom = 854.0
 
 [node name="entity_labels" type="Node2D" parent="world"]
 
