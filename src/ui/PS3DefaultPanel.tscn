@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://baktjhv7oug4q"]
+[gd_scene load_steps=2 format=3 uid="uid://baktjhv7oug4q"]
+
+[ext_resource type="Script" path="res://src/ui/PS3DefaultPanel.gd" id="1_efxuj"]
 
 [node name="PS3DefaultPanel" type="PanelContainer"]
 anchors_preset = 15
@@ -6,3 +8,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_efxuj")

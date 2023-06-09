@@ -1,0 +1,2 @@
+class_name PS3BasePanel
+extends Control
