@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dfpxcklbmeuya"]
+
+[ext_resource type="FontFile" uid="uid://daml7kmeoclcl" path="res://res/fonts/jost/Jost-Regular.ttf" id="1_v7arh"]
+[ext_resource type="FontFile" uid="uid://crcublc35cuis" path="res://res/fonts/jost/Jost-Bold.ttf" id="2_2j2i0"]
+[ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="3_in8vi"]
+[ext_resource type="FontFile" uid="uid://bhvqs8dtae8pv" path="res://res/fonts/jost/Jost-Italic.ttf" id="4_7rqtm"]
+
+[resource]
+Label/fonts/font = ExtResource("1_v7arh")
+RichTextLabel/fonts/bold_font = ExtResource("2_2j2i0")
+RichTextLabel/fonts/bold_italics_font = ExtResource("3_in8vi")
+RichTextLabel/fonts/italics_font = ExtResource("4_7rqtm")
+RichTextLabel/fonts/normal_font = ExtResource("1_v7arh")
