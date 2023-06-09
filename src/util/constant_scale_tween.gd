@@ -29,12 +29,12 @@ func tween(node: Node, final: Vector2) -> void:
 func tween_x(node: Node, final: float) -> void:
     var cn = node as Control
     var n2d = node as Node2D
-    self.tween(node, Vector2(final, cn.y if cn != null else n2d.y if n2d != null else 0.0))
+    self.tween(node, Vector2(final, cn.scale.y if cn != null else n2d.scale.y if n2d != null else 0.0))
 
 func tween_y(node: Node, final: float) -> void:
     var cn = node as Control
     var n2d = node as Node2D
-    self.tween(node, Vector2(cn.x if cn != null else n2d.x if n2d != null else 0.0, final))
+    self.tween(node, Vector2(cn.scale.x if cn != null else n2d.scale.x if n2d != null else 0.0, final))
 
 func stop() -> void:
     self._running = false
