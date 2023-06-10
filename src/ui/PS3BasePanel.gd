@@ -1,9 +1,9 @@
 class_name PS3BasePanel
 extends Control
 
-signal outer_click
-signal after_popup(goal: String, data: Variant)
-signal after_collapse(goal: String, data: Variant)
+signal on_outer_click
+signal on_popup(goal: String, data: Variant)
+signal on_collapse(goal: String, data: Variant)
 
 var _busy: bool = false
 var _scale_tween: ConstantScaleTween = ConstantScaleTween.new(Vector2(0.05, 0.05))
@@ -47,7 +47,6 @@ func _init():
     self.visible = false
     self.scale.x = 0
     self._scale_tween.finished.connect(func():
-        self.position.x = self._custom_position.x
         self.visible = self._collapsed
         self._collapsed = not self._collapsed
         var k1 = self._trans_goal
@@ -56,18 +55,20 @@ func _init():
         self._trans_data = null
         self._busy = false
         if self._collapsed:
+            self.position.x = self._custom_position.x + self.size.x / 2
             self.disabled = true
-            self.after_collapse.emit(k1, k2)
+            self.on_collapse.emit(k1, k2)
         else:
+            self.position.x = self._custom_position.x
             self.disabled = false
-            self.after_popup.emit(k1, k2))
+            self.on_popup.emit(k1, k2))
 
 func _process(delta: float) -> void:
     self._scale_tween.process(delta)
     var x = self._custom_position.x
     var w = self.size.x
     var sx = self.scale.x
-    self.position.x = (x + w / 2) - (w / 2) * sx
+    self.position.x = x + w / 2 - (w / 2) * sx
 
 func popup(goal: String = "", data: Variant = null) -> void:
     if self._busy or self.is_open:
