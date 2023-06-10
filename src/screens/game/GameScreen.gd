@@ -18,8 +18,7 @@ var world_entity_labels: Node2D = $world/entity_labels
 func _ready() -> void:
     $ui/pause.visible = false
     $ui/pause_button.pressed.connect(func():
-        if not self.paused:
-            self.toggle_pause())
+        self.toggle_pause())
     self.pause_subsequent_controls = []
 
 func _process(_delta: float) -> void:
@@ -29,8 +28,9 @@ func _process(_delta: float) -> void:
         return
 
 func _input(event: InputEvent) -> void:
-    if self.paused and NodeExtFn.outer_clicked($ui/pause/background, event):
-        self.toggle_pause()
+    pass
+    # if self.paused and NodeExtFn.outer_clicked($ui/pause/background, event):
+        # self.toggle_pause()
 
 func toggle_pause() -> void:
     if NodeExtFn.any_is_visible(self.pause_subsequent_controls):
