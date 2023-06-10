@@ -47,8 +47,8 @@ func process(delta: float) -> void:
     if not self._running:
         return
     if self._current_value == self._final:
-        self.finished.emit()
         self.stop()
+        self.finished.emit()
         return
     if self._current_value.x > self._final.x:
         self._current_value.x = maxf(self._final.x, self._current_value.x - (self._increment.x * delta))

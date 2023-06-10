@@ -2,6 +2,8 @@ extends Node2D
 
 var game_data: GameData = GameData.new()
 
+var paused: bool = false
+
 @onready
 var world: Node2D = $world
 
@@ -15,8 +17,5 @@ func _ready() -> void:
     pass
 
 func _process(_delta: float) -> void:
-    if Input.is_action_pressed("move_left"):
-        if $ui/PS3DefaultPanel.is_open:
-            $ui/PS3DefaultPanel.collapse()
-        else:
-            $ui/PS3DefaultPanel.popup()
+    if self.paused:
+        return

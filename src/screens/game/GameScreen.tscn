@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckewe5sw03jor"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreen.gd" id="1_r6xri"]
-[ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/PS3DefaultPanel.tscn" id="2_jnad5"]
+[ext_resource type="PackedScene" uid="uid://bgu3ettrwvvmj" path="res://src/screens/game/GameScreenPause.tscn" id="2_3pxcx"]
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_r6xri")
@@ -14,8 +14,14 @@ script = ExtResource("1_r6xri")
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="PS3DefaultPanel" parent="ui" instance=ExtResource("2_jnad5")]
-offset_left = 17.0
-offset_top = 23.0
-offset_right = -727.0
-offset_bottom = -342.0
+[node name="pause" parent="ui" instance=ExtResource("2_3pxcx")]
+custom_minimum_size = Vector2(1221, 510)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -610.5
+offset_top = -534.0
+offset_right = 610.5
+offset_bottom = -24.0
+grow_vertical = 0

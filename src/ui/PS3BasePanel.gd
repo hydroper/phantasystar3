@@ -63,6 +63,10 @@ func _init():
             self.disabled = false
             self.on_popup.emit(k1, k2))
 
+func _ready() -> void:
+    self.visible = false
+    self.scale.x = 0
+
 func _process(delta: float) -> void:
     if self._scale_tween.is_running():
         self._scale_tween.process(delta)
@@ -71,7 +75,7 @@ func _process(delta: float) -> void:
         var sx = self.scale.x
         self.position.x = x + w / 2 - (w / 2) * sx
 
-func _input(event):
+func _input(event: InputEvent) -> void:
     if self.is_open && !self._busy && NodeExtFn.outer_clicked(self, event):
         on_outer_click.emit()
 
