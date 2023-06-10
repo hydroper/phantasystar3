@@ -25,6 +25,8 @@ func _process(_delta: float) -> void:
     if Input.is_action_just_pressed("pause"):
         self.toggle_pause()
     if self.paused:
+        if Input.is_action_just_pressed("ui_cancel"):
+            self.toggle_pause()
         return
 
 func _input(event: InputEvent) -> void:
