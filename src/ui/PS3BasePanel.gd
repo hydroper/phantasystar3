@@ -11,7 +11,15 @@ var _trans_goal: String = ""
 var _trans_data: Variant = null
 var _collapsed: bool = true
 var _disabled: bool = true
-var _position: Vector2
+var _custom_position_is_unset: bool = true
+var _custom_position: Vector2
+
+var custom_position: Vector2:
+    get:
+        return self._custom_position
+    set(value):
+        self._custom_position = value
+        self._custom_position_is_unset = false
 
 var disabled: bool:
     get:
@@ -37,6 +45,7 @@ var is_opening_or_collapsing: bool:
 
 func _init():
     self.visible = false
+    self.scale.x = 0
     self._scale_tween.finished.connect(func():
         self.visible = self._collapsed
         self._collapsed = not self._collapsed
@@ -54,6 +63,7 @@ func _init():
 
 func _process(delta: float) -> void:
     self._scale_tween.process(delta)
+    self.position = self._custom_position - ((self.size * self.scale) / 2)
 
 func popup(goal: String = "", data: Variant = null) -> void:
     if self._busy or self.is_open:
@@ -63,7 +73,7 @@ func popup(goal: String = "", data: Variant = null) -> void:
     self._trans_data = data
     self.visible = true
     self.disabled = true
-    self._position = self.position
+    self.custom_position = (self.position + self.size / 2) if self._custom_position_is_unset else self._custom_position
     self._scale_tween.tween_x(self, 1.0)
 
 func collapse(goal: String = "", data: Variant = null) -> void:
@@ -74,5 +84,5 @@ func collapse(goal: String = "", data: Variant = null) -> void:
     self._trans_data = data
     self.visible = true
     self.disabled = true
-    self._position = self.position
+    self.custom_position = (self.position + self.size / 2) if self._custom_position_is_unset else self._custom_position
     self._scale_tween.tween_x(self, 0.0)
