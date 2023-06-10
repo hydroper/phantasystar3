@@ -33,3 +33,6 @@ static func _single_outer_clicked(node: Node, event: InputEventMouseButton) -> b
         var ev_local = node.make_input_local(event)
         return !Rect2(Vector2(0, 0), node.size).has_point(ev_local.position)
     return false
+
+static func any_is_visible(list: Array[Node]) -> bool:
+    return list.any(func(a): return a is CanvasItem and a.visible)
