@@ -22,10 +22,11 @@ func _ready() -> void:
     self.pause_subsequent_controls = []
 
 func _process(_delta: float) -> void:
-    if Input.is_action_just_pressed("pause"):
+    if Input.is_action_released("pause"):
         self.toggle_pause()
+        return
     if self.paused:
-        if Input.is_action_just_pressed("ui_cancel"):
+        if Input.is_action_released("ui_cancel"):
             self.toggle_pause()
         return
 
