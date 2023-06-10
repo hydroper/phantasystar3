@@ -1,6 +1,6 @@
 extends Node2D
 
-var game_data: GameData = GameData.new()
+var game_data: PS3GameData = PS3GameData.new()
 
 var paused: bool = false
 
@@ -19,14 +19,16 @@ func _ready() -> void:
     $ui/pause.visible = false
     $ui/pause_button.pressed.connect(func():
         self.toggle_pause())
-    self.pause_subsequent_controls = []
 
 func _input(event: InputEvent) -> void:
     if event.is_action_released("pause") or (self.paused and event.is_action_released("ui_cancel")):
         self.toggle_pause()
 
+func _process(_delta: float) -> void:
+    pass
+
 func toggle_pause() -> void:
-    if NodeExtFn.any_is_visible(self.pause_subsequent_controls):
+    if NodeExtFn.any_is_visible($ui/pause.subsequent_panels):
         return
     self.paused = not self.paused
     $ui/pause.visible = self.paused

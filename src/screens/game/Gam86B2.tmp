@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckewe5sw03jor"]
+
+[ext_resource type="Script" path="res://src/screens/game/GameScreen.gd" id="1_r6xri"]
+[ext_resource type="PackedScene" uid="uid://bgu3ettrwvvmj" path="res://src/screens/game/GameScreenPause.tscn" id="2_3pxcx"]
+[ext_resource type="Texture2D" uid="uid://bga3t5roaf5ra" path="res://res/img/pause-icon-hover.svg" id="3_da66m"]
+[ext_resource type="Texture2D" uid="uid://b0383aoua777l" path="res://res/img/pause-icon.svg" id="3_etrpr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rfo8u"]
+texture = ExtResource("3_etrpr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_10bd8"]
+texture = ExtResource("3_da66m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qg350"]
+texture = ExtResource("3_etrpr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_45gv4"]
+texture = ExtResource("3_etrpr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_om4j2"]
+texture = ExtResource("3_etrpr")
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource("1_r6xri")
+
+[node name="world" type="Node2D" parent="."]
+
+[node name="entities" type="Node2D" parent="world"]
+
+[node name="entity_labels" type="Node2D" parent="world"]
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="pause_button" type="Button" parent="ui"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -94.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 94.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_rfo8u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_10bd8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qg350")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_45gv4")
+theme_override_styles/focus = SubResource("StyleBoxTexture_om4j2")
+
+[node name="pause" parent="ui" instance=ExtResource("2_3pxcx")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2

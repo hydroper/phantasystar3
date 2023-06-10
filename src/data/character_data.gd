@@ -1,0 +1,1 @@
+class_name PS3CharacterData

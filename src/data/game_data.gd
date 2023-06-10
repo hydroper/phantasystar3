@@ -1,1 +1,1 @@
-class_name GameData
+class_name PS3GameData

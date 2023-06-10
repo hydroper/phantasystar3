@@ -1,6 +1,8 @@
 class_name GameScreenPause
 extends Control
 
+var subsequent_panels: Array[Node] = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass
