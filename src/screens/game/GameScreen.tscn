@@ -15,7 +15,7 @@ script = ExtResource("1_r6xri")
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="PS3DefaultPanel" parent="ui" instance=ExtResource("2_jnad5")]
-offset_left = 229.0
-offset_top = 221.0
-offset_right = -515.0
-offset_bottom = -144.0
+offset_left = 17.0
+offset_top = 23.0
+offset_right = -727.0
+offset_bottom = -342.0

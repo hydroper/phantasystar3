@@ -15,4 +15,8 @@ func _ready() -> void:
     pass
 
 func _process(_delta: float) -> void:
-    pass
+    if Input.is_action_pressed("move_left"):
+        if $ui/PS3DefaultPanel.is_open:
+            $ui/PS3DefaultPanel.collapse()
+        else:
+            $ui/PS3DefaultPanel.popup()

@@ -64,11 +64,12 @@ func _init():
             self.on_popup.emit(k1, k2))
 
 func _process(delta: float) -> void:
-    self._scale_tween.process(delta)
-    var x = self._custom_position.x
-    var w = self.size.x
-    var sx = self.scale.x
-    self.position.x = x + w / 2 - (w / 2) * sx
+    if self._scale_tween.is_running():
+        self._scale_tween.process(delta)
+        var x = self._custom_position.x
+        var w = self.size.x
+        var sx = self.scale.x
+        self.position.x = x + w / 2 - (w / 2) * sx
 
 func _input(event):
     if self.is_open && !self._busy && NodeExtFn.outer_clicked(self, event):
