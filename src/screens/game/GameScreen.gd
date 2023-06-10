@@ -21,8 +21,11 @@ func _ready() -> void:
         self.toggle_pause())
 
 func _input(event: InputEvent) -> void:
-    if event.is_action_released("pause") or (self.paused and event.is_action_released("ui_cancel")):
+    if event.is_action_released("pause"):
         self.toggle_pause()
+    elif self.paused:
+        if event.is_action_released("ui_cancel"):
+            self.toggle_pause()
 
 func _process(_delta: float) -> void:
     pass
