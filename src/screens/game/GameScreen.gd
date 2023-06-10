@@ -11,17 +11,8 @@ var world_entities: Node2D = $world/entities
 @onready
 var world_entity_labels: Node2D = $world/entity_labels
 
-@onready
-var dp: PS3DefaultPanel = $ui/PS3DefaultPanel
-
 func _ready() -> void:
-    dp.on_outer_click.connect(func():
-        dp.collapse())
     pass
 
 func _process(_delta: float) -> void:
-    if Input.is_action_pressed("move_left") && not dp.is_opening_or_collapsing:
-        if dp.is_collapsed:
-            dp.popup()
-        else:
-            dp.collapse()
+    pass
