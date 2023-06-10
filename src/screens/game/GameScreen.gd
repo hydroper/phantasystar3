@@ -33,4 +33,5 @@ func toggle_pause() -> void:
     self.paused = not self.paused
     $ui/pause.visible = self.paused
     if self.paused:
-        $ui/pause/buttons1/items_btn.grab_focus()
+        $ui/pause/top_content.visible = true
+        $ui/pause/top_content/buttons1/items_btn.grab_focus()

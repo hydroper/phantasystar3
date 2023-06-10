@@ -24,80 +24,81 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="buttons1" type="VBoxContainer" parent="."]
-layout_mode = 2
+[node name="top_content" type="Node2D" parent="."]
+
+[node name="buttons1" type="VBoxContainer" parent="top_content"]
 offset_left = -419.0
 offset_top = -146.0
 offset_right = 711.0
 offset_bottom = 304.0
 
-[node name="items_btn" parent="buttons1" instance=ExtResource("2_gs0ki")]
+[node name="items_btn" parent="top_content/buttons1" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 focus_neighbor_top = NodePath("../order_btn")
 focus_neighbor_right = NodePath("../../buttons2/macro_btn")
 focus_neighbor_bottom = NodePath("../character_btn")
 
-[node name="label" parent="buttons1/items_btn/control" index="1"]
+[node name="label" parent="top_content/buttons1/items_btn/control" index="1"]
 text = "Items"
 
-[node name="character_btn" parent="buttons1" instance=ExtResource("2_gs0ki")]
+[node name="character_btn" parent="top_content/buttons1" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 focus_neighbor_top = NodePath("../items_btn")
 focus_neighbor_right = NodePath("../../buttons2/talk_btn")
 focus_neighbor_bottom = NodePath("../order_btn")
 
-[node name="label" parent="buttons1/character_btn/control" index="1"]
+[node name="label" parent="top_content/buttons1/character_btn/control" index="1"]
 text = "Character"
 
-[node name="order_btn" parent="buttons1" instance=ExtResource("2_gs0ki")]
+[node name="order_btn" parent="top_content/buttons1" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 focus_neighbor_top = NodePath("../character_btn")
 focus_neighbor_right = NodePath("../../buttons2/system_btn")
 focus_neighbor_bottom = NodePath("../items_btn")
 
-[node name="label" parent="buttons1/order_btn/control" index="1"]
+[node name="label" parent="top_content/buttons1/order_btn/control" index="1"]
 text = "Order"
 
-[node name="buttons2" type="VBoxContainer" parent="."]
+[node name="buttons2" type="VBoxContainer" parent="top_content"]
 offset_left = 418.0
 offset_top = -80.0
 offset_right = 418.0
 offset_bottom = 252.0
 
-[node name="macro_btn" parent="buttons2" instance=ExtResource("2_gs0ki")]
+[node name="macro_btn" parent="top_content/buttons2" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../buttons1/items_btn")
 focus_neighbor_top = NodePath("../system_btn")
 focus_neighbor_bottom = NodePath("../talk_btn")
 
-[node name="label" parent="buttons2/macro_btn/control" index="1"]
+[node name="label" parent="top_content/buttons2/macro_btn/control" index="1"]
 text = "Macro"
 
-[node name="talk_btn" parent="buttons2" instance=ExtResource("2_gs0ki")]
+[node name="talk_btn" parent="top_content/buttons2" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../buttons1/character_btn")
 focus_neighbor_bottom = NodePath("../system_btn")
 
-[node name="label" parent="buttons2/talk_btn/control" index="1"]
+[node name="label" parent="top_content/buttons2/talk_btn/control" index="1"]
 text = "Talk"
 
-[node name="system_btn" parent="buttons2" instance=ExtResource("2_gs0ki")]
+[node name="system_btn" parent="top_content/buttons2" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../buttons1/order_btn")
 focus_neighbor_bottom = NodePath("../macro_btn")
 
-[node name="label" parent="buttons2/system_btn/control" index="1"]
+[node name="label" parent="top_content/buttons2/system_btn/control" index="1"]
 text = "System"
 
-[editable path="buttons1/items_btn"]
-[editable path="buttons1/character_btn"]
-[editable path="buttons1/order_btn"]
-[editable path="buttons2/macro_btn"]
-[editable path="buttons2/talk_btn"]
-[editable path="buttons2/system_btn"]
+[editable path="top_content/buttons1/items_btn"]
+[editable path="top_content/buttons1/character_btn"]
+[editable path="top_content/buttons1/order_btn"]
+[editable path="top_content/buttons2/macro_btn"]
+[editable path="top_content/buttons2/talk_btn"]
+[editable path="top_content/buttons2/system_btn"]
