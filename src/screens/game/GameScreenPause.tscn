@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=3 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreenPause.gd" id="1_j3la8"]
+[ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/PS3RoundBigButton.tscn" id="2_gs0ki"]
 
 [node name="GameScreenPause" type="Control"]
 layout_mode = 3
@@ -20,3 +21,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="PS3RoundBigButton" parent="." instance=ExtResource("2_gs0ki")]
+layout_mode = 0
+anchors_preset = 0
+focus_neighbor_bottom = NodePath("../PS3RoundBigButton2")
+
+[node name="PS3RoundBigButton2" parent="." instance=ExtResource("2_gs0ki")]
+layout_mode = 1
+offset_left = 245.0
+offset_top = 280.0
+offset_right = -790.0
+offset_bottom = -283.0
+focus_neighbor_top = NodePath("../PS3RoundBigButton")
