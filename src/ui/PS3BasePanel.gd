@@ -79,6 +79,7 @@ func popup(goal: String = "", data: Variant = null) -> void:
     self.visible = true
     self.disabled = true
     self.custom_position = self.position if self._custom_position_is_unset else self._custom_position
+    self.position.x = self._custom_position.x + self.size.x / 2
     self._scale_tween.tween_x(self, 1.0)
 
 func collapse(goal: String = "", data: Variant = null) -> void:
@@ -90,4 +91,5 @@ func collapse(goal: String = "", data: Variant = null) -> void:
     self.visible = true
     self.disabled = true
     self.custom_position = self.position if self._custom_position_is_unset else self._custom_position
+    self.position.x = self._custom_position.x
     self._scale_tween.tween_x(self, 0.0)
