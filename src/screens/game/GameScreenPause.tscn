@@ -26,10 +26,10 @@ color = Color(0, 0, 0, 1)
 
 [node name="buttons1" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 158.0
-offset_top = -154.0
-offset_right = 158.0
-offset_bottom = 178.0
+offset_left = -419.0
+offset_top = -146.0
+offset_right = 711.0
+offset_bottom = 304.0
 
 [node name="items_btn" parent="buttons1" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
@@ -62,7 +62,6 @@ focus_neighbor_bottom = NodePath("../items_btn")
 text = "Order"
 
 [node name="buttons2" type="VBoxContainer" parent="."]
-layout_mode = 2
 offset_left = 418.0
 offset_top = -80.0
 offset_right = 418.0
