@@ -24,6 +24,6 @@ static func from(value: int) -> TurnDirection:
 func value_of() -> int:
     return self._v
 
-var speed:
+var speed: Vector2:
     get:
         return self._speed

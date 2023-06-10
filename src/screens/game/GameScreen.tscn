@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckewe5sw03jor"]
+[gd_scene load_steps=3 format=3 uid="uid://ckewe5sw03jor"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreen.gd" id="1_r6xri"]
+[ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/PS3DefaultPanel.tscn" id="2_jnad5"]
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_r6xri")
@@ -12,3 +13,9 @@ script = ExtResource("1_r6xri")
 [node name="entity_labels" type="Node2D" parent="world"]
 
 [node name="ui" type="CanvasLayer" parent="."]
+
+[node name="PS3DefaultPanel" parent="ui" instance=ExtResource("2_jnad5")]
+offset_left = 359.0
+offset_top = 166.0
+offset_right = -521.0
+offset_bottom = -171.0
