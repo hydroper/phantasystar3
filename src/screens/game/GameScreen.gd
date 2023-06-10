@@ -21,19 +21,9 @@ func _ready() -> void:
         self.toggle_pause())
     self.pause_subsequent_controls = []
 
-func _process(_delta: float) -> void:
-    if Input.is_action_released("pause"):
-        self.toggle_pause()
-        return
-    if self.paused:
-        if Input.is_action_released("ui_cancel"):
-            self.toggle_pause()
-        return
-
 func _input(event: InputEvent) -> void:
-    pass
-    # if self.paused and NodeExtFn.outer_clicked($ui/pause/background, event):
-        # self.toggle_pause()
+    if event.is_action_released("pause") or (self.paused and event.is_action_released("ui_cancel")):
+        self.toggle_pause()
 
 func toggle_pause() -> void:
     if NodeExtFn.any_is_visible(self.pause_subsequent_controls):
