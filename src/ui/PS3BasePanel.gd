@@ -70,6 +70,12 @@ func _process(delta: float) -> void:
     var sx = self.scale.x
     self.position.x = x + w / 2 - (w / 2) * sx
 
+# func _input(event):
+#     if is_open && !_busy && (event is InputEventMouseButton) and event.pressed:
+#         var ev_local = make_input_local(event)
+#         if !Rect2(Vector2(0, 0), size).has_point(ev_local.position):
+#             on_outer_click.emit()
+
 func popup(goal: String = "", data: Variant = null) -> void:
     if self._busy or self.is_open:
         return

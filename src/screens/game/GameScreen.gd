@@ -15,6 +15,8 @@ var world_entity_labels: Node2D = $world/entity_labels
 var dp: PS3DefaultPanel = $ui/PS3DefaultPanel
 
 func _ready() -> void:
+    dp.on_outer_click.connect(func():
+        dp.collapse())
     pass
 
 func _process(_delta: float) -> void:
