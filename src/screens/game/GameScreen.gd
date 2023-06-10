@@ -18,7 +18,8 @@ var world_entity_labels: Node2D = $world/entity_labels
 func _ready() -> void:
     $ui/pause.visible = false
     $ui/pause_button.pressed.connect(func():
-        self.toggle_pause())
+        if not self.paused:
+            self.toggle_pause())
     self.pause_subsequent_controls = []
 
 func _process(_delta: float) -> void:
