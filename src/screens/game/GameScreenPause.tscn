@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=3 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreenPause.gd" id="1_j3la8"]
+[ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/PS3RoundBigButton.tscn" id="2_gs0ki"]
 
 [node name="GameScreenPause" type="Control"]
 layout_mode = 3
@@ -22,3 +23,96 @@ offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="buttons1" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 158.0
+offset_top = -204.0
+offset_right = 158.0
+offset_bottom = 128.0
+
+[node name="items_btn" parent="buttons1" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_neighbor_right = NodePath("../../buttons2/macro_btn")
+focus_neighbor_bottom = NodePath("../character_btn")
+
+[node name="label" parent="buttons1/items_btn/control" index="1"]
+text = "Items"
+
+[node name="character_btn" parent="buttons1" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_neighbor_right = NodePath("../../buttons2/talk_btn")
+focus_neighbor_bottom = NodePath("../tech_btn")
+
+[node name="label" parent="buttons1/character_btn/control" index="1"]
+text = "Character"
+
+[node name="tech_btn" parent="buttons1" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_neighbor_right = NodePath("../../buttons2/system_btn")
+focus_neighbor_bottom = NodePath("../order_btn")
+
+[node name="label" parent="buttons1/tech_btn/control" index="1"]
+text = "Tech"
+
+[node name="order_btn" parent="buttons1" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_neighbor_right = NodePath("../../buttons2/continue_btn")
+
+[node name="label" parent="buttons1/order_btn/control" index="1"]
+text = "Order"
+
+[node name="buttons2" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 418.0
+offset_top = -150.0
+offset_right = 418.0
+offset_bottom = 182.0
+
+[node name="macro_btn" parent="buttons2" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_neighbor_left = NodePath("../../buttons1/items_btn")
+focus_neighbor_bottom = NodePath("../talk_btn")
+
+[node name="label" parent="buttons2/macro_btn/control" index="1"]
+text = "Macro"
+
+[node name="talk_btn" parent="buttons2" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_neighbor_left = NodePath("../../buttons1/character_btn")
+focus_neighbor_bottom = NodePath("../system_btn")
+
+[node name="label" parent="buttons2/talk_btn/control" index="1"]
+text = "Talk"
+
+[node name="system_btn" parent="buttons2" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_neighbor_left = NodePath("../../buttons1/tech_btn")
+focus_neighbor_bottom = NodePath("../continue_btn")
+
+[node name="label" parent="buttons2/system_btn/control" index="1"]
+text = "System"
+
+[node name="continue_btn" parent="buttons2" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_neighbor_left = NodePath("../../buttons1/order_btn")
+
+[node name="label" parent="buttons2/continue_btn/control" index="1"]
+text = "Continue"
+
+[editable path="buttons1/items_btn"]
+[editable path="buttons1/character_btn"]
+[editable path="buttons1/tech_btn"]
+[editable path="buttons1/order_btn"]
+[editable path="buttons2/macro_btn"]
+[editable path="buttons2/talk_btn"]
+[editable path="buttons2/system_btn"]
+[editable path="buttons2/continue_btn"]
