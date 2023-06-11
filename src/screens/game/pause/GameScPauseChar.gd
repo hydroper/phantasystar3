@@ -18,14 +18,11 @@ func _ready():
 func _process(_delta):
     pass
 
-func close_all_subsequent() -> void:
-    for p in self.subsequent:
-        if p is SubsequentNode2DView or p is SubsequentControlView:
-            p.close_all_subsequent()
-        p.visible = false
+func close_subsequent_recursive() -> void:
+    SubsequentViews.close_recursive(self.subsequent)
 
 func open_status(character_type: PS3Character) -> void:
-    self.close_all_subsequent()
+    self.close_subsequent_recursive()
     self.opened_character = character_type
     var character = self.game_data.characters[character_type]
     if not self.visible:

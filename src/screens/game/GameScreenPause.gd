@@ -33,20 +33,17 @@ func _input(event: InputEvent) -> void:
         if event.is_action_released("ui_cancel"):
             self.close_subsequent()
 
-func close_all_subsequent() -> void:
-    for p in self.subsequent:
-        if p is SubsequentNode2DView or p is SubsequentControlView:
-            p.close_all_subsequent()
-        p.visible = false
+func close_subsequent_recursive() -> void:
+    SubsequentViews.close_recursive(self.subsequent)
 
 func open_top() -> void:
-    self.close_all_subsequent()
+    self.close_subsequent_recursive()
     $top_content.visible = true
     $top_content/status/meseta/value.text = str(self.game_data.meseta)
     $top_content/buttons1/items_btn.grab_focus()
 
 func open_character_selection() -> void:
-    self.close_all_subsequent()
+    self.close_subsequent_recursive()
     $character_selection.visible = true
     NodeExtFn.remove_all_children($character_selection/list)
     for character_type in self.game_data.party:
@@ -65,7 +62,7 @@ func open_character_selection() -> void:
         character_box.pressed.connect(func():
             for button in $character_selection/list.get_children():
                 if button.button_pressed:
-                    self.close_all_subsequent()
+                    self.close_subsequent_recursive()
                     self.last_selected_character = character_type
                     $character.open_status(button.character)
                     return)
@@ -88,10 +85,11 @@ func close_subsequent() -> void:
         if not $character.visible:
             self.open_character_selection()
     else:
-        # self.toggle_pause()
         self.visible = false
 
 func toggle_pause() -> void:
     self.visible = not self.visible
     if self.visible:
         self.open_top()
+    else:
+        self.close_subsequent_recursive()
