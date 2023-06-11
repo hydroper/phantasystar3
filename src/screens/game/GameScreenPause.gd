@@ -46,7 +46,7 @@ func open_character_selection() -> void:
     for character_type in self.game_data.party:
         var character = self.game_data.characters[character_type]
         var character_box = preload("res://src/screens/game/pause/GameScPauseTopPartyChar.tscn").instantiate()
-        character_box.name = str(character_type.value_of())
+        character_box.character = character_type
         character_box.custom_minimum_size.x = 200
         character_box.custom_minimum_size.y = 400
         character_box.size_flags_horizontal = 0
@@ -59,7 +59,7 @@ func open_character_selection() -> void:
         character_box.pressed.connect(func():
             for button in $character_selection/list.get_children():
                 if button.button_pressed:
-                    self.open_character(PS3Character.from(int(str(button.name))))
+                    self.open_character(button.character)
                     return)
         $character_selection/list.add_child(character_box)
     $character_selection/list.get_child(0).focus_neighbor_left = $character_selection/list.get_child(-1).get_path()
@@ -78,7 +78,7 @@ func open_character(character_type: PS3Character) -> void:
 func close_subsequent() -> void:
     if $character_selection.visible:
         self.open_top()
-    if $character.visible:
+    elif $character.visible:
         self.open_character_selection()
     else:
         self.toggle_pause()
