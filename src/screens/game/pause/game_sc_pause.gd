@@ -10,16 +10,6 @@ var subsequent: Array[Node] = [
     $character,
 ]
 
-@onready
-var root_buttons: Array[Control] = [
-    $root_content/buttons1/items_btn as Control,
-    $root_content/buttons1/character_btn as Control,
-    $root_content/buttons1/order_btn as Control,
-    $root_content/buttons2/macro_btn as Control,
-    $root_content/buttons2/talk_btn as Control,
-    $root_content/buttons2/system_btn as Control,
-]
-
 var last_pressed_root_button: Control = null
 
 var last_selected_character: PS3Character
@@ -28,7 +18,7 @@ var last_selected_character: PS3Character
 func _ready():
     self.visible = false
     $root_content/buttons1/character_btn.pressed.connect(func():
-        self._track_last_pressed_root_button()
+        self.last_pressed_root_button = $root_content/buttons1/character_btn
         self.open_character_selection())
     $character/status/right/back_btn.pressed.connect(func():
         self.close_subsequent())
@@ -98,6 +88,3 @@ func toggle_pause() -> void:
         self.open_root()
     else:
         self.close_subsequent_recursive()
-
-func _track_last_pressed_root_button() -> void:
-    self.last_pressed_root_button = self.root_buttons.filter(func(a): return a.button_pressed)[0]

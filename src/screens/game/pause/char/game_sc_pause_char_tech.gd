@@ -25,7 +25,10 @@ func open_root(character_type: PS3Character) -> void:
         $scroll_list/list.add_child(self.create_tech_button(tech))
     if $scroll_list/list.get_child_count() > 0:
         $scroll_list/list.get_child(0).grab_focus()
+        $scroll_list/list.get_child(0).focus_neighbor_top = $back_btn.get_path()
+        $back_btn.focus_neighbor_bottom = $scroll_list/list.get_child(0).get_path()
     else:
+        $back_btn.focus_neighbor_bottom = null
         $back_btn.grab_focus()
 
 func create_tech_button(tech_1: PS3TechType) -> PS3RoundMediumButton:
