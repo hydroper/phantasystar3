@@ -11,3 +11,6 @@ var right_arm: PS3ItemType = null
 var helmet: PS3ItemType = null
 var chest: PS3ItemType = null
 var legs: PS3ItemType = null
+
+func _init(character: PS3Character):
+    self.character = character
