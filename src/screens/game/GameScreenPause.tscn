@@ -383,6 +383,13 @@ layout_mode = 2
 [node name="label" parent="character/status/right/equipment_btn/control" index="1"]
 text = "Equipment"
 
+[node name="back_btn" parent="character/status/right" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="label" parent="character/status/right/back_btn/control" index="1"]
+text = "Back"
+
 [editable path="top_content/buttons1/items_btn"]
 [editable path="top_content/buttons1/character_btn"]
 [editable path="top_content/buttons1/order_btn"]
@@ -391,3 +398,4 @@ text = "Equipment"
 [editable path="top_content/buttons2/system_btn"]
 [editable path="character/status/right/tech_btn"]
 [editable path="character/status/right/equipment_btn"]
+[editable path="character/status/right/back_btn"]

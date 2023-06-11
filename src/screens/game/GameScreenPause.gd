@@ -5,6 +5,8 @@ var game_data: PS3GameData = null
 
 var subsequent_panels: Array[Node] = []
 
+var last_selected_character: PS3Character
+
 const CHARACTER_HP_OR_TP_BAR_WIDTH: float = 102.0
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +19,8 @@ func _ready():
     ]
     $top_content/buttons1/character_btn.pressed.connect(func():
         self.open_character_selection())
+    $character/status/right/back_btn.pressed.connect(func():
+        self.close_subsequent())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -59,12 +63,19 @@ func open_character_selection() -> void:
         character_box.pressed.connect(func():
             for button in $character_selection/list.get_children():
                 if button.button_pressed:
+                    self.last_selected_character = character_type
                     self.open_character(button.character)
                     return)
         $character_selection/list.add_child(character_box)
     $character_selection/list.get_child(0).focus_neighbor_left = $character_selection/list.get_child(-1).get_path()
     $character_selection/list.get_child(-1).focus_neighbor_right = $character_selection/list.get_child(0).get_path()
     $character_selection/list.get_child(0).grab_focus()
+    if self.last_selected_character != null:
+        for button in $character_selection/list.get_children():
+            if button.character == self.last_selected_character:
+                button.grab_focus()
+                break
+        self.last_selected_character = null
 
 func open_character(character_type: PS3Character) -> void:
     self.close_all_subsequent_panels()
