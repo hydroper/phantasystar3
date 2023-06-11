@@ -19,9 +19,6 @@ var world: Node2D = $world
 @onready
 var world_entities: Node2D = $world/entities
 
-@onready
-var world_entity_labels: Node2D = $world/entity_labels
-
 func _ready() -> void:
     for o in self.game_data_dependents:
         o.game_data = self.game_data

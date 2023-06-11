@@ -61,7 +61,7 @@ func open_character_selection() -> void:
     $character_selection/list.get_child(0).grab_focus()
     if self.last_selected_character != null:
         for button in $character_selection/list.get_children():
-            if button.character == self.last_selected_character:
+            if button.character.character == self.last_selected_character:
                 button.grab_focus()
                 break
         self.last_selected_character = null
