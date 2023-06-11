@@ -22,8 +22,6 @@ var world_entities: Node2D = $world/entities
 func _ready() -> void:
     for o in self.game_data_dependents:
         o.game_data = self.game_data
-    # $ui/pause.game_data = self.game_data
-    # $ui/pause/character.game_data = self.game_data
 
     $ui/pause_button.pressed.connect(func():
         self.pause.toggle_pause())
