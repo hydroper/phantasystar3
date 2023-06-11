@@ -1,7 +1,7 @@
 class_name PS3CharacterData
 
 var character: PS3Character
-var exp: int = 0
+var level_exp: int = 0
 var hp: int = 0
 var tp: int = 0
 var poisoned: bool = false

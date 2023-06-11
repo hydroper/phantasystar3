@@ -2,7 +2,8 @@ extends Node2D
 
 var game_data: PS3GameData = PS3GameData.new()
 
-var paused: bool = false
+@onready
+var pause: GameScreenPause = $ui/pause
 
 var pause_subsequent_controls: Array[Node] = []
 
@@ -16,25 +17,26 @@ var world_entities: Node2D = $world/entities
 var world_entity_labels: Node2D = $world/entity_labels
 
 func _ready() -> void:
-    $ui/pause.visible = false
+    pause.game_data = self.game_data
+    pause.visible = false
     $ui/pause_button.pressed.connect(func():
         self.toggle_pause())
 
 func _input(event: InputEvent) -> void:
     if event.is_action_released("pause"):
         self.toggle_pause()
-    elif self.paused:
+    elif self.paused and pause.at_top:
         if event.is_action_released("ui_cancel"):
             self.toggle_pause()
 
 func _process(_delta: float) -> void:
     pass
 
+var paused: bool:
+    get:
+        return pause.visible
+
 func toggle_pause() -> void:
-    for p in $ui/pause.subsequent_panels:
-        p.visible = false
-    self.paused = not self.paused
-    $ui/pause.visible = self.paused
+    pause.visible = not self.paused
     if self.paused:
-        $ui/pause/top_content.visible = true
-        $ui/pause/top_content/buttons1/items_btn.grab_focus()
+        pause.open_top()
