@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://d1k0e4sdhttff"]
 
-[ext_resource type="Script" path="res://src/screens/game/pause/char_select_card/GameScPauseCharSelectCard.gd" id="1_11i6y"]
+[ext_resource type="Script" path="res://src/screens/game/pause/char_select_card/game_sc_pause_char_select_card.gd" id="1_11i6y"]
 [ext_resource type="Texture2D" uid="uid://bfyvlh35c8t20" path="res://res/img/characters/_template/face.png" id="1_ih4gr"]
 [ext_resource type="FontFile" uid="uid://bhvqs8dtae8pv" path="res://res/fonts/jost/Jost-Italic.ttf" id="2_lrsuj"]
 [ext_resource type="FontFile" uid="uid://daml7kmeoclcl" path="res://res/fonts/jost/Jost-Regular.ttf" id="3_008bj"]

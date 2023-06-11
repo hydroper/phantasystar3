@@ -10,24 +10,20 @@ var subsequent: Array[Node] = [
 
 var opened_character: PS3Character
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-    pass
-
 func close_subsequent_recursive() -> void:
     SubsequentViews.close_recursive(self.subsequent)
 
-func open_status(character_type: PS3Character) -> void:
-    self.close_subsequent_recursive()
+func init_character(character_type: PS3Character) -> void:
     self.opened_character = character_type
     var character = self.game_data.characters[character_type]
     if not self.visible:
         self.visible = true
         $portrait.texture = character.portrait_texture
+
+func open_status(character_type: PS3Character) -> void:
+    self.close_subsequent_recursive()
+    self.init_character(character_type)
+    var character = self.game_data.characters[character_type]
     $status.visible = true
     $status/left/name.text = character.name
     $status/left/hp/ratio.text = str(character.hp) + "/" + str(character.max_hp)
