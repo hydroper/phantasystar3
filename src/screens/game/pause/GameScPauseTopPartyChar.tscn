@@ -28,8 +28,8 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_juqbl"]
-bg_color = Color(0.482353, 0.482353, 0.654902, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mtkd"]
+bg_color = Color(0.392157, 0.392157, 0.556863, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -100,7 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_mkj1f")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ss38q")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_juqbl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4mtkd")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_6jvf4")
 theme_override_styles/focus = SubResource("StyleBoxFlat_hy5ux")
 

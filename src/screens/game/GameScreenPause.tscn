@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=7 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreenPause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/PS3RoundBigButton.tscn" id="2_gs0ki"]
 [ext_resource type="PackedScene" uid="uid://d1k0e4sdhttff" path="res://src/screens/game/pause/GameScPauseTopPartyChar.tscn" id="3_32rwu"]
+[ext_resource type="Texture2D" uid="uid://cy24qnltuibav" path="res://res/img/characters/_template/portrait.png" id="4_e0b4l"]
+[ext_resource type="FontFile" uid="uid://daml7kmeoclcl" path="res://res/fonts/jost/Jost-Regular.ttf" id="5_idc2c"]
+[ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="6_pc315"]
 
 [node name="GameScreenPause" type="Control"]
 layout_mode = 3
@@ -27,6 +30,30 @@ color = Color(0, 0, 0, 1)
 
 [node name="top_content" type="Node2D" parent="."]
 visible = false
+
+[node name="status" type="VBoxContainer" parent="top_content"]
+offset_left = -518.0
+offset_top = -192.0
+offset_right = -166.0
+offset_bottom = 194.0
+alignment = 1
+
+[node name="meseta" type="HBoxContainer" parent="top_content/status"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="top_content/status/meseta"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 32
+text = "Meseta:"
+
+[node name="value" type="Label" parent="top_content/status/meseta"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 2
 
 [node name="buttons1" type="VBoxContainer" parent="top_content"]
 offset_left = -68.0
@@ -99,6 +126,7 @@ focus_neighbor_bottom = NodePath("../macro_btn")
 text = "System"
 
 [node name="character_selection" type="Node2D" parent="."]
+visible = false
 
 [node name="list" type="HBoxContainer" parent="character_selection"]
 anchors_preset = 8
@@ -121,9 +149,245 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
+[node name="character" type="Node2D" parent="."]
+
+[node name="portrait" type="TextureRect" parent="character"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -514.0
+offset_top = -172.0
+offset_right = -286.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_e0b4l")
+
+[node name="status" type="Node2D" parent="character"]
+
+[node name="left" type="VBoxContainer" parent="character/status"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -210.0
+offset_right = 58.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="name" type="Label" parent="character/status/left"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 40
+text = "undefined"
+
+[node name="hp" type="HBoxContainer" parent="character/status/left"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/left/hp"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "HP:"
+
+[node name="ratio" type="Label" parent="character/status/left/hp"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0/0"
+horizontal_alignment = 2
+
+[node name="tp" type="HBoxContainer" parent="character/status/left"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/left/tp"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "TP:"
+
+[node name="ratio" type="Label" parent="character/status/left/tp"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0/0"
+horizontal_alignment = 2
+
+[node name="experience" type="HBoxContainer" parent="character/status/left"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/left/experience"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "Exp:"
+
+[node name="ratio" type="Label" parent="character/status/left/experience"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0/0"
+horizontal_alignment = 2
+
+[node name="speed" type="HBoxContainer" parent="character/status/left"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/left/speed"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "Speed:"
+
+[node name="value" type="Label" parent="character/status/left/speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0"
+horizontal_alignment = 2
+
+[node name="damage" type="HBoxContainer" parent="character/status/left"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/left/damage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "Damage:"
+
+[node name="value" type="Label" parent="character/status/left/damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0"
+horizontal_alignment = 2
+
+[node name="defense" type="HBoxContainer" parent="character/status/left"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/left/defense"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "Defense:"
+
+[node name="value" type="Label" parent="character/status/left/defense"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0"
+horizontal_alignment = 2
+
+[node name="intelligence" type="HBoxContainer" parent="character/status/left"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/left/intelligence"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "Intelligence:"
+
+[node name="value" type="Label" parent="character/status/left/intelligence"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0"
+horizontal_alignment = 2
+
+[node name="stamina" type="HBoxContainer" parent="character/status/left"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/left/stamina"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "Stamina:"
+
+[node name="value" type="Label" parent="character/status/left/stamina"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0"
+horizontal_alignment = 2
+
+[node name="right" type="VBoxContainer" parent="character/status"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 121.0
+offset_top = -142.0
+offset_right = 508.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="luck" type="HBoxContainer" parent="character/status/right"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/right/luck"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "Luck:"
+
+[node name="value" type="Label" parent="character/status/right/luck"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0"
+horizontal_alignment = 2
+
+[node name="skill" type="HBoxContainer" parent="character/status/right"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="character/status/right/skill"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 23
+text = "Skill:"
+
+[node name="value" type="Label" parent="character/status/right/skill"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_idc2c")
+theme_override_font_sizes/font_size = 23
+text = "0"
+horizontal_alignment = 2
+
+[node name="tech_btn" parent="character/status/right" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="label" parent="character/status/right/tech_btn/control" index="1"]
+text = "Tech"
+
+[node name="equipment_btn" parent="character/status/right" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="label" parent="character/status/right/equipment_btn/control" index="1"]
+text = "Equipment"
+
 [editable path="top_content/buttons1/items_btn"]
 [editable path="top_content/buttons1/character_btn"]
 [editable path="top_content/buttons1/order_btn"]
 [editable path="top_content/buttons2/macro_btn"]
 [editable path="top_content/buttons2/talk_btn"]
 [editable path="top_content/buttons2/system_btn"]
+[editable path="character/status/right/tech_btn"]
+[editable path="character/status/right/equipment_btn"]

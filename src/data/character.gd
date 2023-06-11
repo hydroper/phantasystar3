@@ -15,6 +15,7 @@ func _init(value: int, string_id: String, gender: Gender, face_texture: Texture)
     self._string_id = string_id
     self._gender = gender
     self._face_texture = face_texture
+    print(PS3Character._from[value].name)
 
 static func from(value: int) -> PS3Character:
     return PS3Character._from.get(value)

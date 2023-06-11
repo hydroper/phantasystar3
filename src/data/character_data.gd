@@ -2,7 +2,7 @@ class_name PS3CharacterData
 
 var character: PS3Character
 var level_exp: int = 0
-var hp: int = 0
+var hp: int = 10
 var tp: int = 0
 var poisoned: bool = false
 
@@ -37,8 +37,36 @@ var level: int:
 
 var max_hp: int:
     get:
-        return 50
+        return 10
 
 var max_tp: int:
     get:
         return 10
+
+var speed: int:
+    get:
+        return 8
+
+var damage: int:
+    get:
+        return 8
+
+var defense: int:
+    get:
+        return 13
+
+var intelligence: int:
+    get:
+        return 6
+
+var stamina: int:
+    get:
+        return 15
+
+var luck: int:
+    get:
+        return 10
+
+var skill: int:
+    get:
+        return 5
