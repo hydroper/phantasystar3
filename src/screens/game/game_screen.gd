@@ -6,6 +6,7 @@ var game_data: PS3GameData = PS3GameData.new()
 var game_data_dependents = [
     $ui/pause,
     $ui/pause/character,
+    $ui/pause/character/tech,
 ]
 
 @onready

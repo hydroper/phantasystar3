@@ -5,7 +5,7 @@ var game_data: PS3GameData = null
 
 @onready
 var subsequent: Array[Node] = [
-    $top_content,
+    $root_content,
     $character_selection,
     $character,
 ]
@@ -15,7 +15,7 @@ var last_selected_character: PS3Character
 # Called when the node enters the scene tree for the first time.
 func _ready():
     self.visible = false
-    $top_content/buttons1/character_btn.pressed.connect(func():
+    $root_content/buttons1/character_btn.pressed.connect(func():
         self.open_character_selection())
     $character/status/right/back_btn.pressed.connect(func():
         self.close_subsequent())
@@ -34,11 +34,11 @@ func _input(event: InputEvent) -> void:
 func close_subsequent_recursive() -> void:
     SubsequentViews.close_recursive(self.subsequent)
 
-func open_top() -> void:
+func open_root() -> void:
     self.close_subsequent_recursive()
-    $top_content.visible = true
-    $top_content/status/meseta/value.text = str(self.game_data.meseta)
-    $top_content/buttons1/items_btn.grab_focus()
+    $root_content.visible = true
+    $root_content/status/meseta/value.text = str(self.game_data.meseta)
+    $root_content/buttons1/items_btn.grab_focus()
 
 func open_character_selection() -> void:
     self.close_subsequent_recursive()
@@ -68,7 +68,7 @@ func open_character_selection() -> void:
 
 func close_subsequent() -> void:
     if $character_selection.visible:
-        self.open_top()
+        self.open_root()
     elif $character.visible:
         $character.close_subsequent()
         if not $character.visible:
@@ -79,6 +79,6 @@ func close_subsequent() -> void:
 func toggle_pause() -> void:
     self.visible = not self.visible
     if self.visible:
-        self.open_top()
+        self.open_root()
     else:
         self.close_subsequent_recursive()

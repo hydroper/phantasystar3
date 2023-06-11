@@ -78,3 +78,7 @@ var luck: int:
 var skill: int:
     get:
         return 5
+
+var learned_tech: Array[PS3TechType]:
+    get:
+        return [PS3TechType.HEAL, PS3TechType.RES, PS3TechType.GIRES, PS3TechType.REVER]
