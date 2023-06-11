@@ -10,6 +10,11 @@ var subsequent: Array[Node] = [
     $character,
 ]
 
+@onready
+var root_buttons: Array[Control] = []
+
+var last_pressed_root_button: Control = null
+
 var last_selected_character: PS3Character
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +26,9 @@ func _ready():
         self.close_subsequent())
     $character_selection/back_btn.pressed.connect(func():
         self.close_subsequent())
+    for control in self.root_buttons:
+        control.pressed.connect(func():
+            self.last_pressed_root_button = self.root_buttons.filter(func(a): return a.button_pressed)[0])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -41,6 +49,8 @@ func open_root() -> void:
     $root_content.visible = true
     $root_content/status/meseta/value.text = str(self.game_data.meseta)
     $root_content/buttons1/items_btn.grab_focus()
+    if self.last_pressed_root_button != null:
+        self.last_pressed_root_button.grab_focus()
 
 func open_character_selection() -> void:
     self.close_subsequent_recursive()
@@ -51,12 +61,10 @@ func open_character_selection() -> void:
         var char_card = preload("res://src/screens/game/pause/char_select_card/game_sc_pause_char_select_card.tscn").instantiate()
         char_card.display_character(character)
         char_card.pressed.connect(func():
-            for button in $character_selection/scroll_list/list.get_children():
-                if button.button_pressed:
-                    self.close_subsequent_recursive()
-                    self.last_selected_character = character_type
-                    $character.open_status(button.character.character)
-                    return)
+            var character_2 = $character_selection/scroll_list/list.get_children().filter(func(a): return a.button_pressed)[0].character.character
+            self.close_subsequent_recursive()
+            self.last_selected_character = character_2
+            $character.open_status(character_2))
         $character_selection/scroll_list/list.add_child(char_card)
     $character_selection/scroll_list/list.get_child(0).focus_neighbor_left = $character_selection/scroll_list/list.get_child(-1).get_path()
     $character_selection/scroll_list/list.get_child(-1).focus_neighbor_right = $character_selection/scroll_list/list.get_child(0).get_path()
@@ -76,6 +84,7 @@ func close_subsequent() -> void:
         if not $character.visible:
             self.open_character_selection()
     else:
+        self.last_pressed_root_button = null
         self.visible = false
 
 func toggle_pause() -> void:
