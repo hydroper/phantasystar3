@@ -81,9 +81,19 @@ func open_character(character_type: PS3Character) -> void:
     self.close_all_subsequent_panels()
     $character.visible = true
     var character = self.game_data.characters[character_type]
+    $character/portrait.texture = character.portrait_texture
     $character/status/left/name.text = character.name
     $character/status/left/hp/ratio.text = str(character.hp) + "/" + str(character.max_hp)
     $character/status/left/tp/ratio.text = str(character.tp) + "/" + str(character.max_tp)
+    $character/status/left/experience/ratio.text = str(character.level_exp) + "/" + str(character.level_exp_goal)
+    $character/status/left/speed/value.text = str(character.speed)
+    $character/status/left/damage/value.text = str(character.damage)
+    $character/status/left/defense/value.text = str(character.defense)
+    $character/status/left/intelligence/value.text = str(character.intelligence)
+    $character/status/left/stamina/value.text = str(character.stamina)
+    $character/status/right/luck/value.text = str(character.luck)
+    $character/status/right/skill/value.text = str(character.skill)
+
     $character/status/right/tech_btn.grab_focus()
 
 func close_subsequent() -> void:

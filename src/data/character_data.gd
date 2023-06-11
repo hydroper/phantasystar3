@@ -31,7 +31,15 @@ var face_texture: Texture:
     get:
         return self.character.face_texture
 
+var portrait_texture: Texture:
+    get:
+        return self.character.portrait_texture
+
 var level: int:
+    get:
+        return 1
+
+var level_exp_goal: int:
     get:
         return 1
 
