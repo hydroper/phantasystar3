@@ -58,7 +58,7 @@ func open_character_selection() -> void:
         character_box.get_node("tp_bar/current").size.x = (character.tp as float) / (character.max_tp as float) * CHARACTER_HP_OR_TP_BAR_WIDTH
         character_box.pressed.connect(func():
             for button in $character_selection/list.get_children():
-                if button.is_pressed:
+                if button.button_pressed:
                     self.open_character(PS3Character.from(int(str(button.name))))
                     return)
         $character_selection/list.add_child(character_box)
