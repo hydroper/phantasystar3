@@ -31,8 +31,8 @@ func _process(_delta: float) -> void:
     pass
 
 func toggle_pause() -> void:
-    if NodeExtFn.any_is_visible($ui/pause.subsequent_panels):
-        return
+    for p in $ui/pause.subsequent_panels:
+        p.visible = false
     self.paused = not self.paused
     $ui/pause.visible = self.paused
     if self.paused:

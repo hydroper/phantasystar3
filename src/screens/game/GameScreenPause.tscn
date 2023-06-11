@@ -27,9 +27,9 @@ color = Color(0, 0, 0, 1)
 [node name="top_content" type="Node2D" parent="."]
 
 [node name="buttons1" type="VBoxContainer" parent="top_content"]
-offset_left = -419.0
+offset_left = -427.0
 offset_top = -146.0
-offset_right = 711.0
+offset_right = 703.0
 offset_bottom = 304.0
 
 [node name="items_btn" parent="top_content/buttons1" instance=ExtResource("2_gs0ki")]
