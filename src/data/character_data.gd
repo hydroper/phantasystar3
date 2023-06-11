@@ -81,4 +81,4 @@ var skill: int:
 
 var learned_tech: Array[PS3TechType]:
     get:
-        return [PS3TechType.HEAL, PS3TechType.RES, PS3TechType.GIRES, PS3TechType.REVER]
+        return [PS3TechType.HEAL, PS3TechType.RES, PS3TechType.GIRES, PS3TechType.REVER, PS3TechType.ANTI, PS3TechType.ORDER, PS3TechType.FANBI, PS3TechType.FORSA, PS3TechType.NASAK, PS3TechType.SHU]

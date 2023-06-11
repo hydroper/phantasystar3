@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=9 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/pause/game_sc_pause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/ps3_round_big_button.tscn" id="2_gs0ki"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_char.gd" id="6_oudf2"]
 [ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="6_pc315"]
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_char_tech.gd" id="8_wejph"]
-[ext_resource type="PackedScene" uid="uid://c2uij0qyag45d" path="res://src/ui/ps3_round_medium_button.tscn" id="9_tt1j1"]
 
 [node name="GameScPause" type="Control"]
 layout_mode = 3
@@ -129,29 +128,44 @@ focus_neighbor_bottom = NodePath("../macro_btn")
 text = "System"
 
 [node name="character_selection" type="Node2D" parent="."]
-visible = false
 
-[node name="list" type="HBoxContainer" parent="character_selection"]
+[node name="scroll_list" type="ScrollContainer" parent="character_selection"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -475.5
-offset_top = -192.5
-offset_right = 475.5
-offset_bottom = 192.5
+offset_left = -550.0
+offset_top = -208.0
+offset_right = 194.0
+offset_bottom = 208.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="list" type="HBoxContainer" parent="character_selection/scroll_list"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="GameScPauseCharSelectCard" parent="character_selection/list" instance=ExtResource("3_32rwu")]
+[node name="GameScPauseCharSelectCard" parent="character_selection/scroll_list/list" instance=ExtResource("3_32rwu")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
+[node name="back_btn" parent="character_selection" instance=ExtResource("2_gs0ki")]
+offset_left = 257.0
+offset_top = 120.0
+offset_right = 527.0
+offset_bottom = 200.0
+
+[node name="label" parent="character_selection/back_btn/control" index="1"]
+text = "Back"
+
 [node name="character" type="Node2D" parent="."]
+visible = false
 script = ExtResource("6_oudf2")
 
 [node name="portrait" type="TextureRect" parent="character"]
@@ -429,9 +443,6 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PS3RoundMediumButton2" parent="character/tech/scroll_list/list" instance=ExtResource("9_tt1j1")]
-layout_mode = 2
-
 [node name="back_btn" parent="character/tech" instance=ExtResource("2_gs0ki")]
 offset_left = -254.0
 offset_top = 120.0
@@ -447,6 +458,7 @@ text = "Back"
 [editable path="root_content/buttons2/macro_btn"]
 [editable path="root_content/buttons2/talk_btn"]
 [editable path="root_content/buttons2/system_btn"]
+[editable path="character_selection/back_btn"]
 [editable path="character/status/right/tech_btn"]
 [editable path="character/status/right/equipment_btn"]
 [editable path="character/status/right/back_btn"]
