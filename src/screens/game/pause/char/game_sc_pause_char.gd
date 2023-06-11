@@ -36,7 +36,6 @@ func open_status(character_type: PS3Character) -> void:
     $status/left/stamina/value.text = str(character.stamina)
     $status/right/luck/value.text = str(character.luck)
     $status/right/skill/value.text = str(character.skill)
-
     $status/right/tech_btn.grab_focus()
 
 func close_subsequent() -> void:
