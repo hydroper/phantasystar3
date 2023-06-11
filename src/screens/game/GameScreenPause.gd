@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
     if self.visible and not self.at_top:
         if event.is_action_released("ui_cancel"):
-            pass
+            self.close_subsequent()
 
 var at_top: bool:
     get:
@@ -39,3 +39,17 @@ func open_top() -> void:
 func open_character_selection() -> void:
     self.close_all_subsequent_panels()
     $character_selection.visible = true
+    NodeExtFn.remove_all_children($character_selection/list)
+    for character_type in self.game_data.party:
+        var character = self.game_data.characters[character_type]
+        var character_box = preload("res://src/screens/game/pause/GameScPauseTopPartyChar.tscn").instantiate()
+        character_box.custom_minimum_size.x = 185
+        character_box.size_flags_horizontal = 0
+        character_box.size_flags_vertical = 0
+        character_box.get_node("face").texture = character.face_texture
+        character_box.get_node("name_label").text = character.name
+        $character_selection/list.add_child(character_box)
+
+func close_subsequent() -> void:
+    if $character_selection.visible:
+        self.open_top()

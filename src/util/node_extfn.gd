@@ -8,6 +8,10 @@ static func disable(node: Node) -> void:
     node.propagate_call("set_disabled", [true])
     node.propagate_call("set_editable", [false])
 
+static func remove_all_children(node: Node) -> void:
+    for child in node.get_children():
+        node.remove_child(child)
+
 static func outer_clicked(node: Node, event: InputEvent) -> bool:
     if not (event is InputEventMouseButton and event.pressed and node is Control and node.visible):
         return false

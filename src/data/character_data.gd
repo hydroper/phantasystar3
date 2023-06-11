@@ -14,3 +14,19 @@ var legs: PS3ItemType = null
 
 func _init(character: PS3Character):
     self.character = character
+
+var string_id: String:
+    get:
+        return self.character.string_id
+
+var name: String:
+    get:
+        return self.character.name
+
+var gender: Gender:
+    get:
+        return self.character.gender
+
+var face_texture: Texture:
+    get:
+        return self.character.face_texture

@@ -4,10 +4,12 @@ var meseta: int = 0
 
 var characters: Dictionary = {
     PS3Character.RHYS: PS3CharacterData.new(PS3Character.RHYS),
+    PS3Character.MIEU: PS3CharacterData.new(PS3Character.MIEU),
 }
 
 var party: Array[PS3Character] = [
     PS3Character.RHYS,
+    PS3Character.MIEU,
 ]
 
 var items: Array[PS3Item] = [
