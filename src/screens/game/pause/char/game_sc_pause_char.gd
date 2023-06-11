@@ -10,6 +10,9 @@ var subsequent: Array[Node] = [
 
 var opened_character: PS3Character
 
+func _ready():
+    self.close_subsequent_recursive()
+
 func close_subsequent_recursive() -> void:
     SubsequentViews.close_recursive(self.subsequent)
 

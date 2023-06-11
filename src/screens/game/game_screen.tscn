@@ -27,8 +27,6 @@ script = ExtResource("1_r6xri")
 
 [node name="entities" type="Node2D" parent="world"]
 
-[node name="entity_labels" type="Node2D" parent="world"]
-
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="pause_button" type="Button" parent="ui"]

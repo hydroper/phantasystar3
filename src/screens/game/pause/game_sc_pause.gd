@@ -46,16 +46,16 @@ func open_character_selection() -> void:
     NodeExtFn.remove_all_children($character_selection/list)
     for character_type in self.game_data.party:
         var character = self.game_data.characters[character_type]
-        var character_box = preload("res://src/screens/game/pause/char_select_card/game_sc_pause_char_select_card.tscn").instantiate()
-        character_box.display_character(character)
-        character_box.pressed.connect(func():
+        var char_card = preload("res://src/screens/game/pause/char_select_card/game_sc_pause_char_select_card.tscn").instantiate()
+        char_card.display_character(character)
+        char_card.pressed.connect(func():
             for button in $character_selection/list.get_children():
                 if button.button_pressed:
                     self.close_subsequent_recursive()
                     self.last_selected_character = character_type
                     $character.open_status(button.character.character)
                     return)
-        $character_selection/list.add_child(character_box)
+        $character_selection/list.add_child(char_card)
     $character_selection/list.get_child(0).focus_neighbor_left = $character_selection/list.get_child(-1).get_path()
     $character_selection/list.get_child(-1).focus_neighbor_right = $character_selection/list.get_child(0).get_path()
     $character_selection/list.get_child(0).grab_focus()

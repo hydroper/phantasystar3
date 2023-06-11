@@ -1,5 +1,8 @@
 extends Button
 
+# Allows storing arbitrary data.
+var meta_data: Variant = null
+
 var _tween: Tween = null
 var _hover_reflected: bool = false
 

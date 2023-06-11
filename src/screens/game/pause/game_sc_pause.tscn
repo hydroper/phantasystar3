@@ -397,7 +397,49 @@ focus_neighbor_bottom = NodePath("../tech_btn")
 text = "Back"
 
 [node name="tech" type="Node2D" parent="character"]
-visible = false
+
+[node name="header" type="Label" parent="character/tech"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.5
+offset_top = -202.0
+offset_right = 346.5
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_pc315")
+theme_override_font_sizes/font_size = 56
+text = "Tech"
+uppercase = true
+
+[node name="list" type="HFlowContainer" parent="character/tech"]
+offset_left = -233.0
+offset_top = -104.0
+offset_right = 418.0
+offset_bottom = 100.0
+
+[node name="foo_btn" parent="character/tech/list" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(230, 73)
+layout_mode = 2
+
+[node name="control" parent="character/tech/list/foo_btn" index="0"]
+scale = Vector2(0.7, 0.7)
+
+[node name="label" parent="character/tech/list/foo_btn/control" index="1"]
+text = "Gires"
+
+[node name="back_btn" parent="character/tech" instance=ExtResource("2_gs0ki")]
+custom_minimum_size = Vector2(270, 80)
+offset_left = -254.0
+offset_top = 120.0
+offset_right = 16.0
+offset_bottom = 200.0
+
+[node name="label" parent="character/tech/back_btn/control" index="1"]
+text = "Back"
 
 [editable path="top_content/buttons1/items_btn"]
 [editable path="top_content/buttons1/character_btn"]
@@ -408,3 +450,5 @@ visible = false
 [editable path="character/status/right/tech_btn"]
 [editable path="character/status/right/equipment_btn"]
 [editable path="character/status/right/back_btn"]
+[editable path="character/tech/list/foo_btn"]
+[editable path="character/tech/back_btn"]
