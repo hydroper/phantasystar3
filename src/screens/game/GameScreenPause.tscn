@@ -112,11 +112,11 @@ offset_right = 475.5
 offset_bottom = 192.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="GameScPauseTopPartyChar" parent="character_selection/list" instance=ExtResource("3_32rwu")]
-custom_minimum_size = Vector2(185, 0)
+custom_minimum_size = Vector2(200, 400)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
