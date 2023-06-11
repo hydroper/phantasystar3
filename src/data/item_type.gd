@@ -3,19 +3,20 @@ class_name PS3ItemType
 static var MONOMATE: PS3ItemType = PS3ItemType.new(0, PS3ItemCategory.CONSUMABLE, true)
 static var DIMATE: PS3ItemType = PS3ItemType.new(1, PS3ItemCategory.CONSUMABLE, true)
 
-static var _from: Dictionary = {}
+static var _from: Dictionary
 var _value: int
 var _category: PS3ItemCategory
 var _unique: bool
 
 func _init(value: int, category: PS3ItemCategory, unique: bool = false):
-    PS3ItemType._from[value] = self
+    _from = _from if _from != null else {}
+    _from[value] = self
     self._value = value
     self._category = category
     self._unique = unique
 
 static func from(value: int) -> PS3ItemType:
-    return PS3ItemType._from.get(value)
+    return _from.get(value)
 
 func value_of() -> int:
     return self._value

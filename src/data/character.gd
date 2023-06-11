@@ -3,14 +3,15 @@ class_name PS3Character
 static var RHYS: PS3Character = PS3Character.new(0, "rhys", Gender.MALE, preload("res://res/img/characters/rhys/face.png"))
 static var MIEU: PS3Character = PS3Character.new(1, "mieu", Gender.FEMALE, preload("res://res/img/characters/mieu/face.png"))
 
-static var _from: Dictionary = {}
+static var _from: Dictionary
 var _value: int
 var _string_id: String
 var _gender: Gender
 var _face_texture: Texture
 
 func _init(value: int, string_id: String, gender: Gender, face_texture: Texture):
-    PS3Character._from[value] = self
+    _from = _from if _from != null else {}
+    _from[value] = self
     self._value = value
     self._string_id = string_id
     self._gender = gender

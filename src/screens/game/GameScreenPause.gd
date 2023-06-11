@@ -69,6 +69,7 @@ func open_character_selection() -> void:
 func open_character(character_type: PS3Character) -> void:
     self.close_all_subsequent_panels()
     $character.visible = true
+    print(character_type.name)
 
 func close_subsequent() -> void:
     if $character_selection.visible:

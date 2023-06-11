@@ -1,6 +1,6 @@
 class_name TurnDirection
 
-static var _from: Dictionary = {}
+static var _from: Dictionary
 static var UP: TurnDirection = TurnDirection.new(0, Vector2(0, -1))
 static var UP_LEFT: TurnDirection = TurnDirection.new(1, Vector2(-1, -1))
 static var UP_RIGHT: TurnDirection = TurnDirection.new(2, Vector2(1, -1))
@@ -16,10 +16,11 @@ var _speed: Vector2
 func _init(v: int, speed: Vector2):
     self._v = v
     self._speed = speed
-    TurnDirection._from[v] = self
+    _from = _from if _from != null else {}
+    _from[v] = self
 
 static func from(value: int) -> TurnDirection:
-    return TurnDirection._from.get(value)
+    return _from.get(value)
 
 func value_of() -> int:
     return self._v
