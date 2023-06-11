@@ -1,9 +1,14 @@
 class_name GameScreenPause
-extends Control
+extends SubsequentControlView
 
 var game_data: PS3GameData = null
 
-var subsequent_panels: Array[Node] = []
+@onready
+var subsequent: Array[Node] = [
+    $top_content,
+    $character_selection,
+    $character,
+]
 
 var last_selected_character: PS3Character
 
@@ -12,11 +17,6 @@ const CHARACTER_HP_OR_TP_BAR_WIDTH: float = 102.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
     self.visible = false
-    self.subsequent_panels = [
-        $top_content,
-        $character_selection,
-        $character,
-    ]
     $top_content/buttons1/character_btn.pressed.connect(func():
         self.open_character_selection())
     $character/status/right/back_btn.pressed.connect(func():
@@ -33,23 +33,25 @@ func _input(event: InputEvent) -> void:
         if event.is_action_released("ui_cancel"):
             self.close_subsequent()
 
-func close_all_subsequent_panels() -> void:
-    for p in self.subsequent_panels:
+func close_all_subsequent() -> void:
+    for p in self.subsequent:
+        if p is SubsequentNode2DView or p is SubsequentControlView:
+            p.close_all_subsequent()
         p.visible = false
 
 func open_top() -> void:
-    self.close_all_subsequent_panels()
+    self.close_all_subsequent()
     $top_content.visible = true
     $top_content/status/meseta/value.text = str(self.game_data.meseta)
     $top_content/buttons1/items_btn.grab_focus()
 
 func open_character_selection() -> void:
-    self.close_all_subsequent_panels()
+    self.close_all_subsequent()
     $character_selection.visible = true
     NodeExtFn.remove_all_children($character_selection/list)
     for character_type in self.game_data.party:
         var character = self.game_data.characters[character_type]
-        var character_box = preload("res://src/screens/game/pause/GameScPauseTopPartyChar.tscn").instantiate()
+        var character_box = preload("res://src/screens/game/pause/GameScPauseCharSelectCard.tscn").instantiate()
         character_box.character = character_type
         character_box.custom_minimum_size.x = 200
         character_box.custom_minimum_size.y = 400
@@ -63,8 +65,9 @@ func open_character_selection() -> void:
         character_box.pressed.connect(func():
             for button in $character_selection/list.get_children():
                 if button.button_pressed:
+                    self.close_all_subsequent()
                     self.last_selected_character = character_type
-                    self.open_character(button.character)
+                    $character.open_status(button.character)
                     return)
         $character_selection/list.add_child(character_box)
     $character_selection/list.get_child(0).focus_neighbor_left = $character_selection/list.get_child(-1).get_path()
@@ -77,32 +80,16 @@ func open_character_selection() -> void:
                 break
         self.last_selected_character = null
 
-func open_character(character_type: PS3Character) -> void:
-    self.close_all_subsequent_panels()
-    $character.visible = true
-    var character = self.game_data.characters[character_type]
-    $character/portrait.texture = character.portrait_texture
-    $character/status/left/name.text = character.name
-    $character/status/left/hp/ratio.text = str(character.hp) + "/" + str(character.max_hp)
-    $character/status/left/tp/ratio.text = str(character.tp) + "/" + str(character.max_tp)
-    $character/status/left/experience/ratio.text = str(character.level_exp) + "/" + str(character.level_exp_goal)
-    $character/status/left/speed/value.text = str(character.speed)
-    $character/status/left/damage/value.text = str(character.damage)
-    $character/status/left/defense/value.text = str(character.defense)
-    $character/status/left/intelligence/value.text = str(character.intelligence)
-    $character/status/left/stamina/value.text = str(character.stamina)
-    $character/status/right/luck/value.text = str(character.luck)
-    $character/status/right/skill/value.text = str(character.skill)
-
-    $character/status/right/tech_btn.grab_focus()
-
 func close_subsequent() -> void:
     if $character_selection.visible:
         self.open_top()
     elif $character.visible:
-        self.open_character_selection()
+        $character.close_subsequent()
+        if not $character.visible:
+            self.open_character_selection()
     else:
-        self.toggle_pause()
+        # self.toggle_pause()
+        self.visible = false
 
 func toggle_pause() -> void:
     self.visible = not self.visible

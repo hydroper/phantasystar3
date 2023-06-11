@@ -3,6 +3,12 @@ extends Node2D
 var game_data: PS3GameData = PS3GameData.new()
 
 @onready
+var game_data_dependents = [
+    $ui/pause,
+    $ui/pause/character,
+]
+
+@onready
 var pause: GameScreenPause = $ui/pause
 
 var pause_subsequent_controls: Array[Node] = []
@@ -17,11 +23,15 @@ var world_entities: Node2D = $world/entities
 var world_entity_labels: Node2D = $world/entity_labels
 
 func _ready() -> void:
-    self.pause.game_data = self.game_data
+    for o in self.game_data_dependents:
+        o.game_data = self.game_data
+    # $ui/pause.game_data = self.game_data
+    # $ui/pause/character.game_data = self.game_data
+
     $ui/pause_button.pressed.connect(func():
         self.pause.toggle_pause())
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
     pass
 
 func _process(_delta: float) -> void:

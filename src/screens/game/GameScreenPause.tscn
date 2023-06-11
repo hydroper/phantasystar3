@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=8 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreenPause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/PS3RoundBigButton.tscn" id="2_gs0ki"]
-[ext_resource type="PackedScene" uid="uid://d1k0e4sdhttff" path="res://src/screens/game/pause/GameScPauseTopPartyChar.tscn" id="3_32rwu"]
+[ext_resource type="PackedScene" uid="uid://d1k0e4sdhttff" path="res://src/screens/game/pause/GameScPauseCharSelectCard.tscn" id="3_32rwu"]
 [ext_resource type="Texture2D" uid="uid://cy24qnltuibav" path="res://res/img/characters/_template/portrait.png" id="4_e0b4l"]
 [ext_resource type="FontFile" uid="uid://daml7kmeoclcl" path="res://res/fonts/jost/Jost-Regular.ttf" id="5_idc2c"]
+[ext_resource type="Script" path="res://src/screens/game/pause/GameScPauseChar.gd" id="6_oudf2"]
 [ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="6_pc315"]
 
 [node name="GameScreenPause" type="Control"]
@@ -143,13 +144,14 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="GameScPauseTopPartyChar" parent="character_selection/list" instance=ExtResource("3_32rwu")]
+[node name="GameScPauseCharSelectCard" parent="character_selection/list" instance=ExtResource("3_32rwu")]
 custom_minimum_size = Vector2(200, 400)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="character" type="Node2D" parent="."]
+script = ExtResource("6_oudf2")
 
 [node name="portrait" type="TextureRect" parent="character"]
 anchors_preset = 8
@@ -166,6 +168,8 @@ grow_vertical = 2
 texture = ExtResource("4_e0b4l")
 
 [node name="status" type="Node2D" parent="character"]
+visible = false
+position = Vector2(-1, 0)
 
 [node name="left" type="VBoxContainer" parent="character/status"]
 anchors_preset = 8
@@ -391,6 +395,9 @@ focus_neighbor_bottom = NodePath("../tech_btn")
 
 [node name="label" parent="character/status/right/back_btn/control" index="1"]
 text = "Back"
+
+[node name="tech" type="Node2D" parent="character"]
+visible = false
 
 [editable path="top_content/buttons1/items_btn"]
 [editable path="top_content/buttons1/character_btn"]
