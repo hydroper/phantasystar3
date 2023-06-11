@@ -25,12 +25,13 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="top_content" type="Node2D" parent="."]
+visible = false
 
 [node name="buttons1" type="VBoxContainer" parent="top_content"]
-offset_left = -427.0
+offset_left = -68.0
 offset_top = -146.0
-offset_right = 703.0
-offset_bottom = 304.0
+offset_right = 231.0
+offset_bottom = 165.0
 
 [node name="items_btn" parent="top_content/buttons1" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
@@ -63,10 +64,10 @@ focus_neighbor_bottom = NodePath("../items_btn")
 text = "Order"
 
 [node name="buttons2" type="VBoxContainer" parent="top_content"]
-offset_left = 418.0
+offset_left = 226.0
 offset_top = -80.0
-offset_right = 418.0
-offset_bottom = 252.0
+offset_right = 518.0
+offset_bottom = 193.0
 
 [node name="macro_btn" parent="top_content/buttons2" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
@@ -95,6 +96,9 @@ focus_neighbor_bottom = NodePath("../macro_btn")
 
 [node name="label" parent="top_content/buttons2/system_btn/control" index="1"]
 text = "System"
+
+[node name="character_selection" type="Node2D" parent="."]
+visible = false
 
 [editable path="top_content/buttons1/items_btn"]
 [editable path="top_content/buttons1/character_btn"]

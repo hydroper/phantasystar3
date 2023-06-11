@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1k0e4sdhttff"]
+
+[ext_resource type="Texture2D" uid="uid://bfyvlh35c8t20" path="res://res/img/characters/_template/face.png" id="1_ih4gr"]
+[ext_resource type="FontFile" uid="uid://bhvqs8dtae8pv" path="res://res/fonts/jost/Jost-Italic.ttf" id="2_lrsuj"]
+[ext_resource type="FontFile" uid="uid://daml7kmeoclcl" path="res://res/fonts/jost/Jost-Regular.ttf" id="3_008bj"]
+
+[node name="GameScPauseTopPartyChar" type="Node2D"]
+
+[node name="face" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ih4gr")
+
+[node name="left_label" type="Label" parent="."]
+offset_top = 171.0
+offset_right = 244.0
+offset_bottom = 306.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_lrsuj")
+theme_override_font_sizes/font_size = 30
+text = "Hp:
+Tp:
+Lv:"
+
+[node name="current_level" type="Label" parent="."]
+offset_top = 261.0
+offset_right = 158.0
+offset_bottom = 306.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_008bj")
+theme_override_font_sizes/font_size = 30
+text = "1"
+horizontal_alignment = 2
+
+[node name="hp_bar" type="Node2D" parent="."]
+
+[node name="max" type="ColorRect" parent="hp_bar"]
+offset_left = 61.0
+offset_top = 184.0
+offset_right = 163.0
+offset_bottom = 211.0
+color = Color(1, 0.152941, 0.109804, 1)
+
+[node name="current" type="ColorRect" parent="hp_bar"]
+offset_left = 61.0
+offset_top = 184.0
+offset_right = 163.0
+offset_bottom = 211.0
+color = Color(0, 0.870588, 0.0901961, 1)
+
+[node name="tp_bar" type="Node2D" parent="."]
+position = Vector2(0, 45)
+
+[node name="max" type="ColorRect" parent="tp_bar"]
+offset_left = 61.0
+offset_top = 184.0
+offset_right = 163.0
+offset_bottom = 211.0
+color = Color(1, 0.152941, 0.109804, 1)
+
+[node name="current" type="ColorRect" parent="tp_bar"]
+offset_left = 61.0
+offset_top = 184.0
+offset_right = 163.0
+offset_bottom = 211.0
+color = Color(0, 0.870588, 0.0901961, 1)
