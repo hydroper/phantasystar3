@@ -69,7 +69,11 @@ func open_character_selection() -> void:
 func open_character(character_type: PS3Character) -> void:
     self.close_all_subsequent_panels()
     $character.visible = true
-    print(character_type.name)
+    var character = self.game_data.characters[character_type]
+    $character/status/left/name.text = character.name
+    $character/status/left/hp/ratio.text = str(character.hp) + "/" + str(character.max_hp)
+    $character/status/left/tp/ratio.text = str(character.tp) + "/" + str(character.max_tp)
+    $character/status/right/tech_btn.grab_focus()
 
 func close_subsequent() -> void:
     if $character_selection.visible:
