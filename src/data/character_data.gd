@@ -30,3 +30,15 @@ var gender: Gender:
 var face_texture: Texture:
     get:
         return self.character.face_texture
+
+var level: int:
+    get:
+        return 1
+
+var max_hp: int:
+    get:
+        return 50
+
+var max_tp: int:
+    get:
+        return 10

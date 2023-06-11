@@ -5,6 +5,8 @@ var game_data: PS3GameData = null
 
 var subsequent_panels: Array[Node] = []
 
+const CHARACTER_HP_OR_TP_BAR_WIDTH: float = 102.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     self.visible = false
@@ -50,6 +52,9 @@ func open_character_selection() -> void:
         character_box.size_flags_vertical = 0
         character_box.get_node("face").texture = character.face_texture
         character_box.get_node("name_label").text = character.name
+        character_box.get_node("current_level").text = str(character.level)
+        character_box.get_node("hp_bar/current").size.x = (character.hp as float) / (character.max_hp as float) * CHARACTER_HP_OR_TP_BAR_WIDTH
+        character_box.get_node("tp_bar/current").size.x = (character.tp as float) / (character.max_tp as float) * CHARACTER_HP_OR_TP_BAR_WIDTH
         $character_selection/list.add_child(character_box)
         i += 1
     $character_selection/list.get_child(0).focus_neighbor_left = $character_selection/list.get_child(-1).get_path()
