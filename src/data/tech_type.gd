@@ -23,7 +23,7 @@ var description: String:
     get:
         return "No description available."
 
-static func from(value: int) -> SomeE:
+static func from(value: int) -> PS3TechType:
     return _from.get(value)
 
 func value_of() -> int:
@@ -31,6 +31,7 @@ func value_of() -> int:
 
 static var _from: Dictionary
 var _value: int
+var _name: String
 var _cost: int
 
 func _init(value: int, name: String, cost: int):

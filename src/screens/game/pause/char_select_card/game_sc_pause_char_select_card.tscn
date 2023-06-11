@@ -94,6 +94,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [node name="GameScPauseCharSelectCard" type="Button"]
+custom_minimum_size = Vector2(200, 400)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

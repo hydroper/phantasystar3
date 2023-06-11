@@ -1,4 +1,4 @@
-class_name PS3RoundBigButton
+class_name PS3RoundMediumButton
 extends Button
 
 # Allows storing arbitrary data.
@@ -24,8 +24,8 @@ func _ready():
 
 func _on_focus_or_hover_entered() -> void:
     self._init_tween()
-    self._tween.tween_property($control, "scale", Vector2(1.1, 1.1), .2)
+    self._tween.tween_property($control, "scale", Vector2(0.75, 0.75), .2)
 
 func _on_focus_or_hover_exited() -> void:
     self._init_tween()
-    self._tween.tween_property($control, "scale", Vector2(1, 1), .2)
+    self._tween.tween_property($control, "scale", Vector2(0.65, 0.65), .2)

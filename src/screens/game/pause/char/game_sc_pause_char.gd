@@ -12,6 +12,9 @@ var opened_character: PS3Character
 
 func _ready():
     self.close_subsequent_recursive()
+    $status/right/tech_btn.pressed.connect(func():
+        self.close_subsequent_recursive()
+        $tech.open_root(self.opened_character))
 
 func close_subsequent_recursive() -> void:
     SubsequentViews.close_recursive(self.subsequent)
