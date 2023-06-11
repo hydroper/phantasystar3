@@ -25,10 +25,6 @@ func _ready():
     $character_selection/back_btn.pressed.connect(func():
         self.close_subsequent())
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-    pass
-
 func _input(event: InputEvent) -> void:
     if event.is_action_released("pause"):
         self.toggle_pause()
