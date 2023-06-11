@@ -4,17 +4,53 @@
 [ext_resource type="FontFile" uid="uid://bhvqs8dtae8pv" path="res://res/fonts/jost/Jost-Italic.ttf" id="2_lrsuj"]
 [ext_resource type="FontFile" uid="uid://daml7kmeoclcl" path="res://res/fonts/jost/Jost-Regular.ttf" id="3_008bj"]
 
-[node name="GameScPauseTopPartyChar" type="Node2D"]
+[node name="GameScPauseTopPartyChar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="face" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.5
+offset_right = 84.5
+offset_bottom = 169.0
+grow_horizontal = 2
 texture = ExtResource("1_ih4gr")
 
+[node name="name_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 175.5
+offset_right = 84.0
+offset_bottom = 220.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_lrsuj")
+theme_override_font_sizes/font_size = 27
+text = "undefined"
+horizontal_alignment = 1
+
 [node name="left_label" type="Label" parent="."]
-offset_top = 171.0
-offset_right = 244.0
-offset_bottom = 306.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.5
+offset_top = 220.5
+offset_right = 90.5
+offset_bottom = 355.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("2_lrsuj")
 theme_override_font_sizes/font_size = 30
@@ -23,44 +59,108 @@ Tp:
 Lv:"
 
 [node name="current_level" type="Label" parent="."]
-offset_top = 261.0
-offset_right = 158.0
-offset_bottom = 306.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.5
+offset_top = 310.5
+offset_right = 90.5
+offset_bottom = 355.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_008bj")
 theme_override_font_sizes/font_size = 30
 text = "1"
 horizontal_alignment = 2
 
-[node name="hp_bar" type="Node2D" parent="."]
+[node name="hp_bar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = 246.0
+offset_right = 24.0
+offset_bottom = 246.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="max" type="ColorRect" parent="hp_bar"]
-offset_left = 61.0
-offset_top = 184.0
-offset_right = 163.0
-offset_bottom = 211.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -13.5
+offset_right = 51.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.152941, 0.109804, 1)
 
 [node name="current" type="ColorRect" parent="hp_bar"]
-offset_left = 61.0
-offset_top = 184.0
-offset_right = 163.0
-offset_bottom = 211.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -13.5
+offset_right = 51.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0.870588, 0.0901961, 1)
 
-[node name="tp_bar" type="Node2D" parent="."]
-position = Vector2(0, 45)
+[node name="tp_bar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = 292.0
+offset_right = 24.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="max" type="ColorRect" parent="tp_bar"]
-offset_left = 61.0
-offset_top = 184.0
-offset_right = 163.0
-offset_bottom = 211.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -13.5
+offset_right = 51.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.152941, 0.109804, 1)
 
 [node name="current" type="ColorRect" parent="tp_bar"]
-offset_left = 61.0
-offset_top = 184.0
-offset_right = 163.0
-offset_bottom = 211.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -13.5
+offset_right = 51.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0.870588, 0.0901961, 1)

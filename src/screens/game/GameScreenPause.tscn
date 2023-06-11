@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=4 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreenPause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/PS3RoundBigButton.tscn" id="2_gs0ki"]
+[ext_resource type="PackedScene" uid="uid://d1k0e4sdhttff" path="res://src/screens/game/pause/GameScPauseTopPartyChar.tscn" id="3_32rwu"]
 
 [node name="GameScreenPause" type="Control"]
 layout_mode = 3
@@ -98,7 +99,25 @@ focus_neighbor_bottom = NodePath("../macro_btn")
 text = "System"
 
 [node name="character_selection" type="Node2D" parent="."]
-visible = false
+
+[node name="list" type="HBoxContainer" parent="character_selection"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -475.5
+offset_top = -192.5
+offset_right = 475.5
+offset_bottom = 192.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameScPauseTopPartyChar" parent="character_selection/list" instance=ExtResource("3_32rwu")]
+custom_minimum_size = Vector2(185, 0)
+layout_mode = 2
+size_flags_vertical = 0
 
 [editable path="top_content/buttons1/items_btn"]
 [editable path="top_content/buttons1/character_btn"]
