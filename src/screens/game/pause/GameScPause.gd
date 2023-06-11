@@ -1,4 +1,4 @@
-class_name GameScreenPause
+class_name GameScPause
 extends SubsequentControlView
 
 var game_data: PS3GameData = null
@@ -48,7 +48,7 @@ func open_character_selection() -> void:
     NodeExtFn.remove_all_children($character_selection/list)
     for character_type in self.game_data.party:
         var character = self.game_data.characters[character_type]
-        var character_box = preload("res://src/screens/game/pause/GameScPauseCharSelectCard.tscn").instantiate()
+        var character_box = preload("res://src/screens/game/pause/char_select_card/GameScPauseCharSelectCard.tscn").instantiate()
         character_box.character = character_type
         character_box.custom_minimum_size.x = 200
         character_box.custom_minimum_size.y = 400

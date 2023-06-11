@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ckewe5sw03jor"]
 
 [ext_resource type="Script" path="res://src/screens/game/GameScreen.gd" id="1_r6xri"]
-[ext_resource type="PackedScene" uid="uid://bgu3ettrwvvmj" path="res://src/screens/game/GameScreenPause.tscn" id="2_3pxcx"]
+[ext_resource type="PackedScene" uid="uid://bgu3ettrwvvmj" path="res://src/screens/game/pause/GameScPause.tscn" id="2_3pxcx"]
 [ext_resource type="Texture2D" uid="uid://bga3t5roaf5ra" path="res://res/img/pause-icon-hover.svg" id="3_da66m"]
 [ext_resource type="Texture2D" uid="uid://b0383aoua777l" path="res://res/img/pause-icon.svg" id="3_etrpr"]
 

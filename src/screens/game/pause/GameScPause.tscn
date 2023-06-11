@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://bgu3ettrwvvmj"]
 
-[ext_resource type="Script" path="res://src/screens/game/GameScreenPause.gd" id="1_j3la8"]
+[ext_resource type="Script" path="res://src/screens/game/pause/GameScPause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/PS3RoundBigButton.tscn" id="2_gs0ki"]
-[ext_resource type="PackedScene" uid="uid://d1k0e4sdhttff" path="res://src/screens/game/pause/GameScPauseCharSelectCard.tscn" id="3_32rwu"]
+[ext_resource type="PackedScene" uid="uid://d1k0e4sdhttff" path="res://src/screens/game/pause/char_select_card/GameScPauseCharSelectCard.tscn" id="3_32rwu"]
 [ext_resource type="Texture2D" uid="uid://cy24qnltuibav" path="res://res/img/characters/_template/portrait.png" id="4_e0b4l"]
 [ext_resource type="FontFile" uid="uid://daml7kmeoclcl" path="res://res/fonts/jost/Jost-Regular.ttf" id="5_idc2c"]
-[ext_resource type="Script" path="res://src/screens/game/pause/GameScPauseChar.gd" id="6_oudf2"]
+[ext_resource type="Script" path="res://src/screens/game/pause/char/GameScPauseChar.gd" id="6_oudf2"]
 [ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="6_pc315"]
 
-[node name="GameScreenPause" type="Control"]
+[node name="GameScPause" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_j3la8")

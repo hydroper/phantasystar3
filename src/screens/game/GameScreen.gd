@@ -9,7 +9,7 @@ var game_data_dependents = [
 ]
 
 @onready
-var pause: GameScreenPause = $ui/pause
+var pause: GameScPause = $ui/pause
 
 var pause_subsequent_controls: Array[Node] = []
 
