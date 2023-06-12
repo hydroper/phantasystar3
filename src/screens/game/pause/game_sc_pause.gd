@@ -59,10 +59,9 @@ func open_character_selection() -> void:
     $character_selection/scroll_list/list.get_child(-1).focus_neighbor_right = $character_selection/scroll_list/list.get_child(0).get_path()
     $character_selection/scroll_list/list.get_child(0).grab_focus()
     if self.last_selected_character != null:
-        for button in $character_selection/scroll_list/list.get_children():
-            if button.character.character == self.last_selected_character:
-                button.grab_focus()
-                break
+        var matching_buttons = $character_selection/scroll_list/list.get_children().filter(func(a): return a.character.character == self.last_selected_character)
+        if len(matching_buttons) != 0:
+            matching_buttons[0].grab_focus()
         self.last_selected_character = null
 
 func close_subsequent() -> void:

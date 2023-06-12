@@ -73,13 +73,15 @@ func _update_status() -> void:
         $status/damage/value.text = str(character.damage)
         $status/defense/value.text = str(character.defense)
         $status/speed/value.text = str(character.speed)
-        print("_update_status not done")
+        print("_update_status comparison not done")
 
 func _create_item_button(item: PS3Item, equipped: bool) -> PS3RoundMediumButton:
     var r = preload("res://src/ui/ps3_round_medium_button.tscn").instantiate()
     r.meta_data = { item = item, equipped = equipped }
     r.get_node("control/label").text = item.name
     r.disabled = equipped
+    r.focus_entered.connect(func(): self._update_status())
+    r.focus_exited.connect(func(): self._update_status())
     r.pressed.connect(func():
         var pressed = NodeExtFn.get_pressed_button($scrollable/list)
         pass)
