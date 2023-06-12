@@ -36,17 +36,16 @@ func create_tech_button(tech_1: PS3TechType) -> PS3RoundMediumButton:
     var r = preload("res://src/ui/ps3_round_medium_button.tscn").instantiate()
     r.meta_data = tech_1
     r.get_node("control/label").text = tech_1.name
-    r.tooltip_text = tech_1.description
+    # r.tooltip_text = tech_1.description
     r.pressed.connect(func():
         var tech_2 = $scroll_list/list.get_children().filter(func(a): return a.button_pressed)[0].meta_data
         print(tech_2.name))
     r.focus_entered.connect(func():
         var tech_2 = $scroll_list/list.get_children().filter(func(a): return a.has_focus())[0].meta_data
         $tech_description.visible = true
-        $tech_description/label.text = tech_2.name + ": " + tech_2.description)
+        $tech_description/label.text = "[i]" + tech_2.name + ":[/i] " + tech_2.description)
     r.focus_exited.connect(func():
-        $tech_description.visible = true
-        $tech_description/label.text = "")
+        $tech_description.visible = false)
     return r
 
 func close_subsequent() -> void:

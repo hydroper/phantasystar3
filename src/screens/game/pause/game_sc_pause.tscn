@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=9 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/pause/game_sc_pause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/ps3_round_big_button.tscn" id="2_gs0ki"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_char.gd" id="6_oudf2"]
 [ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="6_pc315"]
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_char_tech.gd" id="8_wejph"]
-[ext_resource type="FontFile" uid="uid://bhvqs8dtae8pv" path="res://res/fonts/jost/Jost-Italic.ttf" id="9_esgmp"]
 
 [node name="GameScPause" type="Control"]
 layout_mode = 3
@@ -460,16 +459,17 @@ offset_right = 520.0
 offset_bottom = 206.0
 horizontal_scroll_mode = 0
 
-[node name="label" type="Label" parent="character/tech/tech_description"]
-clip_contents = true
+[node name="label" type="RichTextLabel" parent="character/tech/tech_description"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("9_esgmp")
-theme_override_font_sizes/font_size = 20
-text = "Tech: Description."
-autowrap_mode = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "[i]Tech:[/i] Description"
 
 [editable path="root_content/buttons1/items_btn"]
 [editable path="root_content/buttons1/character_btn"]
