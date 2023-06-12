@@ -15,6 +15,8 @@ var last_status_pressed_button: Control = null
 
 func _ready():
     self.close_subsequent_recursive()
+    $status/right/back_btn.pressed.connect(func():
+        self.get_node("..").close_subsequent())
     $status/right/tech_btn.pressed.connect(func():
         self.last_status_pressed_button = $status/right/tech_btn
         self.close_subsequent_recursive()

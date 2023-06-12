@@ -20,8 +20,6 @@ func _ready():
     $root_content/buttons1/character_btn.pressed.connect(func():
         self.last_pressed_root_button = $root_content/buttons1/character_btn
         self.open_character_selection())
-    $character/status/right/back_btn.pressed.connect(func():
-        self.close_subsequent())
     $character_selection/back_btn.pressed.connect(func():
         self.close_subsequent())
 
