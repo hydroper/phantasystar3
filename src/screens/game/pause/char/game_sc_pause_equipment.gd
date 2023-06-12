@@ -24,6 +24,7 @@ func open_root(character: PS3Character) -> void:
     self.close_subsequent_recursive()
     self.visible = true
     self.opened_character = character
+    $unequip_check_btn.button_pressed = false
     $slide/list/weapon.disabled = true
     $slide/list/weapon.grab_focus()
     $slide/list/armor.disabled = false
