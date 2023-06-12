@@ -23,3 +23,18 @@ To-do before relying on custom UI components:
 ## PSO2 references
 
 - Gameplay: https://youtu.be/jz92sYbwIKw?t=8
+
+## Implemented UI
+
+- [ ] Gameplay
+  - [ ] Menu (bottom-bar similiar to PSO2)
+    - [ ] https://youtu.be/jz92sYbwIKw?t=1318
+    - [ ] Items
+    - [ ] Character
+      - [ ] Equipment
+        - [ ] Item context menu allows unequip and equip
+    - [ ] Party Order
+    - [ ] Macro
+    - [ ] Talk
+    - [ ] System
+    - [ ] Log Out
