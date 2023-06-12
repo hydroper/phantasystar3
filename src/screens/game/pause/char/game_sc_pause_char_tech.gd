@@ -60,12 +60,12 @@ func create_tech_button(tech_1: PS3TechType) -> PS3RoundMediumButton:
     r.get_node("control/label").text = tech_1.name
     # r.tooltip_text = tech_1.description
     r.pressed.connect(func():
-        var btn2 = $scroll_list/list.get_children().filter(func(a): return a.button_pressed)[0]
+        var btn2 = NodeExtFn.get_pressed_button($scroll_list/list)
         self._last_focused_button = btn2
         var tech_2 = btn2.meta_data
         self._use_tech(tech_2))
     r.focus_entered.connect(func():
-        var tech_2 = $scroll_list/list.get_children().filter(func(a): return a.has_focus())[0].meta_data
+        var tech_2 = NodeExtFn.get_focused($scroll_list/list).meta_data
         $tech_description.visible = true
         $tech_description/label.text = "[i]" + tech_2.name + ":[/i] " + tech_2.description)
     r.focus_exited.connect(func():
@@ -101,7 +101,7 @@ func _select_party_target(tech: PS3TechType) -> void:
         btn.get_node("control/label").text = character.name
         btn.size_flags_horizontal |= Control.SizeFlags.SIZE_EXPAND
         btn.pressed.connect(func():
-            var btn2 = $party_target/scrollable/list.get_children().filter(func(a): return a.button_pressed)[0]
+            var btn2 = NodeExtFn.get_pressed_button($party_target/scrollable/list)
             var result = self.game_data.use_targetted_tech(self.game_data.characters[self.opened_character], tech, btn.meta_data.char)
             $party_target.collapse("result", { "result": result }))
         $party_target/scrollable/list.add_child(btn)

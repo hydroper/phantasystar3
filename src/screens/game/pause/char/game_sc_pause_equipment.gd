@@ -63,9 +63,7 @@ func _update_items(type: String) -> void:
 
 func _update_status() -> void:
     var character: PS3CharacterData = self.game_data.characters[self.opened_character]
-
-    var item_btns = $scrollable/list.get_children().filter(func(a): return a.has_focus())
-    var item_btn = null if len(item_btns) == 0 else item_btns[0]
+    var item_btn = NodeExtFn.get_focused($scrollable/list)
 
     if item_btn == null:
         $status/damage/value.text = str(character.damage)
@@ -79,7 +77,10 @@ func _update_status() -> void:
 
 func _create_item_button(item: PS3Item, equipped: bool) -> PS3RoundMediumButton:
     var r = preload("res://src/ui/ps3_round_medium_button.tscn").instantiate()
-    r.meta_data = { item = item }
+    r.meta_data = { item = item, equipped = equipped }
     r.get_node("control/label").text = item.name
     r.disabled = equipped
+    r.pressed.connect(func():
+        var pressed = NodeExtFn.get_pressed_button($scrollable/list)
+        pass)
     return r

@@ -8,6 +8,18 @@ static func disable(node: Node) -> void:
     node.propagate_call("set_disabled", [true])
     node.propagate_call("set_editable", [false])
 
+static func get_pressed_button(list: Variant) -> BaseButton:
+    if list is Array:
+        var f = list.filter(func(a): return a is BaseButton and a.button_pressed)
+        return null if len(f) == 0 else f[0]
+    return NodeExtFn.get_pressed_button(list.get_children()) if list is Node else null
+
+static func get_focused(list: Variant) -> Control:
+    if list is Array:
+        var f = list.filter(func(a): return a is Control and a.has_focus())
+        return null if len(f) == 0 else f[0]
+    return NodeExtFn.get_focused(list.get_children()) if list is Node else null
+
 static func remove_all_children(node: Node) -> void:
     for child in node.get_children():
         node.remove_child(child)

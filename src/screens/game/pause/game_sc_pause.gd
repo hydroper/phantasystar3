@@ -50,7 +50,7 @@ func open_character_selection() -> void:
         var char_card = preload("res://src/screens/game/pause/char_select_card/game_sc_pause_char_select_card.tscn").instantiate()
         char_card.display_character(character)
         char_card.pressed.connect(func():
-            var character_2 = $character_selection/scroll_list/list.get_children().filter(func(a): return a.button_pressed)[0].character.character
+            var character_2 = NodeExtFn.get_pressed_button($character_selection/scroll_list/list).character.character
             self.close_subsequent_recursive()
             self.last_selected_character = character_2
             $character.open_status(character_2))
