@@ -19,3 +19,7 @@ To-do:
 To-do before relying on custom UI components:
 
 - [ ] Animate them to reflect PSO2 UI style. If that is not done early, the component children can break compatibility later.
+
+## PSO2 references
+
+- Gameplay: https://youtu.be/jz92sYbwIKw?t=8
