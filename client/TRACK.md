@@ -8,6 +8,9 @@ Goals:
 
 To-do:
 
+- [ ] Apply Roboto font everywhere in the default theme.
 - [ ] Reset the pause button appearance.
-- [ ] `PS3BaseAnimatedPanel`
 - [ ] Update the default theme.
+- [ ] Update `ps3_default_panel`.
+- [ ] Create `ps3_default_panel_with_header`.
+- [ ] UI should be heavily dependent on popup and collapse signals and express dependent panels in a concise way.

@@ -76,14 +76,6 @@ func _ready() -> void:
     self.visible = false
     self.scale.y = 0
 
-func _process(delta: float) -> void:
-    if self._scale_tween.is_running():
-        self._scale_tween.process(delta)
-        var y = self._custom_position.y
-        var h = self.size.y
-        var sh = self.scale.y
-        self.position.y = y + h / 2 - (h / 2) * sh
-
 func _input(event: InputEvent) -> void:
-    if self.is_open && !self._busy && NodeExtFn.outer_clicked(self, event):
+    if self.is_open and !self._busy and NodeExtFn.outer_clicked(self, event):
         on_outer_click.emit()
