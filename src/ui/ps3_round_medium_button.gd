@@ -5,7 +5,6 @@ extends Button
 var meta_data: Variant = null
 
 var _tween: Tween = null
-var _hover_reflected: bool = false
 
 func _init_tween() -> void:
     if self._tween != null:
@@ -15,8 +14,6 @@ func _init_tween() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    self.visibility_changed.connect(func():
-        self._hover_reflected = false)
     self.focus_entered.connect(self._on_focus_or_hover_entered)
     self.focus_exited.connect(self._on_focus_or_hover_exited)
     self.mouse_entered.connect(self._on_focus_or_hover_entered)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 511 153" width="511" height="153" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="125.15" cy="202.424" r="237.784" id="gradient-1" gradientTransform="matrix(-1.731214, 0.608146, -0.220595, -0.753188, 363.465881, 107.425964)">
+      <stop offset="0" style="stop-color: rgb(47, 234, 227);"/>
+      <stop offset="1" style="stop-color: rgb(150, 73, 217);"/>
+    </radialGradient>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="-70.016" cy="252.84" r="86.601" id="gradient-0" gradientTransform="matrix(0.381382, 0.00685, -0.006808, 0.281192, 102.017209, -37.105639)">
+      <stop offset="0" style="stop-color: rgb(255, 255, 255);"/>
+      <stop offset="1" style="stop-opacity: 0; stop-color: rgb(255, 255, 255);"/>
+    </radialGradient>
+  </defs>
+  <rect style="stroke-width: 3px; paint-order: fill; fill: url(#gradient-1);" width="511" height="153" rx="76.5" ry="76.5"/>
+  <ellipse style="fill: url(#gradient-0);" cx="73.593" cy="33.511" rx="31.779" ry="28.881"/>
+</svg>

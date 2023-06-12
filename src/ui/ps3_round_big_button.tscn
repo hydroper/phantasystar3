@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cvavh583vaej5"]
 
 [ext_resource type="Script" path="res://src/ui/ps3_round_big_button.gd" id="1_ktpws"]
-[ext_resource type="Texture2D" uid="uid://c4lm6fhajdgps" path="res://res/img/roundbigbutton.png" id="1_u6nwg"]
+[ext_resource type="Texture2D" uid="uid://b1it57ti32kyx" path="res://res/img/roundbigbutton.svg" id="2_4tc4h"]
 [ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="3_lfub1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2trt5"]
@@ -59,7 +59,7 @@ offset_right = 121.6
 offset_bottom = 35.6
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_u6nwg")
+texture = ExtResource("2_4tc4h")
 expand_mode = 1
 
 [node name="label" type="Label" parent="control"]

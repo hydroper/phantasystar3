@@ -5,7 +5,7 @@ extends Button
 var meta_data: Variant = null
 
 var _tween: Tween = null
-var _hover_reflected: bool = false
+var _arc_x_tween: Tween = null
 
 func _init_tween() -> void:
     if self._tween != null:
@@ -15,8 +15,6 @@ func _init_tween() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    self.visibility_changed.connect(func():
-        self._hover_reflected = false)
     self.focus_entered.connect(self._on_focus_or_hover_entered)
     self.focus_exited.connect(self._on_focus_or_hover_exited)
     self.mouse_entered.connect(self._on_focus_or_hover_entered)
@@ -34,10 +32,10 @@ func _on_focus_or_hover_exited() -> void:
 func _process(_delta: float) -> void:
     $control.modulate.a = 0.6 if self.disabled else 1.0
 
-func _toggled(pressed: bool) -> void:
-    if pressed:
-        $control/background.modulate = Color.WHITE
-        $control/arc.position.x = 34
-    else:
-        $control/background.modulate = Color("#7e7e7e")
-        $control/arc.position.x = -90
+func _toggled(pressed_arg: bool) -> void:
+    $control/background.modulate = Color.WHITE if pressed_arg else Color("#7e7e7e")
+    if self._arc_x_tween != null:
+        self._arc_x_tween.kill()
+        self._arc_x_tween = null
+    self._arc_x_tween = self.get_tree().create_tween()
+    self._arc_x_tween.tween_property($control/arc, "position", Vector2(34 if pressed_arg else -90, $control/arc.position.y), 0.15)

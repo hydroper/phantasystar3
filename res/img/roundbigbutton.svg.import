@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4lm6fhajdgps"
-path="res://.godot/imported/roundbigbutton.png-5def5a12e2939e940dbe4eecc2bcb2d9.ctex"
+uid="uid://b1it57ti32kyx"
+path="res://.godot/imported/roundbigbutton.svg-4a46e3550486fb572677229bf65b3a87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/img/roundbigbutton.png"
-dest_files=["res://.godot/imported/roundbigbutton.png-5def5a12e2939e940dbe4eecc2bcb2d9.ctex"]
+source_file="res://res/img/roundbigbutton.svg"
+dest_files=["res://.godot/imported/roundbigbutton.svg-4a46e3550486fb572677229bf65b3a87.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
