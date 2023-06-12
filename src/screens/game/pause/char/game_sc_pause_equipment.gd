@@ -7,22 +7,18 @@ var subsequent: Array[Node] = []
 
 var opened_character: PS3Character
 
-var slide_type: String = "weapon"
+var slide_type: String = "left_hand"
 
 func _ready():
     self.close_subsequent_recursive()
     $back_btn.pressed.connect(func():
         self.get_node("../..").close_subsequent())
-    $slide/list/weapon.pressed.connect(func():
-        $slide/list/armor.disabled = false
-        $slide/list/weapon.disabled = true
-        self.slide_type = "weapon"
-        self._update_items())
+    $slide/list/lhand.pressed.connect(func():
+        self.slide_change("left_hand"))
+    $slide/list/rhand.pressed.connect(func():
+        self.slide_change("right_hand"))
     $slide/list/armor.pressed.connect(func():
-        $slide/list/armor.disabled = true
-        $slide/list/weapon.disabled = false
-        self.slide_type = "armor"
-        self._update_items())
+        self.slide_change("armor"))
     $unequip_check_btn.toggled.connect(func(_value):
         self._update_items())
 
@@ -31,12 +27,9 @@ func open_root(character: PS3Character) -> void:
     self.visible = true
     self.opened_character = character
     $unequip_check_btn.button_pressed = false
-    $slide/list/weapon.disabled = true
-    $slide/list/weapon.grab_focus()
-    $slide/list/armor.disabled = false
     self._update_status()
-    self.slide_type = "weapon"
-    self._update_items()
+    self.slide_change("left_hand")
+    $slide/list/lhand.grab_focus()
 
 func close_subsequent_recursive() -> void:
     SubsequentViews.close_recursive(self.subsequent)
@@ -44,15 +37,22 @@ func close_subsequent_recursive() -> void:
 func close_subsequent() -> void:
     pass
 
+func slide_change(type: String) -> void:
+    self.slide_type = type
+    $slide/list/lhand.disabled = type == "left_hand"
+    $slide/list/rhand.disabled = type == "right_hand"
+    $slide/list/armor.disabled = type == "armor"
+    self._update_items()
+
 func _update_items() -> void:
     var type = self.slide_type
     NodeExtFn.remove_all_children($scrollable/list)
     var character: PS3CharacterData = self.game_data.characters[self.opened_character]
 
-    if type == "weapon":
-        if character.left_hand != null:
+    if type == "left_hand" or type == "right_hand":
+        if character.left_hand != null and type == "left_hand":
             $scrollable/list.add_child(self._create_item_button(character.left_hand, true))
-        if character.right_hand != null:
+        if character.right_hand != null and type == "right_hand":
             $scrollable/list.add_child(self._create_item_button(character.right_hand, true))
         for item in self.game_data.items:
             if item.type.category == PS3ItemCategory.WEAPON and character.can_equip(item):

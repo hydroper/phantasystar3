@@ -15,14 +15,14 @@
 [ext_resource type="PackedScene" uid="uid://dutrdevp868sy" path="res://src/ui/ps3_round_medium_check_button.tscn" id="13_v7aah"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k364h"]
-bg_color = Color(0.329412, 0.552941, 0.635294, 1)
+bg_color = Color(0.505882, 0.388235, 0.729412, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prsl4"]
-bg_color = Color(0.156863, 0.294118, 0.345098, 1)
+bg_color = Color(0.345098, 0.215686, 0.403922, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -202,6 +202,7 @@ grow_vertical = 2
 texture = ExtResource("4_e0b4l")
 
 [node name="status" type="Node2D" parent="character"]
+visible = false
 position = Vector2(-1, 0)
 
 [node name="left" type="VBoxContainer" parent="character/status"]
@@ -539,24 +540,29 @@ bbcode_enabled = true
 text = "Foo"
 
 [node name="equipment" type="Node2D" parent="character"]
-visible = false
 script = ExtResource("10_1ekta")
 
 [node name="slide" type="PanelContainer" parent="character/equipment"]
-offset_left = 146.0
+offset_left = -28.0
 offset_top = -201.0
-offset_right = 530.0
+offset_right = 550.0
 offset_bottom = -128.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_k364h")
 
 [node name="list" type="HBoxContainer" parent="character/equipment/slide"]
 layout_mode = 2
 
-[node name="weapon" parent="character/equipment/slide/list" instance=ExtResource("10_kxh7v")]
+[node name="lhand" parent="character/equipment/slide/list" instance=ExtResource("10_kxh7v")]
 layout_mode = 2
 
-[node name="label" parent="character/equipment/slide/list/weapon/control" index="1"]
-text = "Weapon"
+[node name="label" parent="character/equipment/slide/list/lhand/control" index="1"]
+text = "L. Hand"
+
+[node name="rhand" parent="character/equipment/slide/list" instance=ExtResource("10_kxh7v")]
+layout_mode = 2
+
+[node name="label" parent="character/equipment/slide/list/rhand/control" index="1"]
+text = "R. Hand"
 
 [node name="armor" parent="character/equipment/slide/list" instance=ExtResource("10_kxh7v")]
 layout_mode = 2
@@ -613,9 +619,9 @@ size_flags_horizontal = 3
 text = "0"
 
 [node name="scrollable" type="ScrollContainer" parent="character/equipment"]
-offset_left = 132.0
+offset_left = 136.0
 offset_top = -105.0
-offset_right = 541.0
+offset_right = 545.0
 offset_bottom = 188.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_prsl4")
 follow_focus = true
@@ -665,6 +671,7 @@ text = "Unequip"
 [editable path="character/tech/back_btn"]
 [editable path="character/tech/party_target"]
 [editable path="character/tech/tech_result"]
-[editable path="character/equipment/slide/list/weapon"]
+[editable path="character/equipment/slide/list/lhand"]
+[editable path="character/equipment/slide/list/rhand"]
 [editable path="character/equipment/slide/list/armor"]
 [editable path="character/equipment/back_btn"]
