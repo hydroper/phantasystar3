@@ -8,4 +8,3 @@ UI `Character > Equipment`:
 
 - [ ] Implement equipping an item (look at equip checkbox `button_pressed`)
 - [ ] Implement unequipping an item (look at equip checkbox `button_pressed`)
-- [ ] Implement equipment comparison
