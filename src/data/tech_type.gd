@@ -1,5 +1,7 @@
 class_name PS3TechType
 
+static var _from: Dictionary = {}
+
 static var HEAL: PS3TechType = PS3TechType.new(0, "Heal", 1, true)
 static var RES: PS3TechType = PS3TechType.new(1, "Res", 1, true)
 static var GIRES: PS3TechType = PS3TechType.new(2, "Gires", 1, true)
@@ -46,14 +48,12 @@ static func from(value: int) -> PS3TechType:
 func value_of() -> int:
     return self._value
 
-static var _from: Dictionary
 var _value: int
 var _name: String
 var _cost: int
 var _available_on_camp: bool
 
 func _init(value: int, name: String, cost: int, available_on_camp: bool = false):
-    _from = _from if _from != null else {}
     _from[value] = self
     self._value = value
     self._name = name

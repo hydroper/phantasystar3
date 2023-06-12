@@ -1,5 +1,7 @@
 class_name PS3Character
 
+static var _from: Dictionary = {}
+
 static var RHYS: PS3Character = PS3Character.new(0, "rhys", "Rhys", Gender.MALE, preload("res://res/img/characters/rhys/face.png"), preload("res://res/img/characters/rhys/portrait.png"))
 static var MIEU: PS3Character = PS3Character.new(1, "mieu", "Mieu", Gender.FEMALE, preload("res://res/img/characters/mieu/face.png"), preload("res://res/img/characters/mieu/portrait.png"))
 
@@ -29,7 +31,6 @@ var portrait_texture: Texture:
     get:
         return self._portrait_texture
 
-static var _from: Dictionary
 var _value: int
 var _string_id: String
 var _name: String
@@ -38,7 +39,6 @@ var _face_texture: Texture
 var _portrait_texture: Texture
 
 func _init(value: int, string_id: String, name: String, gender: Gender, face_texture: Texture, portrait_texture: Texture):
-    _from = _from if _from != null else {}
     _from[value] = self
     self._value = value
     self._string_id = string_id

@@ -1,5 +1,7 @@
 class_name PS3ItemType
 
+static var _from: Dictionary = {}
+
 static var MONOMATE: PS3ItemType = PS3ItemType.new(0, "Monomate", PS3ItemCategory.CONSUMABLE, true)
 static var DIMATE: PS3ItemType = PS3ItemType.new(1, "Dimate", PS3ItemCategory.CONSUMABLE, true)
 
@@ -28,14 +30,12 @@ var name: String:
 func get_description() -> String:
     return "No description available."
 
-static var _from: Dictionary
 var _value: int
 var _name: String
 var _category: PS3ItemCategory
 var _unique: bool
 
 func _init(value: int, name: String, category: PS3ItemCategory, unique: bool = false):
-    _from = _from if _from != null else {}
     _from[value] = self
     self._value = value
     self._name = name
