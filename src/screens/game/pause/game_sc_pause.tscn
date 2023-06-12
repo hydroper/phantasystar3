@@ -202,7 +202,6 @@ grow_vertical = 2
 texture = ExtResource("4_e0b4l")
 
 [node name="status" type="Node2D" parent="character"]
-visible = false
 position = Vector2(-1, 0)
 
 [node name="left" type="VBoxContainer" parent="character/status"]
@@ -226,6 +225,7 @@ text = "undefined"
 
 [node name="hp" type="HBoxContainer" parent="character/status/left"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/left/hp"]
 layout_mode = 2
@@ -239,10 +239,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0/0"
-horizontal_alignment = 2
 
 [node name="tp" type="HBoxContainer" parent="character/status/left"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/left/tp"]
 layout_mode = 2
@@ -256,10 +256,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0/0"
-horizontal_alignment = 2
 
 [node name="experience" type="HBoxContainer" parent="character/status/left"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/left/experience"]
 layout_mode = 2
@@ -273,10 +273,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0/0"
-horizontal_alignment = 2
 
 [node name="speed" type="HBoxContainer" parent="character/status/left"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/left/speed"]
 layout_mode = 2
@@ -290,10 +290,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0"
-horizontal_alignment = 2
 
 [node name="damage" type="HBoxContainer" parent="character/status/left"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/left/damage"]
 layout_mode = 2
@@ -307,10 +307,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0"
-horizontal_alignment = 2
 
 [node name="defense" type="HBoxContainer" parent="character/status/left"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/left/defense"]
 layout_mode = 2
@@ -324,10 +324,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0"
-horizontal_alignment = 2
 
 [node name="intelligence" type="HBoxContainer" parent="character/status/left"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/left/intelligence"]
 layout_mode = 2
@@ -341,10 +341,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0"
-horizontal_alignment = 2
 
 [node name="stamina" type="HBoxContainer" parent="character/status/left"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/left/stamina"]
 layout_mode = 2
@@ -358,7 +358,6 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0"
-horizontal_alignment = 2
 
 [node name="right" type="VBoxContainer" parent="character/status"]
 anchors_preset = 8
@@ -375,6 +374,7 @@ grow_vertical = 2
 
 [node name="luck" type="HBoxContainer" parent="character/status/right"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/right/luck"]
 layout_mode = 2
@@ -388,10 +388,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0"
-horizontal_alignment = 2
 
 [node name="skill" type="HBoxContainer" parent="character/status/right"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="character/status/right/skill"]
 layout_mode = 2
@@ -405,7 +405,6 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 23
 text = "0"
-horizontal_alignment = 2
 
 [node name="tech_btn" parent="character/status/right" instance=ExtResource("2_gs0ki")]
 custom_minimum_size = Vector2(0, 80)
@@ -540,6 +539,7 @@ bbcode_enabled = true
 text = "Foo"
 
 [node name="equipment" type="Node2D" parent="character"]
+visible = false
 script = ExtResource("10_1ekta")
 
 [node name="slide" type="PanelContainer" parent="character/equipment"]
