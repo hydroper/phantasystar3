@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 511 153" width="511" height="153" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="125.15" cy="202.424" r="237.784" id="gradient-1" gradientTransform="matrix(-1.731214, 0.608146, -0.220595, -0.753188, 363.465881, 107.425964)">
+      <stop offset="0" style="stop-color: rgb(67, 197, 193);"/>
+      <stop offset="1" style="stop-color: rgb(150, 73, 217);"/>
+    </radialGradient>
+  </defs>
+  <rect style="stroke-width: 3px; paint-order: fill; fill: url(#gradient-1);" width="511" height="153" rx="76.5" ry="76.5"/>
+</svg>
