@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=10 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/pause/game_sc_pause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/ps3_round_big_button.tscn" id="2_gs0ki"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_char.gd" id="6_oudf2"]
 [ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="6_pc315"]
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_char_tech.gd" id="8_wejph"]
+[ext_resource type="FontFile" uid="uid://bhvqs8dtae8pv" path="res://res/fonts/jost/Jost-Italic.ttf" id="9_esgmp"]
 
 [node name="GameScPause" type="Control"]
 layout_mode = 3
@@ -128,6 +129,7 @@ focus_neighbor_bottom = NodePath("../macro_btn")
 text = "System"
 
 [node name="character_selection" type="Node2D" parent="."]
+visible = false
 
 [node name="scroll_list" type="ScrollContainer" parent="character_selection"]
 anchors_preset = 8
@@ -165,7 +167,6 @@ offset_bottom = 200.0
 text = "Back"
 
 [node name="character" type="Node2D" parent="."]
-visible = false
 script = ExtResource("6_oudf2")
 
 [node name="portrait" type="TextureRect" parent="character"]
@@ -451,6 +452,24 @@ offset_bottom = 200.0
 
 [node name="label" parent="character/tech/back_btn/control" index="1"]
 text = "Back"
+
+[node name="tech_description" type="ScrollContainer" parent="character/tech"]
+offset_left = 34.0
+offset_top = 107.0
+offset_right = 520.0
+offset_bottom = 206.0
+horizontal_scroll_mode = 0
+
+[node name="label" type="Label" parent="character/tech/tech_description"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("9_esgmp")
+theme_override_font_sizes/font_size = 20
+text = "Tech: Description."
+autowrap_mode = 3
 
 [editable path="root_content/buttons1/items_btn"]
 [editable path="root_content/buttons1/character_btn"]

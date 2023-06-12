@@ -83,4 +83,5 @@ func toggle_pause() -> void:
     if self.visible:
         self.open_root()
     else:
+        self.last_pressed_root_button = null
         self.close_subsequent_recursive()

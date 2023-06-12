@@ -42,7 +42,7 @@ func use_targetted_tech(from_character: PS3CharacterData, tech: PS3TechType, tar
             else:
                 from_character.tp -= tech.cost
                 var k = target.hp
-                target.hp = minf(target.hp + healing_tech_restored_hp, target.max_hp)
+                target.hp = mini(target.hp + tech.healing_tech_restored_hp, target.max_hp)
                 return {result_type = "restored_hp", restored_hp = target.hp - k}
         else:
             return {result_type = "not_enough_tp"}
