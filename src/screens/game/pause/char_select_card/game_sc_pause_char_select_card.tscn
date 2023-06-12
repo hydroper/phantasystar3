@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1k0e4sdhttff"]
+[gd_scene load_steps=20 format=3 uid="uid://d1k0e4sdhttff"]
 
 [ext_resource type="Script" path="res://src/screens/game/pause/char_select_card/game_sc_pause_char_select_card.gd" id="1_11i6y"]
 [ext_resource type="Texture2D" uid="uid://bfyvlh35c8t20" path="res://res/img/characters/_template/face.png" id="1_ih4gr"]
@@ -65,6 +65,30 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
+[sub_resource type="Gradient" id="Gradient_ho8ky"]
+colors = PackedColorArray(0.278431, 0.745098, 0.760784, 1, 0.588235, 0.286275, 0.85098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2pxqc"]
+gradient = SubResource("Gradient_ho8ky")
+fill = 1
+fill_from = Vector2(0.1, 0)
+
+[sub_resource type="Gradient" id="Gradient_mrwqd"]
+colors = PackedColorArray(0.307133, 0.786059, 0.802177, 1, 0.604911, 0.30784, 0.86813, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q8g2h"]
+gradient = SubResource("Gradient_mrwqd")
+fill = 1
+fill_from = Vector2(0.1, 0)
+
+[sub_resource type="Gradient" id="Gradient_xols2"]
+colors = PackedColorArray(0.439846, 0.887843, 0.902791, 1, 0.627011, 0.339609, 0.888633, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tvegw"]
+gradient = SubResource("Gradient_xols2")
+fill = 1
+fill_from = Vector2(0.1, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iivyw"]
 bg_color = Color(0.231373, 0.309804, 0.278431, 1)
 corner_radius_top_left = 15
@@ -94,6 +118,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [node name="GameScPauseCharSelectCard" type="Button"]
+clip_children = 1
 custom_minimum_size = Vector2(200, 400)
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,6 +131,38 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_4mtkd")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_6jvf4")
 theme_override_styles/focus = SubResource("StyleBoxFlat_hy5ux")
 script = ExtResource("1_11i6y")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_2pxqc")
+
+[node name="background_hover" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_q8g2h")
+
+[node name="background_focus" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_tvegw")
 
 [node name="face" type="TextureRect" parent="."]
 layout_mode = 1

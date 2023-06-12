@@ -20,6 +20,12 @@ static func get_focused(list: Variant) -> Control:
         return null if len(f) == 0 else f[0]
     return NodeExtFn.get_focused(list.get_children()) if list is Node else null
 
+static func get_hovered_button(list: Variant) -> BaseButton:
+    if list is Array:
+        var f = list.filter(func(a): return a is BaseButton and a.is_hovered())
+        return null if len(f) == 0 else f[0]
+    return NodeExtFn.get_hovered_button(list.get_children()) if list is Node else null
+
 static func remove_all_children(node: Node) -> void:
     for child in node.get_children():
         node.remove_child(child)
