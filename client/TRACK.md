@@ -14,3 +14,4 @@ To-do:
 - [ ] Update `ps3_default_panel`.
 - [ ] Create `ps3_default_panel_with_header`.
 - [ ] UI should be heavily dependent on popup and collapse signals and express dependent panels in a concise way.
+- [ ] Accessing items should be similiar to PSO2. A context menu should appear when pressing an item button.
