@@ -22,15 +22,7 @@ func _ready():
         if goal == "result":
             $tech_result.reset_to_collapsed()
             $tech_result.popup()
-            var result = data.result
-            if result.type == "not_enough_tp":
-                $tech_result/label.text = "Not enough TP."
-            elif result.type == "restored_hp":
-                $tech_result/label.text = "Restored " + str(result.restored_hp) + " HP for " + data.party_char + "."
-            elif result.type == "hp_already_full":
-                $tech_result/label.text = ""
-            else:
-                $tech_result/label.text = "Result is unimplemented"
+            $tech_result/label.text = PS3Messages.tech_result(data.result)
         else:
             self._last_focused_button = self._last_focused_button if self._last_focused_button != null else $back_btn
             self._last_focused_button.grab_focus())
@@ -97,10 +89,7 @@ func _use_tech(tech: PS3TechType) -> void:
         $tech_result.reset_to_collapsed()
         $tech_result.popup()
         self.get_viewport().gui_release_focus()
-        if result.type == "not_enough_tp":
-            $tech_result/label.text = "Not enough TP."
-        else:
-            $tech_result/label.text = "Result is unimplemented."
+        $tech_result/label.text = PS3Messages.tech_result(result)
 
 func _select_party_target(tech: PS3TechType) -> void:
     $party_target.reset_to_collapsed()
@@ -114,7 +103,7 @@ func _select_party_target(tech: PS3TechType) -> void:
         btn.pressed.connect(func():
             var btn2 = $party_target/scrollable/list.get_children().filter(func(a): return a.button_pressed)[0]
             var result = self.game_data.use_targetted_tech(self.game_data.characters[self.opened_character], tech, btn.meta_data.char)
-            $party_target.collapse("result", { "result": result, "party_char": btn2.meta_data.char }))
+            $party_target.collapse("result", { "result": result }))
         $party_target/scrollable/list.add_child(btn)
     $party_target.popup()
     $party_target/scrollable/list.get_child(0).grab_focus()
