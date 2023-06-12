@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=16 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/pause/game_sc_pause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/ps3_round_big_button.tscn" id="2_gs0ki"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_default_panel.tscn" id="9_qt0mf"]
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_equipment.gd" id="10_1ekta"]
 [ext_resource type="PackedScene" uid="uid://c2uij0qyag45d" path="res://src/ui/ps3_round_medium_button.tscn" id="10_kxh7v"]
+[ext_resource type="PackedScene" uid="uid://dutrdevp868sy" path="res://src/ui/ps3_round_medium_check_button.tscn" id="13_v7aah"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k364h"]
 bg_color = Color(0.329412, 0.552941, 0.635294, 1)
@@ -636,6 +637,20 @@ offset_bottom = 192.0
 
 [node name="label" parent="character/equipment/back_btn/control" index="1"]
 text = "Back"
+
+[node name="unequip_check_btn" parent="character/equipment" instance=ExtResource("13_v7aah")]
+offset_left = -87.0
+offset_top = 19.5
+offset_right = 103.0
+offset_bottom = 92.5
+
+[node name="unequip_label" type="Label" parent="character/equipment"]
+offset_left = -225.0
+offset_top = 36.0
+offset_right = -61.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("9_esgmp")
+text = "Unequip"
 
 [editable path="root_content/buttons1/items_btn"]
 [editable path="root_content/buttons1/character_btn"]

@@ -83,6 +83,6 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3RoundMediumButton:
     r.focus_entered.connect(func(): self._update_status())
     r.focus_exited.connect(func(): self._update_status())
     r.pressed.connect(func():
-        var pressed = NodeExtFn.get_pressed_button($scrollable/list)
+        var pressed_btn = NodeExtFn.get_pressed_button($scrollable/list)
         pass)
     return r
