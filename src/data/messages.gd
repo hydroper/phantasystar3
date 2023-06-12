@@ -1,7 +1,7 @@
 class_name PS3Messages
 
 # Returns BBCode string
-static func tech_result(result: Variant) -> String:
+static func tech_result(result: Dictionary) -> String:
     if result.type == "not_enough_tp":
         return "Not enough TP."
     elif result.type == "restored_hp":
