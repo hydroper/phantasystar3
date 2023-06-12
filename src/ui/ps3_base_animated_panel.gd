@@ -1,4 +1,4 @@
-class_name PS3BasePanel
+class_name PS3BaseAnimatedPanel
 extends Control
 
 signal on_outer_click
@@ -6,9 +6,8 @@ signal on_popup(goal: String, data: Variant)
 signal on_collapse(goal: String, data: Variant)
 
 var _busy: bool = false
-var _scale_tween: ConstantScaleTween = ConstantScaleTween.new(Vector2(0.05, 0.05))
-var _trans_goal: String = ""
-var _trans_data: Variant = null
+var _scale_tween: ConstantScaleTween = ConstantScaleTween.new(Vector2(0.12, 0.12))
+var _trans_meta_data: Array = []
 var _collapsed: bool = true
 var _disabled: bool = true
 var _custom_position_is_unset: bool = true
@@ -49,10 +48,9 @@ func _init():
     self._scale_tween.finished.connect(func():
         self.visible = self._collapsed
         self._collapsed = not self._collapsed
-        var k1 = self._trans_goal
-        var k2 = self._trans_data
-        self._trans_goal = ""
-        self._trans_data = null
+        var k1 = self._trans_meta_data[0]
+        var k2 = self._trans_meta_data[1]
+        self._trans_meta_data = ["", null]
         self._busy = false
         if self._collapsed:
             self.position.x = self._custom_position.x + self.size.x / 2
@@ -79,12 +77,23 @@ func _input(event: InputEvent) -> void:
     if self.is_open && !self._busy && NodeExtFn.outer_clicked(self, event):
         on_outer_click.emit()
 
+# Stops any running animation and resets the panel to its
+# collapsed state.
+func reset_to_collapsed() -> void:
+    self._busy = false
+    self._collapsed = true
+    self._trans_meta_data = ["", null]
+    self.visible = false
+    self.disabled = true
+    self.custom_position = self.position if self._custom_position_is_unset else self._custom_position
+    self.position.x = self._custom_position.x
+    self._scale_tween.stop()
+
 func popup(goal: String = "", data: Variant = null) -> void:
     if self._busy or self.is_open:
         return
     self._busy = true
-    self._trans_goal = goal
-    self._trans_data = data
+    self._trans_meta_data = [goal, data]
     self.visible = true
     self.disabled = true
     self.custom_position = self.position if self._custom_position_is_unset else self._custom_position
@@ -95,8 +104,7 @@ func collapse(goal: String = "", data: Variant = null) -> void:
     if self._busy or self.is_collapsed:
         return
     self._busy = true
-    self._trans_goal = goal
-    self._trans_data = data
+    self._trans_meta_data = [goal, data]
     self.visible = true
     self.disabled = true
     self.custom_position = self.position if self._custom_position_is_unset else self._custom_position

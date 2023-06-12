@@ -48,4 +48,6 @@ func close_subsequent() -> void:
     if $status.visible:
         self.visible = false
     elif $tech.visible:
-        self.open_status(self.opened_character)
+        $tech.close_subsequent()
+        if not $tech.visible:
+            self.open_status(self.opened_character)

@@ -17,19 +17,19 @@ var items: Array[PS3Item] = [
     PS3Item.new(PS3ItemType.DIMATE, 127),
 ]
 
-# Returns {result_type} and additional properties,
-# where result_type is either:
-# - "ask_for_player_target" (then invoke use_targetted_tech())
+# Returns {type} and additional properties,
+# where "type" is either:
+# - "ask_for_party_target" (then invoke use_targetted_tech())
 # - "ask_for_opponent_target" (then invoke use_targetted_tech())
 # - "not_enough_tp"
 # - "unimplemented"
 func use_tech(from_character: PS3CharacterData, tech: PS3TechType) -> Dictionary:
     if tech.is_targetted_healing_tech:
-        return {result_type = "ask_for_player_target"}
-    return {result_type = "unimplemented"}
+        return {type = "ask_for_party_target"} if from_character.tp >= tech.cost else {type = "not_enough_tp"}
+    return {type = "unimplemented"}
 
-# Returns {result_type} and additional properties,
-# where result_type is either:
+# Returns {type} and additional properties,
+# where "type" is either:
 # - "restored_hp"
 # - "hp_already_full"
 # - "not_enough_tp"
@@ -38,12 +38,12 @@ func use_targetted_tech(from_character: PS3CharacterData, tech: PS3TechType, tar
     if tech.is_targetted_healing_tech:
         if from_character.tp >= tech.cost:
             if target.hp == target.max_hp:
-                return {result_type = "hp_already_full"}
+                return {type = "hp_already_full"}
             else:
                 from_character.tp -= tech.cost
                 var k = target.hp
                 target.hp = mini(target.hp + tech.healing_tech_restored_hp, target.max_hp)
-                return {result_type = "restored_hp", restored_hp = target.hp - k}
+                return {type = "restored_hp", restored_hp = target.hp - k}
         else:
-            return {result_type = "not_enough_tp"}
-    return {result_type = "unimplemented"}
+            return {type = "not_enough_tp"}
+    return {type = "unimplemented"}
