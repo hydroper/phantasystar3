@@ -87,6 +87,6 @@ var learned_tech: Array[PS3TechType]:
 func can_equip(item: PS3Item) -> bool:
     return self.character.can_equip(item)
 
-# Returns {damage, defense, speed}
-func compare_status_if_equipped(item: PS3Item) -> Dictionary:
-    return {damage = 0, defense = 0, speed = 0}
+# Returns {damage, defense, speed, damage_diff, defense_diff, speed_diff}
+func status_if_equipped(item: PS3Item) -> Dictionary:
+    return {damage = 0, defense = 0, speed = 0, damage_diff = 0, defense_diff = 0, speed_diff = 0}

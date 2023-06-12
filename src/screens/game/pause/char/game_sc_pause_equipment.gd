@@ -79,10 +79,10 @@ func _update_status() -> void:
         $status/defense/value.text = str(character.defense)
         $status/speed/value.text = str(character.speed)
     else:
-        $status/damage/value.text = str(character.damage)
-        $status/defense/value.text = str(character.defense)
-        $status/speed/value.text = str(character.speed)
-        print("_update_status comparison not done")
+        var status = character.status_if_equipped(item_btn.meta_data.item)
+        $status/damage/value.text = str(status.damage) + " (" + ("+" if status.damage_diff >= 0 else "") + str(status.damage_diff) + ")"
+        $status/defense/value.text = str(status.defense) + " (" + ("+" if status.defense_diff >= 0 else "") + str(status.defense_diff) + ")"
+        $status/speed/value.text = str(status.speed) + " (" + ("+" if status.speed_diff >= 0 else "") + str(status.speed_diff) + ")"
 
 func _create_item_button(item: PS3Item, equipped: bool) -> PS3RoundMediumButton:
     var r = preload("res://src/ui/ps3_round_medium_button.tscn").instantiate()
@@ -92,6 +92,7 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3RoundMediumButton:
     r.focus_entered.connect(func(): self._update_status())
     r.focus_exited.connect(func(): self._update_status())
     r.pressed.connect(func():
+        var unequip = $unequip_check_btn.button_pressed
         var pressed_btn = NodeExtFn.get_pressed_button($scrollable/list)
         pass)
     return r
