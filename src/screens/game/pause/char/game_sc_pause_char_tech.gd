@@ -102,7 +102,7 @@ func _select_party_target(tech: PS3TechType) -> void:
         btn.size_flags_horizontal |= Control.SizeFlags.SIZE_EXPAND
         btn.pressed.connect(func():
             var btn2 = NodeExtFn.get_pressed_button($party_target/scrollable/list)
-            var result = self.game_data.use_targetted_tech(self.game_data.characters[self.opened_character], tech, btn.meta_data.char)
+            var result = self.game_data.use_targetted_tech(self.game_data.characters[self.opened_character], tech, btn2.meta_data.char)
             $party_target.collapse("result", { "result": result }))
         $party_target/scrollable/list.add_child(btn)
     $party_target.popup()
