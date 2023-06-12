@@ -7,6 +7,8 @@ var subsequent: Array[Node] = []
 
 var opened_character: PS3Character
 
+var slide_type: String = "weapon"
+
 func _ready():
     self.close_subsequent_recursive()
     $back_btn.pressed.connect(func():
@@ -14,11 +16,15 @@ func _ready():
     $slide/list/weapon.pressed.connect(func():
         $slide/list/armor.disabled = false
         $slide/list/weapon.disabled = true
-        self._update_items("weapon"))
+        self.slide_type = "weapon"
+        self._update_items())
     $slide/list/armor.pressed.connect(func():
         $slide/list/armor.disabled = true
         $slide/list/weapon.disabled = false
-        self._update_items("armor"))
+        self.slide_type = "armor"
+        self._update_items())
+    $unequip_check_btn.toggled.connect(func(_value):
+        self._update_items())
 
 func open_root(character: PS3Character) -> void:
     self.close_subsequent_recursive()
@@ -29,7 +35,8 @@ func open_root(character: PS3Character) -> void:
     $slide/list/weapon.grab_focus()
     $slide/list/armor.disabled = false
     self._update_status()
-    self._update_items("weapon")
+    self.slide_type = "weapon"
+    self._update_items()
 
 func close_subsequent_recursive() -> void:
     SubsequentViews.close_recursive(self.subsequent)
@@ -37,7 +44,8 @@ func close_subsequent_recursive() -> void:
 func close_subsequent() -> void:
     pass
 
-func _update_items(type: String) -> void:
+func _update_items() -> void:
+    var type = self.slide_type
     NodeExtFn.remove_all_children($scrollable/list)
     var character: PS3CharacterData = self.game_data.characters[self.opened_character]
 
@@ -80,7 +88,7 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3RoundMediumButton:
     var r = preload("res://src/ui/ps3_round_medium_button.tscn").instantiate()
     r.meta_data = { item = item, equipped = equipped }
     r.get_node("control/label").text = item.name
-    r.disabled = equipped
+    r.disabled = not equipped if $unequip_check_btn.button_pressed else equipped
     r.focus_entered.connect(func(): self._update_status())
     r.focus_exited.connect(func(): self._update_status())
     r.pressed.connect(func():
