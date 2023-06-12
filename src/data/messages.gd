@@ -11,4 +11,4 @@ static func tech_result(result: Dictionary) -> String:
     elif result.type == "hp_already_full":
         return "HP is already full."
     else:
-        return "Result is unimplemented"
+        return "undefined"

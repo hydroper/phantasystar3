@@ -15,7 +15,11 @@ var party: Array[PS3Character] = [
 var items: Array[PS3Item] = [
     PS3Item.new(PS3ItemType.MONOMATE, 127),
     PS3Item.new(PS3ItemType.DIMATE, 127),
+    PS3Item.new(PS3ItemType.KNIFE),
 ]
+
+func _init():
+    self.characters[PS3Character.RHYS].torso = PS3Item.new(PS3ItemType.GARMENT)
 
 # Returns {type} and additional properties,
 # where "type" is either:

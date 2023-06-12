@@ -4,6 +4,8 @@ static var _from: Dictionary = {}
 
 static var MONOMATE: PS3ItemType = PS3ItemType.new(0, "Monomate", PS3ItemCategory.CONSUMABLE, true)
 static var DIMATE: PS3ItemType = PS3ItemType.new(1, "Dimate", PS3ItemCategory.CONSUMABLE, true)
+static var KNIFE: PS3ItemType = PS3ItemType.new(2, "Knife", PS3ItemCategory.WEAPON, false)
+static var GARMENT: PS3ItemType = PS3ItemType.new(3, "Garment", PS3ItemCategory.TORSO, false)
 
 static func from(value: int) -> PS3ItemType:
     return _from.get(value)

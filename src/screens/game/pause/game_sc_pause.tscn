@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgu3ettrwvvmj"]
+[gd_scene load_steps=15 format=3 uid="uid://bgu3ettrwvvmj"]
 
 [ext_resource type="Script" path="res://src/screens/game/pause/game_sc_pause.gd" id="1_j3la8"]
 [ext_resource type="PackedScene" uid="uid://cvavh583vaej5" path="res://src/ui/ps3_round_big_button.tscn" id="2_gs0ki"]
@@ -8,7 +8,24 @@
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_char.gd" id="6_oudf2"]
 [ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="6_pc315"]
 [ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_char_tech.gd" id="8_wejph"]
+[ext_resource type="FontFile" uid="uid://bhvqs8dtae8pv" path="res://res/fonts/jost/Jost-Italic.ttf" id="9_esgmp"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_default_panel.tscn" id="9_qt0mf"]
+[ext_resource type="Script" path="res://src/screens/game/pause/char/game_sc_pause_equipment.gd" id="10_1ekta"]
+[ext_resource type="PackedScene" uid="uid://c2uij0qyag45d" path="res://src/ui/ps3_round_medium_button.tscn" id="10_kxh7v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k364h"]
+bg_color = Color(0.329412, 0.552941, 0.635294, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prsl4"]
+bg_color = Color(0.156863, 0.294118, 0.345098, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="GameScPause" type="Control"]
 layout_mode = 3
@@ -43,6 +60,7 @@ alignment = 1
 
 [node name="meseta" type="HBoxContainer" parent="root_content/status"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="label" type="Label" parent="root_content/status/meseta"]
 layout_mode = 2
@@ -56,7 +74,6 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_idc2c")
 theme_override_font_sizes/font_size = 30
 text = "0"
-horizontal_alignment = 2
 
 [node name="buttons1" type="VBoxContainer" parent="root_content"]
 offset_left = -68.0
@@ -413,6 +430,7 @@ focus_neighbor_bottom = NodePath("../tech_btn")
 text = "Back"
 
 [node name="tech" type="Node2D" parent="character"]
+visible = false
 script = ExtResource("8_wejph")
 
 [node name="header" type="Label" parent="character/tech"]
@@ -520,6 +538,105 @@ theme_override_font_sizes/mono_font_size = 45
 bbcode_enabled = true
 text = "Foo"
 
+[node name="equipment" type="Node2D" parent="character"]
+script = ExtResource("10_1ekta")
+
+[node name="slide" type="PanelContainer" parent="character/equipment"]
+offset_left = 146.0
+offset_top = -201.0
+offset_right = 530.0
+offset_bottom = -128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k364h")
+
+[node name="list" type="HBoxContainer" parent="character/equipment/slide"]
+layout_mode = 2
+
+[node name="weapon" parent="character/equipment/slide/list" instance=ExtResource("10_kxh7v")]
+layout_mode = 2
+
+[node name="label" parent="character/equipment/slide/list/weapon/control" index="1"]
+text = "Weapon"
+
+[node name="armor" parent="character/equipment/slide/list" instance=ExtResource("10_kxh7v")]
+layout_mode = 2
+
+[node name="label" parent="character/equipment/slide/list/armor/control" index="1"]
+text = "Armor"
+
+[node name="status" type="VBoxContainer" parent="character/equipment"]
+offset_left = -241.0
+offset_top = -170.0
+offset_right = 31.0
+offset_bottom = 74.0
+
+[node name="damage" type="HBoxContainer" parent="character/equipment/status"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="label" type="Label" parent="character/equipment/status/damage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_esgmp")
+text = "Damage:"
+
+[node name="value" type="RichTextLabel" parent="character/equipment/status/damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="defense" type="HBoxContainer" parent="character/equipment/status"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="label" type="Label" parent="character/equipment/status/defense"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_esgmp")
+text = "Defense:"
+
+[node name="value" type="RichTextLabel" parent="character/equipment/status/defense"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="speed" type="HBoxContainer" parent="character/equipment/status"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="label" type="Label" parent="character/equipment/status/speed"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_esgmp")
+text = "Speed:"
+
+[node name="value" type="RichTextLabel" parent="character/equipment/status/speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="scrollable" type="ScrollContainer" parent="character/equipment"]
+offset_left = 132.0
+offset_top = -105.0
+offset_right = 541.0
+offset_bottom = 188.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_prsl4")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="list" type="VBoxContainer" parent="character/equipment/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="nan" parent="character/equipment/scrollable/list" instance=ExtResource("10_kxh7v")]
+layout_mode = 2
+
+[node name="back_btn" parent="character/equipment" instance=ExtResource("2_gs0ki")]
+offset_left = -239.0
+offset_top = 112.0
+offset_right = 31.0
+offset_bottom = 192.0
+
+[node name="label" parent="character/equipment/back_btn/control" index="1"]
+text = "Back"
+
 [editable path="root_content/buttons1/items_btn"]
 [editable path="root_content/buttons1/character_btn"]
 [editable path="root_content/buttons1/order_btn"]
@@ -533,3 +650,6 @@ text = "Foo"
 [editable path="character/tech/back_btn"]
 [editable path="character/tech/party_target"]
 [editable path="character/tech/tech_result"]
+[editable path="character/equipment/slide/list/weapon"]
+[editable path="character/equipment/slide/list/armor"]
+[editable path="character/equipment/back_btn"]

@@ -6,15 +6,23 @@ var game_data: PS3GameData = null
 var subsequent: Array[Node] = [
     $status,
     $tech,
+    $equipment,
 ]
 
 var opened_character: PS3Character
 
+var last_status_pressed_button: Control = null
+
 func _ready():
     self.close_subsequent_recursive()
     $status/right/tech_btn.pressed.connect(func():
+        self.last_status_pressed_button = $status/right/tech_btn
         self.close_subsequent_recursive()
         $tech.open_root(self.opened_character))
+    $status/right/equipment_btn.pressed.connect(func():
+        self.last_status_pressed_button = $status/right/equipment_btn
+        self.close_subsequent_recursive()
+        $equipment.open_root(self.opened_character))
 
 func close_subsequent_recursive() -> void:
     SubsequentViews.close_recursive(self.subsequent)
@@ -42,12 +50,18 @@ func open_status(character_type: PS3Character) -> void:
     $status/left/stamina/value.text = str(character.stamina)
     $status/right/luck/value.text = str(character.luck)
     $status/right/skill/value.text = str(character.skill)
-    $status/right/tech_btn.grab_focus()
+    if self.last_status_pressed_button == null:
+        $status/right/tech_btn.grab_focus()
+    else:
+        self.last_status_pressed_button.grab_focus()
 
 func close_subsequent() -> void:
     if $status.visible:
         self.visible = false
+        self.last_status_pressed_button = null
     elif $tech.visible:
         $tech.close_subsequent()
         if not $tech.visible:
             self.open_status(self.opened_character)
+    elif $equipment.visible:
+        self.open_status(self.opened_character)

@@ -6,11 +6,12 @@ var hp: int = 10
 var tp: int = 0
 var poisoned: bool = false
 
-var left_arm: PS3ItemType = null
-var right_arm: PS3ItemType = null
-var helmet: PS3ItemType = null
-var chest: PS3ItemType = null
-var legs: PS3ItemType = null
+var left_hand: PS3Item = null
+var right_hand: PS3Item = null
+var head: PS3Item = null
+var torso: PS3Item = null
+var feet: PS3Item = null
+var buckle: PS3Item = null
 
 func _init(character: PS3Character):
     self.character = character
@@ -82,3 +83,10 @@ var skill: int:
 var learned_tech: Array[PS3TechType]:
     get:
         return [PS3TechType.HEAL, PS3TechType.RES, PS3TechType.GIRES, PS3TechType.REVER, PS3TechType.ANTI, PS3TechType.ORDER, PS3TechType.FANBI, PS3TechType.FORSA, PS3TechType.NASAK, PS3TechType.SHU]
+
+func can_equip(item: PS3Item) -> bool:
+    return self.character.can_equip(item)
+
+# Returns {damage, defense, speed}
+func compare_status_if_equipped(item: PS3Item) -> Dictionary:
+    return {damage = 0, defense = 0, speed = 0}

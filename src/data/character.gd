@@ -46,3 +46,6 @@ func _init(value: int, string_id: String, name: String, gender: Gender, face_tex
     self._gender = gender
     self._face_texture = face_texture
     self._portrait_texture = portrait_texture
+
+func can_equip(item: PS3Item) -> bool:
+    return true

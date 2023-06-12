@@ -7,6 +7,7 @@ var game_data_dependents = [
     $ui/pause,
     $ui/pause/character,
     $ui/pause/character/tech,
+    $ui/pause/character/equipment,
 ]
 
 @onready
