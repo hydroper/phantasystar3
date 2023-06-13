@@ -10,7 +10,12 @@ func open(data: Variant) -> void:
         char_btn.meta_data = character_type
         char_btn.get_node("content/label").text = character.name
         char_btn.custom_minimum_size.y = 75
+        char_btn.focus_entered.connect(func():
+            self._selected_character = (NodeExtFn.get_focused(self.char_list) as PS3Button).meta_data
+            self._update_status())
         self.char_list.add_child(char_btn)
+    self._selected_character = data.character if data is PS3Character else self.game_data.party[0]
+    self._update_status()
     $list.popup()
     $status.popup()
 
@@ -35,10 +40,10 @@ var _selected_character: PS3Character = null
 func _ready() -> void:
     $outer.pressed.connect(func(): self.close_sublayer(null))
     $list.on_popup.connect(func(_goal, _data):
-        self.char_list.get_child(0).grab_focus()
-        if self._selected_character != null:
-            var chars = self.char_list.get_children().filter(func(a): return (a as PS3Button).meta_data == self._selected_character)
-            if len(chars) != 0: chars[0].grab_focus())
+        self.char_list.get_children().filter(func(a): return (a as PS3Button).meta_data == self._selected_character)[0].grab_focus())
     $list.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
             super.close(null if goal == "close_current" else "close_current"))
+
+func _update_status() -> void:
+    pass
