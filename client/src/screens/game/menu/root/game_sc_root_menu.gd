@@ -9,15 +9,20 @@ func open(data: Variant) -> void:
         $menu/list/items_btn.grab_focus()
     else: self._last_focused_button.grab_focus()
 
-# Closes any sublayer and the root layer itself.
+# Closes any sublayer and the current layer itself.
 func close(data: Variant) -> void:
-    self.get_parent().remove_child(self)
-    self.on_close.emit(data)
+    if self._sublayer == null:
+        super.close(data)
+    else:
+        self._sublayer.close("close_current")
 
 # If there is any sublayer, closes only it; if none,
-# closes the root layer.
+# closes the current layer.
 func close_sublayer(data: Variant) -> void:
-    self.close(data)
+    if self._sublayer == null:
+        self.close(data)
+    else:
+        self._sublayer.close(data)
 
 var _sublayer: UISublayer = null
 
@@ -34,6 +39,12 @@ func _open_characters() -> void:
     NodeExtFn.disable($menu/list)
     var sublayer = preload("res://src/screens/game/menu/char/game_sc_char_menu.tscn").instantiate()
     sublayer.game_data = self.game_data
+    sublayer.on_close.connect(func(data):
+        if data == "close_current":
+            self._sublayer = null
+            self.close(null)
+        else:
+            self.open(null))
     self._sublayer = sublayer
     self.add_child(sublayer)
     sublayer.open(null)
