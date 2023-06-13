@@ -21,7 +21,7 @@ loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("button_states/hovered_or_focused_bg:modulate:a")
+tracks/0/path = NodePath("skin/hovered_or_focused_bg:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,7 +50,7 @@ loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("button_states/pressed_bg:modulate:a")
+tracks/0/path = NodePath("skin/pressed_bg:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -107,7 +107,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_o6loe")
 theme_override_styles/focus = SubResource("StyleBoxFlat_o6loe")
 script = ExtResource("2_b3wm3")
 
-[node name="button_states" type="Control" parent="."]
+[node name="skin" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="hovered_or_focused_bg" type="PanelContainer" parent="button_states"]
+[node name="hovered_or_focused_bg" type="PanelContainer" parent="skin"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -127,14 +127,14 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_osbtj")
 
-[node name="hovered_or_focused_anim" type="AnimationPlayer" parent="button_states"]
+[node name="hovered_or_focused_anim" type="AnimationPlayer" parent="skin"]
 root_node = NodePath("../..")
 autoplay = "anim"
 libraries = {
 "": SubResource("AnimationLibrary_ixcpu")
 }
 
-[node name="pressed_bg" type="PanelContainer" parent="button_states"]
+[node name="pressed_bg" type="PanelContainer" parent="skin"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -145,14 +145,14 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_10jik")
 
-[node name="pressed_anim" type="AnimationPlayer" parent="button_states"]
+[node name="pressed_anim" type="AnimationPlayer" parent="skin"]
 root_node = NodePath("../..")
 autoplay = "anim"
 libraries = {
 "": SubResource("AnimationLibrary_265si")
 }
 
-[node name="disabled_focused_bg" type="PanelContainer" parent="button_states"]
+[node name="disabled_focused_bg" type="PanelContainer" parent="skin"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -163,19 +163,17 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o6qtq")
 
-[node name="disabled_focused_anim" type="AnimationPlayer" parent="button_states"]
+[node name="disabled_focused_anim" type="AnimationPlayer" parent="skin"]
 autoplay = "anim"
 libraries = {
 "": SubResource("AnimationLibrary_m38e3")
 }
 
-[node name="label" type="Label" parent="."]
+[node name="content" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "undefined"
-horizontal_alignment = 1
-vertical_alignment = 1
+mouse_filter = 2

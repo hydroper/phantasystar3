@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckewe5sw03jor"]
+[gd_scene load_steps=3 format=3 uid="uid://ckewe5sw03jor"]
 
 [ext_resource type="Script" path="res://src/screens/game/game_screen.gd" id="1_r6xri"]
-[ext_resource type="Texture2D" uid="uid://jlchio515336" path="res://res/img/menu-icon.svg" id="3_cgr6t"]
-[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="4_r1rci"]
+[ext_resource type="PackedScene" uid="uid://mcwgjuq00mep" path="res://src/screens/game/menu/game_sc_menu.tscn" id="4_tvq7d"]
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_r6xri")
@@ -13,35 +12,4 @@ script = ExtResource("1_r6xri")
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="menu_button" parent="ui" instance=ExtResource("4_r1rci")]
-custom_minimum_size = Vector2(75, 75)
-anchors_preset = 1
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_left = -83.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 83.0
-grow_horizontal = 0
-grow_vertical = 1
-
-[node name="label" parent="ui/menu_button" index="1"]
-visible = false
-text = "Menu"
-
-[node name="icon" type="TextureRect" parent="ui/menu_button"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_cgr6t")
-
-[editable path="ui/menu_button"]
+[node name="menu" parent="ui" instance=ExtResource("4_tvq7d")]

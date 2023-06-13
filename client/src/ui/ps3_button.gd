@@ -26,18 +26,17 @@ func _reflect_state() -> void:
         self._reflect_state_fn(Reflected.DEFAULT)
 
 func _reflect_state_fn(to: Reflected) -> void:
-    $button_states/hovered_or_focused_bg.visible = to == Reflected.HOVER_OR_FOCUS
+    $skin/hovered_or_focused_bg.visible = to == Reflected.HOVER_OR_FOCUS
     if to == Reflected.HOVER_OR_FOCUS:
-        $button_states/hovered_or_focused_anim.play()
-    else: $button_states/hovered_or_focused_anim.stop()
-    $button_states/pressed_bg.visible = to == Reflected.PRESSED
+        $skin/hovered_or_focused_anim.play()
+    else: $skin/hovered_or_focused_anim.stop()
+    $skin/pressed_bg.visible = to == Reflected.PRESSED
     if to == Reflected.PRESSED:
-        $button_states/pressed_anim.play()
-    else: $button_states/pressed_anim.stop()
-    $button_states/disabled_focused_bg.visible = to == Reflected.DISABLED_FOCUSED
+        $skin/pressed_anim.play()
+    else: $skin/pressed_anim.stop()
+    $skin/disabled_focused_bg.visible = to == Reflected.DISABLED_FOCUSED
     if to == Reflected.DISABLED_FOCUSED:
-        $button_states/disabled_focused_anim.play()
-    else: $button_states/disabled_focused_anim.stop()
-    if $label != null:
-        $label.modulate.a = 0.7 if to == Reflected.DISABLED or to == Reflected.DISABLED_FOCUSED else 1.0
+        $skin/disabled_focused_anim.play()
+    else: $skin/disabled_focused_anim.stop()
+    $content.modulate.a = 0.7 if to == Reflected.DISABLED or to == Reflected.DISABLED_FOCUSED else 1.0
     self._reflected = to
