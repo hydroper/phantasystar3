@@ -40,8 +40,8 @@ func _open_characters() -> void:
     var sublayer = preload("res://src/screens/game/menu/char/game_sc_char_menu.tscn").instantiate()
     sublayer.game_data = self.game_data
     sublayer.on_close.connect(func(data):
+        self._sublayer = null
         if data == "close_current":
-            self._sublayer = null
             self.close(null)
         else:
             self.open(null))

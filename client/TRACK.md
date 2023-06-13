@@ -29,6 +29,7 @@ To-do before relying on custom UI components:
     - [ ] https://youtu.be/jz92sYbwIKw?t=1318
     - [ ] Items
     - [ ] Character
+      - [ ] Focus into first party character
       - [ ] Status: split numbers into commas using `NumberExtFn.comma_sep(v)`
       - [ ] Tech
       - [ ] Equipment
