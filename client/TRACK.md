@@ -29,8 +29,6 @@ To-do before relying on custom UI components:
     - [ ] https://youtu.be/jz92sYbwIKw?t=1318
     - [ ] Items
     - [ ] Character
-      - [ ] Focus into first party character
-      - [ ] Status: split numbers into commas using `NumberExtFn.comma_sep(v)`
       - [ ] Equipment
         - [ ] Item context menu allows to unequip and equip
       - [ ] Tech
@@ -52,8 +50,3 @@ To-do before relying on custom UI components:
 ## Performance and quality
 
 - [ ] On `src/screens/game/menu/game_sc_menu.gd`, replace `is_open`'s return by using a cached variable instead of `$root/sub.has_node("root")` (that requires a lookup in the scene).
-
-## Accessbility
-
-- Support controller scrolling (through right analog) in:
-  - [ ] `Menu > Character Status`
