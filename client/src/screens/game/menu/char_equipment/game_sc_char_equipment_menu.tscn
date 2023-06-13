@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://deqjoyv3op22x"]
+
+[ext_resource type="Script" path="res://src/screens/game/menu/char_equipment/game_sc_char_equipment_menu.gd" id="1_iovo3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqyf5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_166vw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ojnkp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ivaen"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hryx"]
+
+[node name="GameScCharEquipmentMenu" type="CanvasLayer"]
+script = ExtResource("1_iovo3")
+
+[node name="outer" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nqyf5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_166vw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ojnkp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ivaen")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0hryx")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://w5suoaarx6v0"]
+[gd_scene load_steps=12 format=3 uid="uid://w5suoaarx6v0"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_6ixkd"]
 [ext_resource type="Script" path="res://src/screens/game/menu/char/game_sc_char_menu.gd" id="1_jya77"]
@@ -15,6 +15,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ll3o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miyya"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfs6w"]
+content_margin_right = 10.0
 
 [node name="GameScCharMenu" type="CanvasLayer"]
 script = ExtResource("1_jya77")
@@ -96,6 +99,7 @@ texture = ExtResource("3_5uwv6")
 [node name="scrollable" type="ScrollContainer" parent="status/container/container/main/horizontal_list"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pfs6w")
 follow_focus = true
 horizontal_scroll_mode = 0
 
@@ -103,6 +107,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 7
 
 [node name="meseta" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
 layout_mode = 2

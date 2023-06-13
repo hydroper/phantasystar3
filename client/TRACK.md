@@ -52,3 +52,8 @@ To-do before relying on custom UI components:
 ## Performance and quality
 
 - [ ] On `src/screens/game/menu/game_sc_menu.gd`, replace `is_open`'s return by using a cached variable instead of `$root/sub.has_node("root")` (that requires a lookup in the scene).
+
+## Accessbility
+
+- Support controller scrolling (through right analog) in:
+  - [ ] `Menu > Character Status`
