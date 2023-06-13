@@ -1,4 +1,7 @@
+class_name PS3Button
 extends Button
+
+var meta_data: Variant = null
 
 enum Reflected { DEFAULT, DISABLED, DISABLED_FOCUSED, HOVER_OR_FOCUS, PRESSED }
 
