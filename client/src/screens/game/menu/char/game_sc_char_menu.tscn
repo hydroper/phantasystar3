@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://w5suoaarx6v0"]
+[gd_scene load_steps=10 format=3 uid="uid://w5suoaarx6v0"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_6ixkd"]
+[ext_resource type="Script" path="res://src/screens/game/menu/char/game_sc_char_menu.gd" id="1_jya77"]
 [ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="2_ifmfl"]
 [ext_resource type="Texture2D" uid="uid://cy24qnltuibav" path="res://res/img/characters/_template/portrait.png" id="3_5uwv6"]
 
@@ -15,6 +16,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miyya"]
 
 [node name="GameScCharMenu" type="CanvasLayer"]
+script = ExtResource("1_jya77")
 
 [node name="outer" type="Button" parent="."]
 anchors_preset = 15
