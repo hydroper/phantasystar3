@@ -64,7 +64,7 @@ var defense: int:
     get:
         return 13
 
-var intelligence: int:
+var intellect: int:
     get:
         return 6
 

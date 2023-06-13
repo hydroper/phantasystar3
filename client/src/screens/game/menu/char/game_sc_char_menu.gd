@@ -46,4 +46,18 @@ func _ready() -> void:
             super.close(null if goal == "close_current" else "close_current"))
 
 func _update_status() -> void:
-    pass
+    var character = self.game_data.characters[self._selected_character]
+    $status/container/container/header/label.text = character.name
+    $status/container/container/main/horizontal_list/portrait.texture = character.portrait_texture
+    $status/container/container/main/horizontal_list/scrollable/list/meseta/attr/value.text = str(NumberExtFn.comma_sep(self.game_data.meseta))
+    $status/container/container/main/horizontal_list/scrollable/list/hp/attr/value.text = str(character.hp) + "/" + str(character.max_hp)
+    $status/container/container/main/horizontal_list/scrollable/list/tp/attr/value.text = str(character.tp) + "/" + str(character.max_tp)
+    $status/container/container/main/horizontal_list/scrollable/list/level/attr/value.text = str(character.level)
+    $status/container/container/main/horizontal_list/scrollable/list/needed_exp/attr/value.text = str(character.level_exp_goal - character.level_exp)
+    $status/container/container/main/horizontal_list/scrollable/list/speed/attr/value.text = str(character.speed)
+    $status/container/container/main/horizontal_list/scrollable/list/damage/attr/value.text = str(character.damage)
+    $status/container/container/main/horizontal_list/scrollable/list/defense/attr/value.text = str(character.defense)
+    $status/container/container/main/horizontal_list/scrollable/list/intellect/attr/value.text = str(character.intellect)
+    $status/container/container/main/horizontal_list/scrollable/list/stamina/attr/value.text = str(character.stamina)
+    $status/container/container/main/horizontal_list/scrollable/list/luck/attr/value.text = str(character.luck)
+    $status/container/container/main/horizontal_list/scrollable/list/skill/attr/value.text = str(character.skill)
