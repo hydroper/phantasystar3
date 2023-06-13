@@ -13,6 +13,12 @@ func open(data: Variant) -> void:
         char_btn.focus_entered.connect(func():
             self._selected_character = (NodeExtFn.get_focused(self.char_list) as PS3Button).meta_data
             self._update_status())
+        char_btn.pressed.connect(func():
+            var pressed_btn = NodeExtFn.get_pressed_button(self.char_list)
+            $context/context.position.y = pressed_btn.global_position.y
+            $context/context.popup()
+            $context/outer.visible = true
+            $context/context/main/list/equip_btn.grab_focus())
         self.char_list.add_child(char_btn)
     self.char_list.get_child(0).focus_neighbor_top = self.char_list.get_child(-1).get_path()
     self.char_list.get_child(-1).focus_neighbor_bottom = self.char_list.get_child(0).get_path()
@@ -20,17 +26,27 @@ func open(data: Variant) -> void:
     self._update_status()
     $list.popup()
     $status.popup()
+    $context/outer.visible = false
+    $context/context.collapse()
 
 # Closes any sublayer and the current layer itself.
 func close(data: Variant) -> void:
     $list.collapse("close_current_and_parent")
     $status.collapse()
+    $context/outer.visible = false
+    $context/context.collapse()
 
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
 func close_sublayer(data: Variant) -> void:
-    $list.collapse("close_current")
-    $status.collapse()
+    if $context/context.is_open:
+        $context/outer.visible = false
+        $context/context.collapse("close_context")
+    else:
+        $list.collapse("close_current")
+        $context/outer.visible = false
+        $context/context.collapse()
+        $status.collapse()
 
 @onready 
 var char_list = $list/container/container/main/scrollable/list
@@ -42,10 +58,19 @@ var _selected_character: PS3Character = null
 func _ready() -> void:
     $outer.pressed.connect(func(): self.close_sublayer(null))
     $list.on_popup.connect(func(_goal, _data):
-        self.char_list.get_children().filter(func(a): return (a as PS3Button).meta_data == self._selected_character)[0].grab_focus())
+        self._focus_char_btn())
     $list.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
             super.close(null if goal == "close_current" else "close_current"))
+    $context/outer.pressed.connect(func():
+        if $context/context.is_open:
+            self.close_sublayer(null))
+    $context/context.on_collapse.connect(func(goal, _data):
+        if goal == "close_context":
+            self._focus_char_btn())
+
+func _focus_char_btn() -> void:
+    self.char_list.get_children().filter(func(a): return (a as PS3Button).meta_data == self._selected_character)[0].grab_focus()
 
 func _update_status() -> void:
     var character = self.game_data.characters[self._selected_character]

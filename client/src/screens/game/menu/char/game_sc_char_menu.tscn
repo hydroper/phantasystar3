@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://w5suoaarx6v0"]
+[gd_scene load_steps=11 format=3 uid="uid://w5suoaarx6v0"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_6ixkd"]
 [ext_resource type="Script" path="res://src/screens/game/menu/char/game_sc_char_menu.gd" id="1_jya77"]
 [ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="2_ifmfl"]
 [ext_resource type="Texture2D" uid="uid://cy24qnltuibav" path="res://res/img/characters/_template/portrait.png" id="3_5uwv6"]
+[ext_resource type="PackedScene" uid="uid://d1jxl5oy70gnh" path="res://src/ui/ps3_context_menu.tscn" id="5_rvpa7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myse5"]
 
@@ -393,7 +394,52 @@ custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 color = Color(1, 1, 1, 0.352941)
 
+[node name="context" type="CanvasLayer" parent="."]
+
+[node name="outer" type="Button" parent="context"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_myse5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_soocp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_npull")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ll3o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_miyya")
+
+[node name="context" parent="context" instance=ExtResource("5_rvpa7")]
+offset_left = 366.0
+offset_top = 141.0
+offset_right = -549.0
+offset_bottom = -311.0
+
+[node name="list" type="VBoxContainer" parent="context/context/main" index="0"]
+layout_mode = 2
+
+[node name="equip_btn" parent="context/context/main/list" instance=ExtResource("2_ifmfl")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_top = NodePath("../tech_btn")
+
+[node name="label" parent="context/context/main/list/equip_btn/content" index="0"]
+text = "Equip"
+
+[node name="tech_btn" parent="context/context/main/list" instance=ExtResource("2_ifmfl")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_bottom = NodePath("../equip_btn")
+
+[node name="label" parent="context/context/main/list/tech_btn/content" index="0"]
+text = "Tech"
+
 [editable path="list"]
 [editable path="list/container/container/main/scrollable/list/PS3Button"]
 [editable path="list/container/container/main/scrollable/list/PS3Button2"]
 [editable path="status"]
+[editable path="context/context"]
+[editable path="context/context/main/list/equip_btn"]
+[editable path="context/context/main/list/tech_btn"]
