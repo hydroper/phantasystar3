@@ -8,7 +8,8 @@ func open(data: Variant) -> void:
 
 # Closes any sublayer and the current layer itself.
 func close(data: Variant) -> void:
-    super.close(data)
+    $list.collapse("close_current_and_parent")
+    $status.collapse()
 
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
@@ -27,5 +28,5 @@ func _ready() -> void:
             $list/container/container/main/scrollable/list.get_child(0).grab_focus()
         else: self._last_focused_button.focus())
     $list.on_collapse.connect(func(goal, _data):
-        if goal == "close_current":
-            super.close(null))
+        if goal == "close_current" or goal == "close_current_and_parent":
+            super.close(null if goal == "close_current" else "close_current"))
