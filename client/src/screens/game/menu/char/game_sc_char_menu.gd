@@ -48,14 +48,14 @@ func close_sublayer(data: Variant) -> void:
         $context/context.collapse()
         $status.collapse()
 
-@onready 
-var char_list = $list/container/container/main/scrollable/list
+var char_list: VBoxContainer
 
 var _sublayer: UISublayer = null
 
 var _selected_character: PS3Character = null
 
 func _ready() -> void:
+    self.char_list = $list/container/container/main/scrollable/list
     $outer.pressed.connect(func(): self.close_sublayer(null))
     $list.on_popup.connect(func(_goal, _data):
         self._focus_char_btn())
@@ -68,6 +68,8 @@ func _ready() -> void:
     $context/context.on_collapse.connect(func(goal, _data):
         if goal == "close_context":
             self._focus_char_btn())
+    $context/context/main/list/equip_btn.pressed.connect(func():
+        pass)
 
 func _focus_char_btn() -> void:
     self.char_list.get_children().filter(func(a): return (a as PS3Button).meta_data == self._selected_character)[0].grab_focus()
@@ -76,15 +78,15 @@ func _update_status() -> void:
     var character = self.game_data.characters[self._selected_character]
     $status/container/container/header/label.text = character.name
     $status/container/container/main/horizontal_list/portrait.texture = character.portrait_texture
-    $status/container/container/main/horizontal_list/scrollable/list/meseta/attr/value.text = str(NumberExtFn.comma_sep(self.game_data.meseta))
-    $status/container/container/main/horizontal_list/scrollable/list/hp/attr/value.text = str(character.hp) + "/" + str(character.max_hp)
-    $status/container/container/main/horizontal_list/scrollable/list/tp/attr/value.text = str(character.tp) + "/" + str(character.max_tp)
+    $status/container/container/main/horizontal_list/scrollable/list/meseta/attr/value.text = NumberExtFn.comma_sep(self.game_data.meseta)
+    $status/container/container/main/horizontal_list/scrollable/list/hp/attr/value.text = NumberExtFn.comma_sep(character.hp) + "/" + NumberExtFn.comma_sep(character.max_hp)
+    $status/container/container/main/horizontal_list/scrollable/list/tp/attr/value.text = NumberExtFn.comma_sep(character.tp) + "/" + NumberExtFn.comma_sep(character.max_tp)
     $status/container/container/main/horizontal_list/scrollable/list/level/attr/value.text = str(character.level)
-    $status/container/container/main/horizontal_list/scrollable/list/needed_exp/attr/value.text = str(character.level_exp_goal - character.level_exp)
-    $status/container/container/main/horizontal_list/scrollable/list/speed/attr/value.text = str(character.speed)
-    $status/container/container/main/horizontal_list/scrollable/list/damage/attr/value.text = str(character.damage)
-    $status/container/container/main/horizontal_list/scrollable/list/defense/attr/value.text = str(character.defense)
-    $status/container/container/main/horizontal_list/scrollable/list/intellect/attr/value.text = str(character.intellect)
-    $status/container/container/main/horizontal_list/scrollable/list/stamina/attr/value.text = str(character.stamina)
-    $status/container/container/main/horizontal_list/scrollable/list/luck/attr/value.text = str(character.luck)
-    $status/container/container/main/horizontal_list/scrollable/list/skill/attr/value.text = str(character.skill)
+    $status/container/container/main/horizontal_list/scrollable/list/needed_exp/attr/value.text = NumberExtFn.comma_sep(character.level_exp_goal - character.level_exp)
+    $status/container/container/main/horizontal_list/scrollable/list/speed/attr/value.text = NumberExtFn.comma_sep(character.speed)
+    $status/container/container/main/horizontal_list/scrollable/list/damage/attr/value.text = NumberExtFn.comma_sep(character.damage)
+    $status/container/container/main/horizontal_list/scrollable/list/defense/attr/value.text = NumberExtFn.comma_sep(character.defense)
+    $status/container/container/main/horizontal_list/scrollable/list/intellect/attr/value.text = NumberExtFn.comma_sep(character.intellect)
+    $status/container/container/main/horizontal_list/scrollable/list/stamina/attr/value.text = NumberExtFn.comma_sep(character.stamina)
+    $status/container/container/main/horizontal_list/scrollable/list/luck/attr/value.text = NumberExtFn.comma_sep(character.luck)
+    $status/container/container/main/horizontal_list/scrollable/list/skill/attr/value.text = NumberExtFn.comma_sep(character.skill)

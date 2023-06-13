@@ -31,9 +31,9 @@ To-do before relying on custom UI components:
     - [ ] Character
       - [ ] Focus into first party character
       - [ ] Status: split numbers into commas using `NumberExtFn.comma_sep(v)`
-      - [ ] Tech
       - [ ] Equipment
         - [ ] Item context menu allows to unequip and equip
+      - [ ] Tech
     - [ ] Party Order
     - [ ] Macro
     - [ ] Talk
