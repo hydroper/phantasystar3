@@ -90,7 +90,7 @@ func _input(event: InputEvent) -> void:
     if self.is_open and !self._busy and NodeExtFn.outer_clicked(self, event):
         self.on_outer_click.emit()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     pass
 
 func _do_transition() -> void:

@@ -10,7 +10,7 @@ var _reflected: Reflected = Reflected.DEFAULT
 func _ready():
     self._reflect_state()
 
-func _process(delta):
+func _process(_delta: float) -> void:
     self._reflect_state()
 
 func _reflect_state() -> void:

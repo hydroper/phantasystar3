@@ -3,7 +3,7 @@ extends CanvasLayer
 
 signal on_close(data: Variant)
 
-func open(data: Variant) -> void:
+func open(_data: Variant) -> void:
     pass
 
 # Closes any sublayer and the current layer itself.
@@ -16,7 +16,7 @@ func close(data: Variant) -> void:
 
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
-func close_sublayer(data: Variant) -> void:
+func close_sublayer(_data: Variant) -> void:
     pass
 
 var is_closed: bool:

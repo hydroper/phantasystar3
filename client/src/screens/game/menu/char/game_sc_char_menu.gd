@@ -61,7 +61,7 @@ func _ready() -> void:
         self._focus_char_btn())
     $list.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
-            super.close(null if goal == "close_current" else "close_current"))
+            super.close(null as Variant if goal == "close_current" else "close_current" as Variant))
     $context/outer.pressed.connect(func():
         if $context/context.is_open:
             self.close_sublayer(null))
