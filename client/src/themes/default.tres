@@ -1,20 +1,24 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://dfpxcklbmeuya"]
 
-[ext_resource type="FontFile" uid="uid://daml7kmeoclcl" path="res://res/fonts/jost/Jost-Regular.ttf" id="1_v7arh"]
-[ext_resource type="FontFile" uid="uid://crcublc35cuis" path="res://res/fonts/jost/Jost-Bold.ttf" id="2_2j2i0"]
-[ext_resource type="FontFile" uid="uid://cbevli85r4wpn" path="res://res/fonts/jost/Jost-BoldItalic.ttf" id="3_in8vi"]
-[ext_resource type="FontFile" uid="uid://bhvqs8dtae8pv" path="res://res/fonts/jost/Jost-Italic.ttf" id="4_7rqtm"]
+[ext_resource type="FontFile" uid="uid://d23q5v6hc4scf" path="res://res/fonts/roboto/Roboto-Regular.ttf" id="1_ws0ba"]
+[ext_resource type="FontFile" uid="uid://dtlg8neib1d0e" path="res://res/fonts/roboto/Roboto-Bold.ttf" id="2_ys6d7"]
+[ext_resource type="FontFile" uid="uid://dlb61wf88ehsn" path="res://res/fonts/roboto/Roboto-BoldItalic.ttf" id="3_0vwes"]
+[ext_resource type="FontFile" uid="uid://dg85o8n6gr0t0" path="res://res/fonts/roboto/Roboto-Italic.ttf" id="4_7r1xf"]
 
 [resource]
-Label/font_sizes/font_size = 28
-Label/fonts/font = ExtResource("1_v7arh")
+Label/colors/font_shadow_color = Color(0.145098, 0.145098, 0.196078, 1)
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 5
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_ws0ba")
 RichTextLabel/font_sizes/bold_font_size = 28
 RichTextLabel/font_sizes/bold_italics_font_size = 28
 RichTextLabel/font_sizes/italics_font_size = 28
 RichTextLabel/font_sizes/mono_font_size = 28
 RichTextLabel/font_sizes/normal_font_size = 28
-RichTextLabel/fonts/bold_font = ExtResource("2_2j2i0")
-RichTextLabel/fonts/bold_italics_font = ExtResource("3_in8vi")
-RichTextLabel/fonts/italics_font = ExtResource("4_7rqtm")
-RichTextLabel/fonts/normal_font = ExtResource("1_v7arh")
-TooltipLabel/fonts/font = ExtResource("1_v7arh")
+RichTextLabel/fonts/bold_font = ExtResource("2_ys6d7")
+RichTextLabel/fonts/bold_italics_font = ExtResource("3_0vwes")
+RichTextLabel/fonts/italics_font = ExtResource("4_7r1xf")
+RichTextLabel/fonts/normal_font = ExtResource("1_ws0ba")
+TooltipLabel/fonts/font = ExtResource("1_ws0ba")

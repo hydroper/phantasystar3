@@ -1,4 +1,4 @@
-class_name PS3DefaultPanel
+class_name PS3Panel
 extends PS3BaseAnimatedPanel
 
 # Called when the node enters the scene tree for the first time.

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 19 24" width="11px" height="13.895px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="drop-shadow-filter-1" color-interpolation-filters="sRGB" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="drop-shadow 1 0 0 2 2.9 rgba(238,243,255,0.3)">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0" dy="0"/>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA id="spread-ctrl" type="linear" slope="5.8"/>
+      </feComponentTransfer>
+      <feFlood flood-color="rgba(238,243,255,0.3)"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="inner-shadow-filter-0" color-interpolation-filters="sRGB" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="inner-shadow 1 0 0 5 0.35 rgba(179,199,254,0.7)">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur stdDeviation="5"/>
+      <feComposite operator="out" in="SourceGraphic"/>
+      <feComponentTransfer result="choke">
+        <feFuncA type="linear" slope="0.7"/>
+      </feComponentTransfer>
+      <feFlood flood-color="rgba(179,199,254,0.7)" result="color"/>
+      <feComposite operator="in" in="color" in2="choke" result="shadow"/>
+      <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path style="stroke: rgb(203, 225, 248); stroke-opacity: 0.3; stroke-width: 0.9px; filter: url(#drop-shadow-filter-1) url(#inner-shadow-filter-0); fill: rgb(244, 248, 255);" d="M 4 2.5 L 4 21.5 L 9.363 14.814 L 15 14.814 L 4 2.5 Z"/>
+</svg>

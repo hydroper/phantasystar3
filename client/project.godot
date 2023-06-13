@@ -23,6 +23,7 @@ gdscript/warnings/shadowed_variable=0
 
 window/size/viewport_width=1300
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://res/img/cursor.png"
 
 [gui]
 

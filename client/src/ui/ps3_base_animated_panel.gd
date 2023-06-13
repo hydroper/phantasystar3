@@ -59,7 +59,10 @@ func collapse(goal: String = "", data: Variant = null) -> void:
 func _init():
     self.visible = false
     self.scale.y = 0
+    self.modulate = Color(1.0, 1.0, 1.0, 0.0)
     self._scale_tween.finished.connect(func():
+        self._scale_tween.kill()
+        self._modulate_tween.kill()
         self.visible = self._collapsed
         self._collapsed = not self._collapsed
         var k = self._trans_meta_data
@@ -75,6 +78,7 @@ func _init():
 func _ready() -> void:
     self.visible = false
     self.scale.y = 0
+    self.modulate = Color(1.0, 1.0, 1.0, 0.0)
 
 func _input(event: InputEvent) -> void:
     if self.is_open and !self._busy and NodeExtFn.outer_clicked(self, event):

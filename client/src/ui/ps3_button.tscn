@@ -1,0 +1,184 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6eieg4kf6hia"]
+
+[ext_resource type="Theme" uid="uid://dfpxcklbmeuya" path="res://src/themes/default.tres" id="1_mvf6s"]
+[ext_resource type="Script" path="res://src/ui/ps3_button.gd" id="2_b3wm3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6loe"]
+bg_color = Color(0.321569, 0.372549, 0.419608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osbtj"]
+bg_color = Color(0.239216, 0.396078, 0.560784, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.356863, 0.705882, 0.819608, 1)
+
+[sub_resource type="Animation" id="Animation_6sjtq"]
+resource_name = "anim"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button_states/hovered_or_focused_bg:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixcpu"]
+_data = {
+"anim": SubResource("Animation_6sjtq")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10jik"]
+bg_color = Color(0.537255, 0.380392, 0.156863, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.827451, 0.666667, 0.168627, 1)
+
+[sub_resource type="Animation" id="Animation_tsua2"]
+resource_name = "anim"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button_states/pressed_bg:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_265si"]
+_data = {
+"anim": SubResource("Animation_tsua2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6qtq"]
+bg_color = Color(0.239216, 0.396078, 0.560784, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.356863, 0.705882, 0.819608, 1)
+
+[sub_resource type="Animation" id="Animation_nprkl"]
+resource_name = "anim"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("disabled_focused_bg:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m38e3"]
+_data = {
+"anim": SubResource("Animation_nprkl")
+}
+
+[node name="PS3Button" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mvf6s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o6loe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o6loe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o6loe")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_o6loe")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o6loe")
+script = ExtResource("2_b3wm3")
+
+[node name="button_states" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="hovered_or_focused_bg" type="PanelContainer" parent="button_states"]
+visible = false
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_osbtj")
+
+[node name="hovered_or_focused_anim" type="AnimationPlayer" parent="button_states"]
+root_node = NodePath("../..")
+autoplay = "anim"
+libraries = {
+"": SubResource("AnimationLibrary_ixcpu")
+}
+
+[node name="pressed_bg" type="PanelContainer" parent="button_states"]
+visible = false
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_10jik")
+
+[node name="pressed_anim" type="AnimationPlayer" parent="button_states"]
+root_node = NodePath("../..")
+autoplay = "anim"
+libraries = {
+"": SubResource("AnimationLibrary_265si")
+}
+
+[node name="disabled_focused_bg" type="PanelContainer" parent="button_states"]
+visible = false
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o6qtq")
+
+[node name="disabled_focused_anim" type="AnimationPlayer" parent="button_states"]
+autoplay = "anim"
+libraries = {
+"": SubResource("AnimationLibrary_m38e3")
+}
+
+[node name="label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "undefined"
+horizontal_alignment = 1
+vertical_alignment = 1
