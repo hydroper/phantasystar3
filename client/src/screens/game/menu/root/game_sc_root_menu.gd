@@ -22,7 +22,7 @@ func close_sublayer(data: Variant) -> void:
     if self._sublayer == null:
         self.close(data)
     else:
-        self._sublayer.close(data)
+        self._sublayer.close_sublayer(data)
 
 var _sublayer: UISublayer = null
 
