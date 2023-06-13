@@ -1,0 +1,396 @@
+[gd_scene load_steps=9 format=3 uid="uid://w5suoaarx6v0"]
+
+[ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_6ixkd"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="2_ifmfl"]
+[ext_resource type="Texture2D" uid="uid://cy24qnltuibav" path="res://res/img/characters/_template/portrait.png" id="3_5uwv6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myse5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soocp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npull"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ll3o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miyya"]
+
+[node name="GameScCharMenu" type="CanvasLayer"]
+
+[node name="outer" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_myse5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_soocp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_npull")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ll3o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_miyya")
+
+[node name="list" parent="." instance=ExtResource("1_6ixkd")]
+custom_minimum_size = Vector2(400, 500)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 96.0
+offset_top = -250.0
+offset_right = 496.0
+offset_bottom = 250.0
+grow_horizontal = 1
+
+[node name="label" parent="list/container/container/header" index="1"]
+text = "Character"
+
+[node name="scrollable" type="ScrollContainer" parent="list/container/container/main" index="0"]
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="list" type="VBoxContainer" parent="list/container/container/main/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="PS3Button" parent="list/container/container/main/scrollable/list" instance=ExtResource("2_ifmfl")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PS3Button2" parent="list/container/container/main/scrollable/list" instance=ExtResource("2_ifmfl")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="status" parent="." instance=ExtResource("1_6ixkd")]
+custom_minimum_size = Vector2(400, 500)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -705.0
+offset_top = -250.0
+offset_right = -85.0
+offset_bottom = 250.0
+grow_horizontal = 0
+
+[node name="label" parent="status/container/container/header" index="1"]
+text = "Character Name"
+
+[node name="horizontal_list" type="HBoxContainer" parent="status/container/container/main" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="portrait" type="TextureRect" parent="status/container/container/main/horizontal_list"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("3_5uwv6")
+
+[node name="scrollable" type="ScrollContainer" parent="status/container/container/main/horizontal_list"]
+layout_mode = 2
+size_flags_horizontal = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="list" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="meseta" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/meseta"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/meseta/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Meseta"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/meseta/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/meseta"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="hp" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/hp"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/hp/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "HP"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/hp/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0/0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/hp"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="tp" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/tp"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/tp/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "TP"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/tp/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0/0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/tp"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="level" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/level"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/level/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Level"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/level/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "1"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/level"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="needed_experience" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/needed_experience"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/needed_experience/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Needed Experience"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/needed_experience/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/needed_experience"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="speed" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/speed"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/speed/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Speed"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/speed/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/speed"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="damage" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/damage"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/damage/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Damage"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/damage/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/damage"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="defense" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/defense"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/defense/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Defense"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/defense/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/defense"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="intelligence" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/intelligence"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/intelligence/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Intelligence"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/intelligence/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/intelligence"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="stamina" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/stamina"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/stamina/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Stamina"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/stamina/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/stamina"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="luck" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/luck"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/luck/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Luck"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/luck/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/luck"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="skill" type="VBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="status/container/container/main/horizontal_list/scrollable/list/skill"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/skill/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Skill"
+
+[node name="value" type="Label" parent="status/container/container/main/horizontal_list/scrollable/list/skill/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="status/container/container/main/horizontal_list/scrollable/list/skill"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[editable path="list"]
+[editable path="list/container/container/main/scrollable/list/PS3Button"]
+[editable path="list/container/container/main/scrollable/list/PS3Button2"]
+[editable path="status"]

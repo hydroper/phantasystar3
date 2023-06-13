@@ -10,8 +10,6 @@ To-do:
 
 - [ ] Reset the pause button appearance. It is not a pause also; should be a hamburguer button.
 - [ ] Update the default theme.
-- [x] Create `ps3_button`
-- [ ] Update `ps3_panel`.
 - [ ] UI should be heavily dependent on popup and collapse signals and express dependent panels in a concise way.
 - [ ] Accessing items should be similiar to PSO2. A context menu should appear when pressing an item button.
 
@@ -26,14 +24,12 @@ To-do before relying on custom UI components:
 
 ## Implemented UI
 
-- [ ] UI components
-  - [x] Button
-  - [ ] Panel
 - [ ] Gameplay
   - [ ] Menu (bottom-bar similiar to PSO2)
     - [ ] https://youtu.be/jz92sYbwIKw?t=1318
     - [ ] Items
     - [ ] Character
+      - [ ] Status: split numbers into commas using `NumberExtFn.comma_sep(v)`
       - [ ] Tech
       - [ ] Equipment
         - [ ] Item context menu allows to unequip and equip
@@ -51,3 +47,7 @@ To-do before relying on custom UI components:
 ## UI focusing
 
 - [ ] Prevent two buttons from being hovered or focused at the same time.
+
+## Performance and quality
+
+- [ ] On `src/screens/game/menu/game_sc_menu.gd`, replace `is_open`'s return by using a cached variable instead of `$root/sub.has_node("root")` (that requires a lookup in the scene).

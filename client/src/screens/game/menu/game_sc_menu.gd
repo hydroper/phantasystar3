@@ -3,7 +3,7 @@ extends CanvasLayer
 
 var is_open: bool:
     get:
-        return self._open
+        return $sub.has_node("root")
 
 var game_data: PS3GameData = null
 
@@ -13,43 +13,28 @@ func toggle() -> void:
     else: self.open()
 
 func open() -> void:
-    assert(not self._open, "game_sc_menu.open() called when the menu is open.")
-    self._open = true
-    $outer.visible = true
-    $menu.visible = true
-    if self._last_focused_button == null:
-        $menu/list/items_btn.grab_focus()
-    else: self._last_focused_button.grab_focus()
+    assert(not self.is_open, "game_sc_menu.open() called when the menu is open.")
+    var root_layer = preload("res://src/screens/game/menu/root/game_sc_root_menu.tscn").instantiate()
+    root_layer.name = "root"
+    root_layer.game_data = self.game_data
+    $sub.add_child(root_layer)
+    $sub/root.open()
 
-# If there is any subcontrol, close only it; if none,
-# closes the menu.
-func close_subcontrol() -> void:
-    self.close()
-
-# Closes any subcontrol and the root menu itself.
 func close() -> void:
-    assert(self._open, "game_sc_menu.close() called when the menu is open.")
-    self._open = false
-    $outer.visible = false
-    $menu.visible = false
+    assert(self.is_open, "game_sc_menu.close() called when the menu is open.")
+    $sub/root.close()
 
-var _open: bool = false
-
-var _last_focused_button: Control = null
+func close_subcontrol() -> void:
+    assert(self.is_open, "game_sc_menu.close_subcontrol() called when the menu is open.")
+    $sub/root.close_subcontrol()
 
 func _ready() -> void:
-    $outer.visible = false
-    $menu.visible = false
-
     # the top-right menu button.
     $menu_button.pressed.connect(func(): self.toggle())
 
-    # the top-right menu button.
-    $outer.pressed.connect(func(): self.toggle())
-
 func _input(event: InputEvent) -> void:
-    if self.is_open:
-        if event.is_action_released("ui_cancel"):
-            self.close_subcontrol()
-    elif event.is_action_released("pause"):
+    var pause_just_released = event.is_action_released("pause")
+    if (event.is_action_released("ui_cancel") or pause_just_released) and self.is_open:
+        $sub/root.close_subcontrol()
+    elif pause_just_released and not self.is_open:
         self.open()

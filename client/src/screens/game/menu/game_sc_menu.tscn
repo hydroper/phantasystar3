@@ -1,42 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://mcwgjuq00mep"]
+[gd_scene load_steps=4 format=3 uid="uid://mcwgjuq00mep"]
 
 [ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="1_cdvvy"]
-[ext_resource type="Theme" uid="uid://dfpxcklbmeuya" path="res://src/themes/default.tres" id="1_k8sc4"]
 [ext_resource type="Script" path="res://src/screens/game/menu/game_sc_menu.gd" id="1_uvmsj"]
 [ext_resource type="Texture2D" uid="uid://jlchio515336" path="res://res/img/menu-icon.svg" id="3_ikkeh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbu25"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rdslx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_23kvu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hpld2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3741r"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bxxe"]
-content_margin_left = 7.0
-content_margin_top = 7.0
-content_margin_right = 7.0
-content_margin_bottom = 7.0
-bg_color = Color(0.0803652, 0.107501, 0.131243, 0.901961)
 
 [node name="GameScMenu" type="CanvasLayer"]
 script = ExtResource("1_uvmsj")
 
-[node name="outer" type="Button" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_gbu25")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_rdslx")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_23kvu")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_hpld2")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3741r")
+[node name="sub" type="CanvasLayer" parent="."]
 
 [node name="menu_button" parent="." instance=ExtResource("1_cdvvy")]
 custom_minimum_size = Vector2(75, 75)
@@ -66,169 +37,7 @@ grow_vertical = 2
 texture = ExtResource("3_ikkeh")
 expand_mode = 1
 
-[node name="menu" type="PanelContainer" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -438.0
-offset_top = -345.0
-offset_right = 438.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("1_k8sc4")
-theme_override_styles/panel = SubResource("StyleBoxFlat_2bxxe")
-
-[node name="list" type="HFlowContainer" parent="menu"]
-layout_mode = 2
-theme_override_constants/h_separation = 7
-theme_override_constants/v_separation = 7
-
-[node name="items_btn" parent="menu/list" instance=ExtResource("1_cdvvy")]
-custom_minimum_size = Vector2(210, 150)
-layout_mode = 2
-
-[node name="list" type="VBoxContainer" parent="menu/list/items_btn/content" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="label" type="Label" parent="menu/list/items_btn/content/list"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Items"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="char_btn" parent="menu/list" instance=ExtResource("1_cdvvy")]
-custom_minimum_size = Vector2(210, 150)
-layout_mode = 2
-
-[node name="list" type="VBoxContainer" parent="menu/list/char_btn/content" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="label" type="Label" parent="menu/list/char_btn/content/list"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Characters"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="party_order_btn" parent="menu/list" instance=ExtResource("1_cdvvy")]
-custom_minimum_size = Vector2(210, 150)
-layout_mode = 2
-
-[node name="list" type="VBoxContainer" parent="menu/list/party_order_btn/content" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="label" type="Label" parent="menu/list/party_order_btn/content/list"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Party Order"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="macro_btn" parent="menu/list" instance=ExtResource("1_cdvvy")]
-custom_minimum_size = Vector2(210, 150)
-layout_mode = 2
-
-[node name="list" type="VBoxContainer" parent="menu/list/macro_btn/content" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="label" type="Label" parent="menu/list/macro_btn/content/list"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Macro"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="talk_btn" parent="menu/list" instance=ExtResource("1_cdvvy")]
-custom_minimum_size = Vector2(210, 150)
-layout_mode = 2
-
-[node name="list" type="VBoxContainer" parent="menu/list/talk_btn/content" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="label" type="Label" parent="menu/list/talk_btn/content/list"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Talk"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="system_btn" parent="menu/list" instance=ExtResource("1_cdvvy")]
-custom_minimum_size = Vector2(210, 150)
-layout_mode = 2
-
-[node name="list" type="VBoxContainer" parent="menu/list/system_btn/content" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="label" type="Label" parent="menu/list/system_btn/content/list"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "System"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="log_out_btn" parent="menu/list" instance=ExtResource("1_cdvvy")]
-custom_minimum_size = Vector2(210, 150)
-layout_mode = 2
-
-[node name="list" type="VBoxContainer" parent="menu/list/log_out_btn/content" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="label" type="Label" parent="menu/list/log_out_btn/content/list"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Log Out"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
+[node name="label" parent="menu_button/content" index="1"]
+visible = false
 
 [editable path="menu_button"]
-[editable path="menu/list/items_btn"]
-[editable path="menu/list/char_btn"]
-[editable path="menu/list/party_order_btn"]
-[editable path="menu/list/macro_btn"]
-[editable path="menu/list/talk_btn"]
-[editable path="menu/list/system_btn"]
-[editable path="menu/list/log_out_btn"]

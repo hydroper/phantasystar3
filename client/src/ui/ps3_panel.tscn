@@ -1,52 +1,93 @@
-[gd_scene load_steps=4 format=3 uid="uid://baktjhv7oug4q"]
+[gd_scene load_steps=7 format=3 uid="uid://baktjhv7oug4q"]
 
 [ext_resource type="Script" path="res://src/ui/ps3_panel.gd" id="1_efxuj"]
+[ext_resource type="Theme" uid="uid://dfpxcklbmeuya" path="res://src/themes/default.tres" id="1_q4du3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0oqa3"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.0196078, 0.0862745, 0.105882, 0.882353)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ug7u"]
+bg_color = Color(0.03601, 0.0884267, 0.143252, 0.784314)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.356863, 0.705882, 0.819608, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pp2l"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1pjl"]
 content_margin_left = 30.0
 content_margin_right = 30.0
 bg_color = Color(0.168627, 0.384314, 0.552941, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[node name="PS3Panel" type="PanelContainer"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khsbe"]
+content_margin_left = 18.0
+content_margin_right = 18.0
+content_margin_bottom = 18.0
+
+[node name="PS3Panel" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0oqa3")
+theme = ExtResource("1_q4du3")
 script = ExtResource("1_efxuj")
 
-[node name="header" type="PanelContainer" parent="."]
+[node name="skin" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="bg" type="PanelContainer" parent="skin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3ug7u")
+
+[node name="container" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6pp2l")
+
+[node name="container" type="VBoxContainer" parent="container"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="header" type="PanelContainer" parent="container/container"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_j1pjl")
 
-[node name="skin" type="Control" parent="header"]
+[node name="skin" type="Control" parent="container/container/header"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="header"]
+[node name="label" type="Label" parent="container/container/header"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.196078, 0.196078, 0.196078, 0.243137)
 theme_override_constants/shadow_offset_x = 0
@@ -55,5 +96,7 @@ theme_override_constants/shadow_outline_size = 10
 text = "undefined"
 uppercase = true
 
-[node name="main" type="VBoxContainer" parent="."]
+[node name="main" type="PanelContainer" parent="container/container"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_khsbe")
