@@ -83,10 +83,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
     if self._sublayer != null or $context/context.is_open:
         return
-    if event.is_action_released("ui_left"):
-        self._tab_bar.current_tab -= 1
-    elif event.is_action_released("ui_right"):
-        self._tab_bar.current_tab += 1
+    self._tab_bar.current_tab += -1 if event.is_action_released("ui_left") else 1 if event.is_action_released("ui_right") else 0
 
 func _update_items() -> void:
     var type = "left_hand" if self._tab_bar.current_tab == 0 else "right_hand" if self._tab_bar.current_tab == 1 else "armor"
