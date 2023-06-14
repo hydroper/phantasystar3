@@ -63,7 +63,6 @@ layout_mode = 2
 [node name="left_hand" parent="item_selector/container/container/main/container/tabs/content/tabs" index="0" instance=ExtResource("3_ids3l")]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../armor")
 
 [node name="label" parent="item_selector/container/container/main/container/tabs/content/tabs/left_hand/content" index="0"]
 theme_override_font_sizes/font_size = 18
@@ -80,7 +79,6 @@ text = "Right Hand"
 [node name="armor" parent="item_selector/container/container/main/container/tabs/content/tabs" index="2" instance=ExtResource("3_ids3l")]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_right = NodePath("../left_hand")
 
 [node name="label" parent="item_selector/container/container/main/container/tabs/content/tabs/armor/content" index="0"]
 theme_override_font_sizes/font_size = 18
