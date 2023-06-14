@@ -57,6 +57,14 @@ func _ready() -> void:
         pass)
     $context/context/main/list/unequip_btn.pressed.connect(func():
         pass)
+    $context/context.on_popup.connect(func(goal, _data):
+        var equip = goal == "equip"
+        $context/context/main/list/equip_btn.disabled = not equip
+        $context/context/main/list/unequip_btn.disabled = equip
+        if equip:
+            $context/context/main/list/equip_btn.grab_focus()
+        else:
+            $context/context/main/list/unequip_btn.grab_focus())
     $context/context.on_collapse.connect(func(goal, _data):
         if goal == "close_context":
             var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)
@@ -116,14 +124,8 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
         var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)
         self._update_item_details(btn.item)
         $context/context.position.y = btn.get_node("button").global_position.y
-        $context/context.popup()
+        $context/context.popup("unequip" if btn.is_equipped else "equip")
         $context/outer.visible = true
-        $context/context/main/list/equip_btn.disabled = btn.is_equipped
-        $context/context/main/list/unequip_btn.disabled = not btn.is_equipped
-        if btn.is_equipped:
-            $context/context/main/list/unequip_btn.grab_focus()
-        else:
-            $context/context/main/list/equip_btn.grab_focus()
         NodeExtFn.disable($item_selector))
     r.get_node("button").focus_entered.connect(func():
         var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
