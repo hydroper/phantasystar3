@@ -12,12 +12,21 @@ func open(data: Variant) -> void:
 func close(data: Variant) -> void:
     $item_selector.collapse("close_current_and_parent")
     $item_details.collapse()
+    $context/outer.visible = false
+    $context/context.collapse()
 
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
 func close_sublayer(data: Variant) -> void:
-    $item_selector.collapse("close_current")
-    $item_details.collapse()
+    if $context/context.is_open:
+        $context/outer.visible = false
+        NodeExtFn.enable($item_selector)
+        $context/context.collapse("close_context")
+    else:
+        $item_selector.collapse("close_current")
+        $item_details.collapse()
+        $context/outer.visible = false
+        $context/context.collapse()
 
 var _sublayer: UISublayer
 
@@ -34,6 +43,9 @@ var _selected_character: PS3Character
 func _ready() -> void:
     $outer.pressed.connect(func():
         self.close_sublayer(null))
+    $context/outer.pressed.connect(func():
+        if $context/context.is_open:
+            self.close_sublayer(null))
     self._tab_bar.tab_changed.connect(func(_tab):
         self._update_items())
     $item_selector.on_collapse.connect(func(goal, _data):
@@ -41,6 +53,15 @@ func _ready() -> void:
             super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
     $item_details.on_collapse.connect(func(goal, _data):
         pass)
+    $context/context/main/list/equip_btn.pressed.connect(func():
+        pass)
+    $context/context/main/list/unequip_btn.pressed.connect(func():
+        pass)
+    $context/context.on_collapse.connect(func(goal, _data):
+        if goal == "close_context":
+            var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)
+            if len(m) != 0:
+                m[0].get_node("button").grab_focus())
 
 func _process(_delta: float) -> void:
     if self._selected_item == null:
@@ -48,7 +69,7 @@ func _process(_delta: float) -> void:
     else: $item_details.popup()
 
 func _input(event: InputEvent) -> void:
-    if self._sublayer != null:
+    if self._sublayer != null or $context/context.is_open:
         return
     if event.is_action_released("ui_left"):
         self._tab_bar.current_tab -= 1
@@ -93,7 +114,17 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
     r.is_equipped = equipped
     r.get_node("button").pressed.connect(func():
         var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)
-        self._update_item_details(btn.item))
+        self._update_item_details(btn.item)
+        $context/context.position.y = btn.get_node("button").global_position.y
+        $context/context.popup()
+        $context/outer.visible = true
+        $context/context/main/list/equip_btn.disabled = btn.is_equipped
+        $context/context/main/list/unequip_btn.disabled = not btn.is_equipped
+        if btn.is_equipped:
+            $context/context/main/list/unequip_btn.grab_focus()
+        else:
+            $context/context/main/list/equip_btn.grab_focus()
+        NodeExtFn.disable($item_selector))
     r.get_node("button").focus_entered.connect(func():
         var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
         self._update_item_details(btn.item))

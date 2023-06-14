@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccs5ihnn1281n"]
+[gd_scene load_steps=18 format=3 uid="uid://ccs5ihnn1281n"]
 
 [ext_resource type="Script" path="res://src/screens/game/menu/char_item_selection/game_sc_char_item_selection_menu.gd" id="1_5o0t0"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="2_a17xg"]
 [ext_resource type="PackedScene" uid="uid://cdksxct16ho8y" path="res://src/ui/ps3_tab_bar_button.tscn" id="3_ids3l"]
 [ext_resource type="PackedScene" uid="uid://gwi1vyaotetu" path="res://src/ui/ps3_tab_bar.tscn" id="3_semr6"]
 [ext_resource type="PackedScene" uid="uid://d3uburhoimgku" path="res://src/ui/inventory/ps3_selectable_item_button.tscn" id="5_n2qm2"]
+[ext_resource type="PackedScene" uid="uid://d1jxl5oy70gnh" path="res://src/ui/ps3_context_menu.tscn" id="6_pr2v6"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="7_7044v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqyf5"]
 
@@ -15,6 +17,16 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ivaen"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hryx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1unpf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ct81b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk57n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ogkq2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8pvk"]
 
 [node name="GameScCharEquipmentMenu" type="CanvasLayer"]
 script = ExtResource("1_5o0t0")
@@ -173,9 +185,56 @@ custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 color = Color(1, 1, 1, 0.352941)
 
+[node name="context" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="outer" type="Button" parent="context"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1unpf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ct81b")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hk57n")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ogkq2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o8pvk")
+
+[node name="context" parent="context" instance=ExtResource("6_pr2v6")]
+offset_left = 398.0
+offset_top = 205.0
+offset_right = -517.0
+offset_bottom = -247.0
+
+[node name="list" type="VBoxContainer" parent="context/context/main" index="0"]
+layout_mode = 2
+
+[node name="equip_btn" parent="context/context/main/list" instance=ExtResource("7_7044v")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_top = NodePath("../unequip_btn")
+
+[node name="label" parent="context/context/main/list/equip_btn/content" index="0"]
+text = "Equip"
+
+[node name="unequip_btn" parent="context/context/main/list" instance=ExtResource("7_7044v")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_bottom = NodePath("../equip_btn")
+
+[node name="label" parent="context/context/main/list/unequip_btn/content" index="0"]
+text = "Unequip"
+
 [editable path="item_selector"]
 [editable path="item_selector/container/container/main/container/tabs"]
 [editable path="item_selector/container/container/main/container/tabs/content/tabs/left_hand"]
 [editable path="item_selector/container/container/main/container/tabs/content/tabs/right_hand"]
 [editable path="item_selector/container/container/main/container/tabs/content/tabs/armor"]
 [editable path="item_details"]
+[editable path="context/context"]
+[editable path="context/context/main/list/equip_btn"]
+[editable path="context/context/main/list/unequip_btn"]
