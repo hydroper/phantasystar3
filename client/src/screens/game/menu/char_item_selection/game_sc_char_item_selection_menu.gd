@@ -83,10 +83,14 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
     if self._sublayer != null or $context/context.is_open:
         return
-    if event.is_action_released("ui_left"):
+    if event.is_action_released("ui_left") and not self._any_tab_focused:
         self._tab_bar.current_tab -= 1
-    elif event.is_action_released("ui_right"):
+    elif event.is_action_released("ui_right") and not self._any_tab_focused:
         self._tab_bar.current_tab += 1
+
+var _any_tab_focused: bool:
+    get:
+        return NodeExtFn.get_focused(self._tab_bar.get_node("content/tabs")) != null
 
 func _update_items() -> void:
     var type = "left_hand" if self._tab_bar.current_tab == 0 else "right_hand" if self._tab_bar.current_tab == 1 else "armor"
