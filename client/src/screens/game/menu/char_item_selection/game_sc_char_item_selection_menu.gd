@@ -3,23 +3,20 @@ extends UISublayer
 var game_data: PS3GameData = null
 
 func open(data: Variant) -> void:
+    # data is PS3Character
     self._selected_character = data
     $item_selector.popup()
     self._update_items()
-    if self._items_container.get_child_count() == 0:
-        self._tab_bar.get_node("content/tabs/left_hand").grab_focus()
-    else:
-        self._items_container.get_child(0).grab_focus()
 
 # Closes any sublayer and the current layer itself.
 func close(data: Variant) -> void:
-    $item_selector.collapse("close_current")
+    $item_selector.collapse("close_current_and_parent")
     $item_details.collapse()
 
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
 func close_sublayer(data: Variant) -> void:
-    $item_selector.collapse("close_current_and_parent")
+    $item_selector.collapse("close_current")
     $item_details.collapse()
 
 @onready
@@ -36,6 +33,8 @@ func _ready() -> void:
     $item_selector.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
             super.close(null as Variant if goal == "close_current" else "close_current" as Variant))
+    $outer.pressed.connect(func():
+        self.close_sublayer(null))
 
 func _update_items() -> void:
     var type = "left_hand" if self._tab_bar.current_tab == 0 else "right_hand" if self._tab_bar.current_tab == 1 else "armor"
@@ -63,6 +62,11 @@ func _update_items() -> void:
         for item in self.game_data.items:
             if item.type.category.is_armor and character.can_equip(item):
                 self._items_container.add_child(self._create_item_button(item, false))
+
+    if self._items_container.get_child_count() == 0:
+        self._tab_bar.get_node("content/tabs/" + type).grab_focus()
+    else:
+        self._items_container.get_child(0).get_node("button").grab_focus()
 
 func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButton:
     var r = preload("res://src/ui/inventory/ps3_selectable_item_button.tscn").instantiate()

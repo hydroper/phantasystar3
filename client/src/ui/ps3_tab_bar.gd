@@ -20,6 +20,7 @@ func reflect_buttons() -> void:
         btn.focus_entered.disconnect(self._btn_focused)
     self._reflected_btns.clear()
     self._reflect_buttons_recursive($content/tabs)
+    self._tab_count = len(self._reflected_btns)
 
 func _reflect_buttons_recursive(node: Node) -> void:
     if node is PS3TabBarButton:
@@ -30,7 +31,6 @@ func _reflect_buttons_recursive(node: Node) -> void:
         return
     for node2 in node.get_children():
         self._reflect_buttons_recursive(node2)
-    self._tab_count = len(self._reflected_btns)
 
 var _reflected_btns: Array[BaseButton] = []
 var _current_tab: int = 0

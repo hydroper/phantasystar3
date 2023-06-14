@@ -22,7 +22,7 @@ func open(data: Variant) -> void:
         self.char_list.add_child(char_btn)
     self.char_list.get_child(0).focus_neighbor_top = self.char_list.get_child(-1).get_path()
     self.char_list.get_child(-1).focus_neighbor_bottom = self.char_list.get_child(0).get_path()
-    self._selected_character = data.character if data is PS3Character else self.game_data.party[0]
+    self._selected_character = data if data is PS3Character else self.game_data.party[0]
     self._update_status()
     $list.popup()
     $status.popup()
@@ -108,7 +108,6 @@ func _open_item_selector() -> void:
     sublayer.game_data = self.game_data
     sublayer.on_close.connect(func(data):
         self._sublayer = null
-        print("closed item selector")
         if data == "close_current":
             self.close(null)
         else:

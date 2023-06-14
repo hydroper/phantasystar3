@@ -8,7 +8,7 @@ var is_equipped: bool:
         return self._is_equipped
     set(value):
         self._is_equipped = value
-        $button/content/container/equipped.modulate.a = 1.0 if self.is_equipped else 0.0
+        $button/content/container/equipped.modulate.a = 1.0 if self._is_equipped else 0.0
 
 func display_item(item: PS3Item) -> void:
     self.item = item
@@ -25,8 +25,5 @@ static func get_focused_from_list(list: Variant) -> PS3SelectableItemButton:
         var f = list.filter(func(a): return a.get_node("button").has_focus())
         return null if len(f) == 0 else f[0]
     return PS3SelectableItemButton.get_focused_from_list(list.get_children()) if list is Node else null
-
-func _ready():
-    $button/content/container/equipped.modulate.a = 0
 
 var _is_equipped: bool = false
