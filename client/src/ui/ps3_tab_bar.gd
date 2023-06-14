@@ -8,10 +8,15 @@ var current_tab: int:
     get:
         return self._current_tab
     set(value):
+        value = clampi(value, 0, self._tab_count - 1)
         if self._current_tab == value:
             return
         self._current_tab = value
         self.tab_changed.emit(value)
+
+var tab_count: int:
+    get:
+        return self._tab_count
 
 # Reflects the present tab buttons.
 func reflect_buttons() -> void:

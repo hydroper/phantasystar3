@@ -41,6 +41,7 @@ func _open_characters() -> void:
     sublayer.game_data = self.game_data
     sublayer.on_close.connect(func(data):
         self._sublayer = null
+        print("Closed character menu with data: ", data)
         if data == "close_current":
             self.close(null)
         else:

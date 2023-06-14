@@ -19,6 +19,8 @@ func close_sublayer(data: Variant) -> void:
     $item_selector.collapse("close_current")
     $item_details.collapse()
 
+var _sublayer: UISublayer
+
 @onready
 var _tab_bar = $item_selector/container/container/main/container/tabs
 
@@ -35,6 +37,14 @@ func _ready() -> void:
             super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
     $outer.pressed.connect(func():
         self.close_sublayer(null))
+
+func _input(event: InputEvent) -> void:
+    if self._sublayer != null:
+        return
+    if event.is_action_released("ui_left"):
+        self._tab_bar.current_tab -= 1
+    elif event.is_action_released("ui_right"):
+        self._tab_bar.current_tab += 1
 
 func _update_items() -> void:
     var type = "left_hand" if self._tab_bar.current_tab == 0 else "right_hand" if self._tab_bar.current_tab == 1 else "armor"
