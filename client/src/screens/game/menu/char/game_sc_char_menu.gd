@@ -31,15 +31,20 @@ func open(data: Variant) -> void:
 
 # Closes any sublayer and the current layer itself.
 func close(data: Variant) -> void:
-    $list.collapse("close_current_and_parent")
-    $status.collapse()
-    $context/outer.visible = false
-    $context/context.collapse()
+    if self._sublayer == null:
+        $list.collapse("close_current_and_parent")
+        $status.collapse()
+        $context/outer.visible = false
+        $context/context.collapse()
+    else:
+        self._sublayer.close("close_current")
 
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
 func close_sublayer(data: Variant) -> void:
-    if $context/context.is_open:
+    if self._sublayer != null:
+        self._sublayer.close_sublayer(data)
+    elif $context/context.is_open:
         $context/outer.visible = false
         $context/context.collapse("close_context")
     else:
@@ -103,6 +108,7 @@ func _open_item_selector() -> void:
     sublayer.game_data = self.game_data
     sublayer.on_close.connect(func(data):
         self._sublayer = null
+        print("closed item selector")
         if data == "close_current":
             self.close(null)
         else:

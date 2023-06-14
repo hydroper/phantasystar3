@@ -88,8 +88,18 @@ size_flags_vertical = 3
 [node name="example_btn" parent="item_selector/container/container/main/container/scrollable/list" instance=ExtResource("5_n2qm2")]
 layout_mode = 2
 
+[node name="item_details" parent="." instance=ExtResource("2_a17xg")]
+offset_left = 783.0
+offset_top = 175.0
+offset_right = -46.0
+offset_bottom = -85.0
+
+[node name="label" parent="item_details/container/container/header" index="1"]
+text = "Item Details"
+
 [editable path="item_selector"]
 [editable path="item_selector/container/container/main/container/tabs"]
 [editable path="item_selector/container/container/main/container/tabs/content/tabs/left_hand"]
 [editable path="item_selector/container/container/main/container/tabs/content/tabs/right_hand"]
 [editable path="item_selector/container/container/main/container/tabs/content/tabs/armor"]
+[editable path="item_details"]

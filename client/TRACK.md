@@ -38,6 +38,7 @@ To-do before relying on custom UI components:
         - [ ] Focus item after
         - [ ] Display the "equipped" indicator on `PS3SelectableItemButton` if the item is equipped, by changing its `is_equipped` property.
         - [ ] Item context menu allows to unequip and equip
+          - [ ] Disable one of these buttons depending if the item is equipped.
       - [ ] Tech
     - [ ] Party Order
     - [ ] Macro
