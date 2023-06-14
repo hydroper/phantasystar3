@@ -33,12 +33,8 @@ To-do before relying on custom UI components:
     - [ ] Character
       - [ ] Equipment
         - https://youtu.be/jz92sYbwIKw?t=1238
-        - [ ] Focus item on popup.
-        - [ ] Focus item after closing context menu.
-        - [ ] Focus item after
-        - [ ] Display the "equipped" indicator on `PS3SelectableItemButton` if the item is equipped, by changing its `is_equipped` property.
-        - [ ] Item context menu allows to unequip and equip
-          - [ ] Disable one of these buttons depending if the item is equipped.
+        - [ ] Implement "Equip" button (invoke `_update_items()` after data mutation and collapse context menu)
+        - [ ] Implement "Unequip" button (invoke `_update_items()` after data mutation and collapse context menu)
       - [ ] Tech
     - [ ] Party Order
     - [ ] Macro
