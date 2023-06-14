@@ -24,6 +24,8 @@ To-do before relying on custom UI components:
 
 ## Implemented UI
 
+- [ ] UI Components
+  - [ ] Secondary button (similiar to the "Back" button in various PSO2 UI panels)
 - [ ] Gameplay
   - [ ] Menu (bottom-bar similiar to PSO2)
     - [ ] https://youtu.be/jz92sYbwIKw?t=1318

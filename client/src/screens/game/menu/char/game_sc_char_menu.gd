@@ -18,7 +18,7 @@ func open(data: Variant) -> void:
             $context/context.position.y = pressed_btn.global_position.y
             $context/context.popup()
             $context/outer.visible = true
-            $context/context/main/list/equip_btn.grab_focus())
+            $context/context/main/list/select_item_btn.grab_focus())
         self.char_list.add_child(char_btn)
     self.char_list.get_child(0).focus_neighbor_top = self.char_list.get_child(-1).get_path()
     self.char_list.get_child(-1).focus_neighbor_bottom = self.char_list.get_child(0).get_path()

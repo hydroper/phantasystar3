@@ -73,7 +73,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ytagf")
 
-[node name="pressed_or_focused_bg" type="PanelContainer" parent="skin"]
+[node name="pressed_or_focused_or_sel_bg" type="PanelContainer" parent="skin"]
 visible = false
 layout_mode = 1
 anchors_preset = 15

@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://gwi1vyaotetu"]
+
+[ext_resource type="Script" path="res://src/ui/ps3_tab_bar.gd" id="1_cftwn"]
+[ext_resource type="Texture2D" uid="uid://bon8exs17rmfg" path="res://res/img/tab-previous.svg" id="2_v5dj2"]
+[ext_resource type="Texture2D" uid="uid://bljfb8r7dihlu" path="res://res/img/tab-next.svg" id="3_lu3ry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86ce8"]
+content_margin_right = 56.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ch320"]
+content_margin_left = 56.0
+
+[node name="PS3TabBar" type="Control"]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cftwn")
+
+[node name="content" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="prev_btn" type="Button" parent="content"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_86ce8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_86ce8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_86ce8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_86ce8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86ce8")
+
+[node name="icon" type="TextureRect" parent="content/prev_btn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_v5dj2")
+
+[node name="tabs" type="HBoxContainer" parent="content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="next_btn" type="Button" parent="content"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ch320")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ch320")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ch320")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ch320")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ch320")
+
+[node name="icon" type="TextureRect" parent="content/next_btn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lu3ry")

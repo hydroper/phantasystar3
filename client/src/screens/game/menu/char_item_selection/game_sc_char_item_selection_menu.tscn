@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/screens/game/menu/char_item_selection/game_sc_char_item_selection_menu.gd" id="1_5o0t0"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="2_a17xg"]
 [ext_resource type="PackedScene" uid="uid://cdksxct16ho8y" path="res://src/ui/ps3_tab_bar_button.tscn" id="3_ids3l"]
-[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="4_0ottk"]
+[ext_resource type="PackedScene" uid="uid://gwi1vyaotetu" path="res://src/ui/ps3_tab_bar.tscn" id="3_semr6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqyf5"]
 
@@ -31,73 +31,47 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_ojnkp")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ivaen")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0hryx")
 
-[node name="equipment" parent="." instance=ExtResource("2_a17xg")]
-offset_left = 64.0
+[node name="item_selector" parent="." instance=ExtResource("2_a17xg")]
+offset_left = 48.0
 offset_top = 56.0
-offset_right = -767.0
+offset_right = -689.0
 offset_bottom = -52.0
 
-[node name="label" parent="equipment/container/container/header" index="1"]
+[node name="label" parent="item_selector/container/container/header" index="1"]
 text = "Item Selection"
 
-[node name="container" type="VBoxContainer" parent="equipment/container/container/main" index="0"]
+[node name="container" type="VBoxContainer" parent="item_selector/container/container/main" index="0"]
 layout_mode = 2
 
-[node name="tab_bar" type="TabBar" parent="equipment/container/container/main/container"]
-custom_minimum_size = Vector2(0, 60)
+[node name="tabs" parent="item_selector/container/container/main/container" instance=ExtResource("3_semr6")]
 layout_mode = 2
 
-[node name="list" type="HBoxContainer" parent="equipment/container/container/main/container/tab_bar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="any" parent="equipment/container/container/main/container/tab_bar/list" instance=ExtResource("3_ids3l")]
-custom_minimum_size = Vector2(0, 40)
+[node name="left_hand" parent="item_selector/container/container/main/container/tabs/content/tabs" index="0" instance=ExtResource("3_ids3l")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="any2" parent="equipment/container/container/main/container/tab_bar/list" instance=ExtResource("3_ids3l")]
-custom_minimum_size = Vector2(0, 40)
+[node name="label" parent="item_selector/container/container/main/container/tabs/content/tabs/left_hand/content" index="0"]
+theme_override_font_sizes/font_size = 18
+text = "Left Hand"
+
+[node name="right_hand" parent="item_selector/container/container/main/container/tabs/content/tabs" index="1" instance=ExtResource("3_ids3l")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="tab_bar" type="TabBar" parent="."]
-custom_minimum_size = Vector2(400, 60)
-offset_left = 713.0
-offset_top = 103.0
-offset_right = 713.0
-offset_bottom = 163.0
+[node name="label" parent="item_selector/container/container/main/container/tabs/content/tabs/right_hand/content" index="0"]
+theme_override_font_sizes/font_size = 18
+text = "Right Hand"
 
-[node name="list" type="HBoxContainer" parent="tab_bar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="any" parent="tab_bar/list" instance=ExtResource("3_ids3l")]
-custom_minimum_size = Vector2(0, 40)
+[node name="armor" parent="item_selector/container/container/main/container/tabs/content/tabs" index="2" instance=ExtResource("3_ids3l")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="any2" parent="tab_bar/list" instance=ExtResource("3_ids3l")]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="label" parent="item_selector/container/container/main/container/tabs/content/tabs/armor/content" index="0"]
+theme_override_font_sizes/font_size = 18
+text = "Armor"
 
-[node name="PS3Button" parent="." instance=ExtResource("4_0ottk")]
-offset_left = 860.0
-offset_top = 349.0
-offset_right = -77.0
-offset_bottom = -162.0
-
-[editable path="equipment"]
-[editable path="equipment/container/container/main/container/tab_bar/list/any"]
-[editable path="equipment/container/container/main/container/tab_bar/list/any2"]
-[editable path="tab_bar/list/any"]
-[editable path="tab_bar/list/any2"]
+[editable path="item_selector"]
+[editable path="item_selector/container/container/main/container/tabs"]
+[editable path="item_selector/container/container/main/container/tabs/content/tabs/left_hand"]
+[editable path="item_selector/container/container/main/container/tabs/content/tabs/right_hand"]
+[editable path="item_selector/container/container/main/container/tabs/content/tabs/armor"]

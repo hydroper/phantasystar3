@@ -1,9 +1,11 @@
 class_name PS3TabBarButton
 extends Button
 
+var tab_selected: bool = false
+
 var meta_data: Variant = null
 
-enum Reflected { DEFAULT, DISABLED, DISABLED_FOCUSED, HOVER, PRESSED_OR_FOCUS }
+enum Reflected { DEFAULT, DISABLED, DISABLED_FOCUSED, HOVER, PRESSED_OR_FOCUS_OR_SELECTED }
 
 var _reflected: Reflected = Reflected.DEFAULT
 
@@ -19,9 +21,9 @@ func _reflect_state() -> void:
             self._reflect_state_fn(Reflected.DISABLED_FOCUSED)
         elif self._reflected != Reflected.DISABLED:
             self._reflect_state_fn(Reflected.DISABLED)
-    elif self.button_pressed or self.has_focus():
-        if self._reflected != Reflected.PRESSED_OR_FOCUS:
-            self._reflect_state_fn(Reflected.PRESSED_OR_FOCUS)
+    elif self.button_pressed or self.has_focus() or self.tab_selected:
+        if self._reflected != Reflected.PRESSED_OR_FOCUS_OR_SELECTED:
+            self._reflect_state_fn(Reflected.PRESSED_OR_FOCUS_OR_SELECTED)
     elif self.is_hovered():
         if self._reflected != Reflected.HOVER:
             self._reflect_state_fn(Reflected.HOVER)
@@ -33,10 +35,10 @@ func _reflect_state_fn(to: Reflected) -> void:
     # if to == Reflected.HOVER:
     #     $skin/hovered_anim.play()
     # else: $skin/hovered_anim.stop()
-    $skin/pressed_or_focused_bg.visible = to == Reflected.PRESSED_OR_FOCUS
-    # if to == Reflected.PRESSED_OR_FOCUS:
-    #     $skin/pressed_or_focused_anim.play()
-    # else: $skin/pressed_or_focused_anim.stop()
+    $skin/pressed_or_focused_or_sel_bg.visible = to == Reflected.PRESSED_OR_FOCUS_OR_SELECTED
+    # if to == Reflected.PRESSED_OR_FOCUS_OR_SELECTED:
+    #     $skin/pressed_or_focused_or_sel_anim.play()
+    # else: $skin/pressed_or_focused_or_sel_anim.stop()
     $skin/disabled_focused_bg.visible = to == Reflected.DISABLED_FOCUSED
     # if to == Reflected.DISABLED_FOCUSED:
     #     $skin/disabled_focused_anim.play()
