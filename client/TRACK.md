@@ -27,20 +27,23 @@ To-do before relying on custom UI components:
 - [ ] UI Components
   - [ ] Secondary button (similiar to the "Back" button in various PSO2 UI panels)
 - [ ] Gameplay
-  - [ ] Menu (bottom-bar similiar to PSO2)
-    - [ ] https://youtu.be/jz92sYbwIKw?t=1318
-    - [ ] Items
-    - [ ] Character
-      - [ ] Equipment
-        - https://youtu.be/jz92sYbwIKw?t=1238
-        - [ ] Implement "Equip" button (invoke `_update_items()` after data mutation and collapse context menu)
-        - [ ] Implement "Unequip" button (invoke `_update_items()` after data mutation and collapse context menu)
-      - [ ] Tech
-    - [ ] Party Order
-    - [ ] Macro
-    - [ ] Talk
-    - [ ] System
-    - [ ] Log Out
+  - [ ] Menu
+    - [ ] Local Shop
+      - [ ] For weapons or armor, display which characters can equip the item and the status compared to the current equipment.
+    - [ ] Main Menu
+      - [ ] https://youtu.be/jz92sYbwIKw?t=1318
+      - [ ] Items
+      - [ ] Character
+        - [ ] Equipment
+          - https://youtu.be/jz92sYbwIKw?t=1238
+          - [ ] Implement "Equip" button (invoke `_update_items()` after data mutation and collapse context menu)
+          - [ ] Implement "Unequip" button (invoke `_update_items()` after data mutation and collapse context menu)
+        - [ ] Tech
+      - [ ] Party Order
+      - [ ] Macro
+      - [ ] Talk
+      - [ ] System
+      - [ ] Log Out
 
 ## Controls
 
