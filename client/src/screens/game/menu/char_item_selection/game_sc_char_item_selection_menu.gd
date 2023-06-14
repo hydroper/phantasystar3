@@ -68,6 +68,7 @@ func _ready() -> void:
     $context/context.on_collapse.connect(func(goal, _data):
         if goal == "close_context":
             var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)
+            NodeExtFn.enable($item_selector)
             if len(m) != 0:
                 m[0].get_node("button").grab_focus())
 
