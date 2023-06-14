@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccs5ihnn1281n"]
+[gd_scene load_steps=11 format=3 uid="uid://ccs5ihnn1281n"]
 
 [ext_resource type="Script" path="res://src/screens/game/menu/char_item_selection/game_sc_char_item_selection_menu.gd" id="1_5o0t0"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="2_a17xg"]
 [ext_resource type="PackedScene" uid="uid://cdksxct16ho8y" path="res://src/ui/ps3_tab_bar_button.tscn" id="3_ids3l"]
 [ext_resource type="PackedScene" uid="uid://gwi1vyaotetu" path="res://src/ui/ps3_tab_bar.tscn" id="3_semr6"]
+[ext_resource type="PackedScene" uid="uid://d3uburhoimgku" path="res://src/ui/inventory/ps3_selectable_item_button.tscn" id="5_n2qm2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqyf5"]
 
@@ -42,6 +43,7 @@ text = "Item Selection"
 
 [node name="container" type="VBoxContainer" parent="item_selector/container/container/main" index="0"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="tabs" parent="item_selector/container/container/main/container" instance=ExtResource("3_semr6")]
 layout_mode = 2
@@ -49,6 +51,7 @@ layout_mode = 2
 [node name="left_hand" parent="item_selector/container/container/main/container/tabs/content/tabs" index="0" instance=ExtResource("3_ids3l")]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../armor")
 
 [node name="label" parent="item_selector/container/container/main/container/tabs/content/tabs/left_hand/content" index="0"]
 theme_override_font_sizes/font_size = 18
@@ -65,10 +68,25 @@ text = "Right Hand"
 [node name="armor" parent="item_selector/container/container/main/container/tabs/content/tabs" index="2" instance=ExtResource("3_ids3l")]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../left_hand")
 
 [node name="label" parent="item_selector/container/container/main/container/tabs/content/tabs/armor/content" index="0"]
 theme_override_font_sizes/font_size = 18
 text = "Armor"
+
+[node name="scrollable" type="ScrollContainer" parent="item_selector/container/container/main/container"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="list" type="VBoxContainer" parent="item_selector/container/container/main/container/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="example_btn" parent="item_selector/container/container/main/container/scrollable/list" instance=ExtResource("5_n2qm2")]
+layout_mode = 2
 
 [editable path="item_selector"]
 [editable path="item_selector/container/container/main/container/tabs"]

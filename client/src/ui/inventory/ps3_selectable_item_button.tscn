@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3uburhoimgku"]
+
+[ext_resource type="Script" path="res://src/ui/inventory/ps3_selectable_item_button.gd" id="1_kih8i"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="1_t5e2r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b55hw"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 0.176471)
+
+[node name="PS3SelectableItemButton" type="Control"]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kih8i")
+
+[node name="button" parent="." instance=ExtResource("1_t5e2r")]
+layout_mode = 1
+
+[node name="label" parent="button/content" index="0"]
+visible = false
+
+[node name="container" type="HBoxContainer" parent="button/content" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="right" type="VBoxContainer" parent="button/content/container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="label" type="Label" parent="button/content/container/right"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_b55hw")
+text = "Item Name"
+
+[editable path="button"]
