@@ -11,7 +11,7 @@ content_margin_bottom = 7.0
 bg_color = Color(0, 0, 0, 0.176471)
 
 [node name="PS3SelectableItemButton" type="Control"]
-custom_minimum_size = Vector2(0, 85)
+custom_minimum_size = Vector2(0, 95)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +33,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="equipped" type="ColorRect" parent="button/content/container"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 75)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(1, 0.67451, 0, 1)
 
 [node name="right" type="VBoxContainer" parent="button/content/container"]
 layout_mode = 2

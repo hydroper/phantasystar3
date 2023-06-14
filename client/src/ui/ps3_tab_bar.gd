@@ -44,9 +44,9 @@ func _ready() -> void:
         for btn in self._reflected_btns:
             btn.tab_selected = false
         self._reflected_btns[tab].tab_selected = true)
-    $content/tabs/prev_btn.pressed.connect(func():
+    $content/prev_btn.pressed.connect(func():
         self.current_tab = maxi(0, self.current_tab - 1))
-    $content/tabs/next_btn.pressed.connect(func():
+    $content/next_btn.pressed.connect(func():
         self.current_tab = mini(self.current_tab + 1, self._tab_count - 1))
 
 func _btn_pressed() -> void:
