@@ -97,6 +97,82 @@ offset_bottom = -85.0
 [node name="label" parent="item_details/container/container/header" index="1"]
 text = "Item Details"
 
+[node name="container" type="VBoxContainer" parent="item_details/container/container/main" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="damage" type="VBoxContainer" parent="item_details/container/container/main/container"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="item_details/container/container/main/container/damage"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="item_details/container/container/main/container/damage/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Damage"
+
+[node name="value" type="Label" parent="item_details/container/container/main/container/damage/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "+0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="item_details/container/container/main/container/damage"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="defense" type="VBoxContainer" parent="item_details/container/container/main/container"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="item_details/container/container/main/container/defense"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="item_details/container/container/main/container/defense/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Defense"
+
+[node name="value" type="Label" parent="item_details/container/container/main/container/defense/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "+0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="item_details/container/container/main/container/defense"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="speed" type="VBoxContainer" parent="item_details/container/container/main/container"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="item_details/container/container/main/container/speed"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="item_details/container/container/main/container/speed/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Speed"
+
+[node name="value" type="Label" parent="item_details/container/container/main/container/speed/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "+0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="item_details/container/container/main/container/speed"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
 [editable path="item_selector"]
 [editable path="item_selector/container/container/main/container/tabs"]
 [editable path="item_selector/container/container/main/container/tabs/content/tabs/left_hand"]

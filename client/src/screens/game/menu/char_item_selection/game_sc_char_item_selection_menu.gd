@@ -21,6 +21,8 @@ func close_sublayer(data: Variant) -> void:
 
 var _sublayer: UISublayer
 
+var _selected_item: PS3Item
+
 @onready
 var _tab_bar = $item_selector/container/container/main/container/tabs
 
@@ -30,13 +32,20 @@ var _items_container = $item_selector/container/container/main/container/scrolla
 var _selected_character: PS3Character
 
 func _ready() -> void:
+    $outer.pressed.connect(func():
+        self.close_sublayer(null))
     self._tab_bar.tab_changed.connect(func(_tab):
         self._update_items())
     $item_selector.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
             super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
-    $outer.pressed.connect(func():
-        self.close_sublayer(null))
+    $item_details.on_collapse.connect(func(goal, _data):
+        pass)
+
+func _process(_delta: float) -> void:
+    if self._selected_item == null:
+        $item_details.collapse()
+    else: $item_details.popup()
 
 func _input(event: InputEvent) -> void:
     if self._sublayer != null:
@@ -84,10 +93,24 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
     r.is_equipped = equipped
     r.get_node("button").pressed.connect(func():
         var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)
-        pass)
+        self._update_item_details(btn.item))
     r.get_node("button").focus_entered.connect(func():
         var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
-        pass)
+        self._update_item_details(btn.item))
     r.get_node("button").focus_exited.connect(func():
-        pass)
+        var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
+        self._update_item_details(null if btn == null else btn.item))
     return r
+
+@onready
+var _details_container: VBoxContainer = $item_details/container/container/main/container
+
+func _update_item_details(item: PS3Item) -> void:
+    self._selected_item = item
+    if item == null:
+        return
+    var character: PS3CharacterData = self.game_data.characters[self._selected_character]
+    var status = character.status_if_equipped(item)
+    self._details_container.get_node("damage/attr/value").text = str(status.damage) + " (" + ("+" if status.damage_diff >= 0 else "") + str(status.damage_diff) + ")"
+    self._details_container.get_node("defense/attr/value").text = str(status.defense) + " (" + ("+" if status.defense_diff >= 0 else "") + str(status.defense_diff) + ")"
+    self._details_container.get_node("speed/attr/value").text = str(status.speed) + " (" + ("+" if status.speed_diff >= 0 else "") + str(status.speed_diff) + ")"
