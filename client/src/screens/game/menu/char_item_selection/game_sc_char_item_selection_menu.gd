@@ -40,6 +40,8 @@ var _items_container = $item_selector/container/container/main/container/scrolla
 
 var _selected_character: PS3Character
 
+var _context_selected_item: PS3Item
+
 func _ready() -> void:
     $outer.pressed.connect(func():
         self.close_sublayer(null))
@@ -67,6 +69,7 @@ func _ready() -> void:
             $context/context/main/list/unequip_btn.grab_focus())
     $context/context.on_collapse.connect(func(goal, _data):
         if goal == "close_context":
+            self._selected_item = self._context_selected_item
             var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)
             NodeExtFn.enable($item_selector)
             if len(m) != 0:
@@ -124,6 +127,7 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
     r.get_node("button").pressed.connect(func():
         var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)
         self._update_item_details(btn.item)
+        self._context_selected_item = btn.item
         $context/context.position.y = btn.get_node("button").global_position.y
         $context/context.popup("unequip" if btn.is_equipped else "equip")
         $context/outer.visible = true
@@ -133,7 +137,7 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
         self._update_item_details(btn.item))
     r.get_node("button").focus_exited.connect(func():
         var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
-        self._update_item_details(null if btn == null else btn.item))
+        self._update_item_details(btn.item if btn != null else self._items_container.get_child(0).item if self._items_container.get_child_count() != 0 else null))
     return r
 
 @onready
