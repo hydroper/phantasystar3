@@ -30,6 +30,7 @@ To-do before relying on custom UI components:
     - [ ] Items
     - [ ] Character
       - [ ] Equipment
+        - https://youtu.be/jz92sYbwIKw?t=1238
         - [ ] Item context menu allows to unequip and equip
       - [ ] Tech
     - [ ] Party Order

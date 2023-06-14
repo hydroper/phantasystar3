@@ -423,20 +423,20 @@ offset_bottom = -311.0
 [node name="list" type="VBoxContainer" parent="context/context/main" index="0"]
 layout_mode = 2
 
-[node name="equip_btn" parent="context/context/main/list" instance=ExtResource("2_ifmfl")]
+[node name="select_item_btn" parent="context/context/main/list" instance=ExtResource("2_ifmfl")]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_vertical = 0
 focus_neighbor_top = NodePath("../tech_btn")
 
-[node name="label" parent="context/context/main/list/equip_btn/content" index="0"]
-text = "Equip"
+[node name="label" parent="context/context/main/list/select_item_btn/content" index="0"]
+text = "Select Item"
 
 [node name="tech_btn" parent="context/context/main/list" instance=ExtResource("2_ifmfl")]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_bottom = NodePath("../equip_btn")
+focus_neighbor_bottom = NodePath("../select_item_btn")
 
 [node name="label" parent="context/context/main/list/tech_btn/content" index="0"]
 text = "Tech"
@@ -446,5 +446,5 @@ text = "Tech"
 [editable path="list/container/container/main/scrollable/list/PS3Button2"]
 [editable path="status"]
 [editable path="context/context"]
-[editable path="context/context/main/list/equip_btn"]
+[editable path="context/context/main/list/select_item_btn"]
 [editable path="context/context/main/list/tech_btn"]

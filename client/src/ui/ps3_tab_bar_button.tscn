@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3 uid="uid://cdksxct16ho8y"]
+
+[ext_resource type="Theme" uid="uid://dfpxcklbmeuya" path="res://src/themes/default.tres" id="1_oegnl"]
+[ext_resource type="Script" path="res://src/ui/ps3_tab_bar_button.gd" id="2_ju6ow"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikgx7"]
+bg_color = Color(0.356863, 0.411765, 0.462745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dml5"]
+bg_color = Color(0.356863, 0.411765, 0.462745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8a4e"]
+bg_color = Color(0.356863, 0.411765, 0.462745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptw38"]
+bg_color = Color(0.356863, 0.411765, 0.462745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyam8"]
+bg_color = Color(0.356863, 0.411765, 0.462745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytagf"]
+bg_color = Color(0.239216, 0.396078, 0.560784, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.356863, 0.705882, 0.819608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0j4my"]
+bg_color = Color(0.537255, 0.380392, 0.156863, 1)
+border_width_bottom = 7
+border_color = Color(0.827451, 0.666667, 0.168627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l7ib"]
+bg_color = Color(0.239216, 0.396078, 0.560784, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.356863, 0.705882, 0.819608, 1)
+
+[node name="PS3TabBarButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oegnl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ikgx7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0dml5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8a4e")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ptw38")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wyam8")
+script = ExtResource("2_ju6ow")
+
+[node name="skin" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="hovered_bg" type="PanelContainer" parent="skin"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ytagf")
+
+[node name="pressed_or_focused_bg" type="PanelContainer" parent="skin"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0j4my")
+
+[node name="disabled_focused_bg" type="PanelContainer" parent="skin"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6l7ib")
+
+[node name="content" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="label" type="Label" parent="content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "undefined"
+horizontal_alignment = 1
+vertical_alignment = 1

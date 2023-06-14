@@ -68,7 +68,7 @@ func _ready() -> void:
     $context/context.on_collapse.connect(func(goal, _data):
         if goal == "close_context":
             self._focus_char_btn())
-    $context/context/main/list/equip_btn.pressed.connect(func():
+    $context/context/main/list/select_item_btn.pressed.connect(func():
         pass)
 
 func _focus_char_btn() -> void:
