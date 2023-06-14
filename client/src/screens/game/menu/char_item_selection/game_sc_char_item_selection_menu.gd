@@ -32,7 +32,7 @@ func _ready() -> void:
         self._update_items())
     $item_selector.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
-            super.close(null as Variant if goal == "close_current" else "close_current" as Variant))
+            super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
     $outer.pressed.connect(func():
         self.close_sublayer(null))
 

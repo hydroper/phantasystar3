@@ -108,8 +108,11 @@ func _open_item_selector() -> void:
     sublayer.game_data = self.game_data
     sublayer.on_close.connect(func(data):
         self._sublayer = null
+        print("Closed item selector with data: ", data)
         if data == "close_current":
             self.close(null)
+        elif data == "close_current_and_parent":
+            self.close("close_current_and_parent")
         else:
             self.open(self._selected_character))
     self._sublayer = sublayer
