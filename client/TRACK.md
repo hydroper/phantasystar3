@@ -1,16 +1,26 @@
 # Track
 
-## Code quality
+## Current Tasks
 
-- [ ] In Character > Item Selection, try merging `self._selected_item` and `self._prev_selected_item` into one if it works.
+`Character > Item Selection`
+
+- Equip
+  - Left Arm
+    - If left arm is already occupied, swap items.
+  - Right Arm
+    - If right arm is already occupied, swap items.
+  - Armor
+- Unequip
+  - If inventory is full, report error; otherwise move item from character to inventory and nullify the character's assigned item.
+
+Invoke `_update_items()` after any data mutation and collapse the context menu or report.
 
 ## PSO2 references
 
 - Gameplay: https://youtu.be/jz92sYbwIKw?t=8
 
-## Implemented UI
+## Implemented
 
-- [ ] UI Components
 - [ ] Gameplay
   - [ ] Menu
     - [ ] Local Shop
@@ -21,8 +31,6 @@
       - [ ] Character
         - [ ] Equipment
           - https://youtu.be/jz92sYbwIKw?t=1238
-          - [ ] Implement "Equip" and "Unequip" buttons (invoke `_update_items()` after data mutation and collapse context menu)
-              - If inventory is full, display an error report. Do the popup using `_show_report`.
         - [ ] Tech
       - [ ] Party Order
       - [ ] Macro
