@@ -1,22 +1,9 @@
 # Track
 
-Cleanup the project UI to start fresh.
+## Bugs to fix now and changes to do now
 
-Goals:
-
-- The UI should be similiar to Phantasy Star Online 2, but bigger for mobile users.
-
-To-do:
-
-- [ ] Reset the pause button appearance. It is not a pause also; should be a hamburguer button.
-- [ ] Update the default theme.
-- [ ] UI should be heavily dependent on popup and collapse signals and express dependent panels in a concise way.
-- [ ] Accessing items should be similiar to PSO2. A context menu should appear when pressing an item button.
-
-To-do before relying on custom UI components:
-
-- [ ] Animate them to reflect PSO2 UI style. Animations and state skins are usually put in the `XXX_states` first child.
-  - [ ] Not all effects will be implemented at first, but it can be polished later.
+- [ ] Rename "root menu" to "main menu"
+- [ ] Fix bug in "Character" menu: when you quickly click when context is popping up or collapsing, the context outer layer remains visible.
 
 ## PSO2 references
 
