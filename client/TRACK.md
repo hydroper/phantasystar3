@@ -7,7 +7,6 @@
 ## Implemented UI
 
 - [ ] UI Components
-  - [ ] Secondary button (similiar to the "Back" button in various PSO2 UI panels)
 - [ ] Gameplay
   - [ ] Menu
     - [ ] Local Shop
