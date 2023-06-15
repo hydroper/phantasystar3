@@ -6,13 +6,13 @@ func open(data: Variant) -> void:
     # data is PS3Character
     self._selected_character = data
     $item_selector.popup()
+    $context/outer.visible = false
     self._update_items()
 
 # Closes any sublayer and the current layer itself.
 func close(data: Variant) -> void:
     $item_selector.collapse("close_current_and_parent")
     $item_details.collapse()
-    $context/outer.visible = false
     $context/context.collapse()
 
 # If there is any sublayer, closes only it; if none,
@@ -25,7 +25,6 @@ func close_sublayer(data: Variant) -> void:
     else:
         $item_selector.collapse("close_current")
         $item_details.collapse()
-        $context/outer.visible = false
         $context/context.collapse()
 
 var _sublayer: UISublayer
@@ -68,6 +67,7 @@ func _ready() -> void:
         else:
             $context/context/main/list/unequip_btn.grab_focus())
     $context/context.on_collapse.connect(func(goal, _data):
+        $context/outer.visible = false
         if goal == "close_context":
             self._selected_item = self._context_selected_item
             var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)

@@ -36,7 +36,6 @@ func close(data: Variant) -> void:
     elif self._sublayer == null:
         $list.collapse("close_current_and_parent")
         $status.collapse()
-        $context/outer.visible = false
         $context/context.collapse()
     else:
         self._sublayer.close("close_current")
@@ -47,11 +46,9 @@ func close_sublayer(data: Variant) -> void:
     if self._sublayer != null:
         self._sublayer.close_sublayer(data)
     elif $context/context.is_open:
-        $context/outer.visible = false
         $context/context.collapse("close_context")
     else:
         $list.collapse("close_current")
-        $context/outer.visible = false
         $context/context.collapse()
         $status.collapse()
 
@@ -75,11 +72,11 @@ func _ready() -> void:
         if $context/context.is_open:
             self.close_sublayer(null))
     $context/context.on_collapse.connect(func(goal, _data):
+        $context/outer.visible = false
         if goal == "close_context":
             self._focus_char_btn())
     $context/context/main/list/select_item_btn.pressed.connect(func():
         $list.collapse("open_item_selector")
-        $context/outer.visible = false
         $context/context.collapse()
         $status.collapse())
 

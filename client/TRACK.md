@@ -3,7 +3,6 @@
 ## Bugs to fix now and changes to do now
 
 - [ ] Rename "root menu" to "main menu"
-- [ ] Fix bug in "Character" menu: when you quickly click when context is popping up or collapsing, the context outer layer remains visible.
 
 ## PSO2 references
 
