@@ -47,23 +47,30 @@ var _selected_character: PS3Character
 func _ready() -> void:
     $outer.pressed.connect(func():
         self.close_sublayer(null))
+
     $context/outer.pressed.connect(func():
-        if $context/context.is_open:
-            self.close_sublayer(null))
+        self.close_sublayer(null))
+
     $report/outer.pressed.connect(func():
-        if $context/report.is_open:
-            self.close_sublayer(null))
+        self.close_sublayer(null))
+
     self._tab_bar.tab_changed.connect(func(_tab):
         self._update_items())
+
     $item_selector.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
             super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
+
     $item_details.on_collapse.connect(func(goal, _data):
         pass)
 
-    # equip/unequip buttons
-    $context/context/main/list/equip_btn.pressed.connect(self._equip)
-    $context/context/main/list/unequip_btn.pressed.connect(self._unequip)
+    # equip button
+    $context/context/main/list/equip_btn.pressed.connect(func():
+        $context/context.collapse("to_equip"))
+
+    # unequip button
+    $context/context/main/list/unequip_btn.pressed.connect(func():
+        $context/context.collapse("to_unequip"))
 
     $context/context.on_popup.connect(func(goal, _data):
         var equip = goal == "equip"
@@ -73,9 +80,16 @@ func _ready() -> void:
             $context/context/main/list/equip_btn.grab_focus()
         else:
             $context/context/main/list/unequip_btn.grab_focus())
+
     $context/context.on_collapse.connect(func(goal, _data):
         $context/outer.visible = false
-        if goal == "close_context": self._focus_item_again())
+        if goal == "close_context":
+            self._focus_item_again()
+        elif goal == "to_equip":
+            self._equip()
+        elif goal == "to_unequip":
+            self._unequip())
+
     $report/report.on_collapse.connect(func(goal, _data):
         $report/outer.visible = false
         if goal == "close_report": self._focus_item_again())
@@ -171,10 +185,15 @@ func _equip() -> void:
     pass
 
 func _unequip() -> void:
+    if self.game_data.inventory_is_full:
+        $report/report/main/label.text = "Inventory is full."
+        self._show_report()
+        return
+    $report/report/main/label.text = "Infinity"
+    self._show_report()
     pass
 
-func _show_report(selected_item: PS3Item) -> void:
-    self._prev_selected_item = selected_item
+func _show_report() -> void:
     $report/report.popup()
     $report/outer.visible = true
     NodeExtFn.disable($item_selector)

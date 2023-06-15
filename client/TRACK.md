@@ -1,5 +1,9 @@
 # Track
 
+## Code quality
+
+- [ ] In Character > Item Selection, try merging `self._selected_item` and `self._prev_selected_item` into one if it works.
+
 ## PSO2 references
 
 - Gameplay: https://youtu.be/jz92sYbwIKw?t=8
@@ -18,7 +22,7 @@
         - [ ] Equipment
           - https://youtu.be/jz92sYbwIKw?t=1238
           - [ ] Implement "Equip" and "Unequip" buttons (invoke `_update_items()` after data mutation and collapse context menu)
-              - If inventory is full, display an error report. Do the popup using `_show_report`, passing the selected item.
+              - If inventory is full, display an error report. Do the popup using `_show_report`.
         - [ ] Tech
       - [ ] Party Order
       - [ ] Macro

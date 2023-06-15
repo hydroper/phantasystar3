@@ -51,3 +51,7 @@ func use_targetted_tech(from_character: PS3CharacterData, tech: PS3TechType, tar
         else:
             return {type = "not_enough_tp"}
     return {type = "unimplemented"}
+
+var inventory_is_full: bool:
+    get:
+        return false
