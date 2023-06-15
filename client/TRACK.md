@@ -1,9 +1,5 @@
 # Track
 
-## Bugs to fix now and changes to do now
-
-- [ ] Rename "root menu" to "main menu"
-
 ## PSO2 references
 
 - Gameplay: https://youtu.be/jz92sYbwIKw?t=8
