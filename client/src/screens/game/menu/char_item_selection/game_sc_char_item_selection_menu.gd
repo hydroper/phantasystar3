@@ -182,16 +182,20 @@ func _focus_item_again() -> void:
         m[0].get_node("button").grab_focus()
 
 func _equip() -> void:
-    pass
+    if self.game_data.inventory_is_full:
+        $report/report/main/label.text = "Inventory is full."
+        self._show_report()
+        return
+    $report/report/main/label.text = "Equip unimplemented."
+    self._show_report()
 
 func _unequip() -> void:
     if self.game_data.inventory_is_full:
         $report/report/main/label.text = "Inventory is full."
         self._show_report()
         return
-    $report/report/main/label.text = "Infinity"
+    $report/report/main/label.text = "Unequip unimplemented."
     self._show_report()
-    pass
 
 func _show_report() -> void:
     $report/report.popup()
