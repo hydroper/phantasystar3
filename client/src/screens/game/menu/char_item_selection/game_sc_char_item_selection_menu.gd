@@ -34,6 +34,8 @@ var _sublayer: UISublayer
 
 var _selected_item: PS3Item
 
+var _prev_selected_item: PS3Item
+
 @onready
 var _tab_bar = $item_selector/container/container/main/container/tabs
 
@@ -41,8 +43,6 @@ var _tab_bar = $item_selector/container/container/main/container/tabs
 var _items_container = $item_selector/container/container/main/container/scrollable/list
 
 var _selected_character: PS3Character
-
-var _prev_selected_item: PS3Item
 
 func _ready() -> void:
     $outer.pressed.connect(func():
@@ -60,10 +60,11 @@ func _ready() -> void:
             super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
     $item_details.on_collapse.connect(func(goal, _data):
         pass)
-    $context/context/main/list/equip_btn.pressed.connect(func():
-        pass)
-    $context/context/main/list/unequip_btn.pressed.connect(func():
-        pass)
+
+    # equip/unequip buttons
+    $context/context/main/list/equip_btn.pressed.connect(self._equip)
+    $context/context/main/list/unequip_btn.pressed.connect(self._unequip)
+
     $context/context.on_popup.connect(func(goal, _data):
         var equip = goal == "equip"
         $context/context/main/list/equip_btn.disabled = not equip
@@ -126,7 +127,7 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
     var r = preload("res://src/ui/inventory/ps3_selectable_item_button.tscn").instantiate()
     r.display_item(item)
     r.is_equipped = equipped
-    r.get_node("button").pressed.connect(self._popup_context)
+    r.get_node("button").pressed.connect(self._show_context)
     r.get_node("button").focus_entered.connect(func():
         var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
         self._update_item_details(btn.item))
@@ -135,7 +136,7 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
         self._update_item_details(btn.item if btn != null else self._prev_selected_item))
     return r
 
-func _popup_context() -> void:
+func _show_context() -> void:
     var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)
     self._update_item_details(btn.item)
     self._prev_selected_item = btn.item
@@ -165,3 +166,15 @@ func _focus_item_again() -> void:
     NodeExtFn.enable($item_selector)
     if len(m) != 0:
         m[0].get_node("button").grab_focus()
+
+func _equip() -> void:
+    pass
+
+func _unequip() -> void:
+    pass
+
+func _show_report(selected_item: PS3Item) -> void:
+    self._prev_selected_item = selected_item
+    $report/report.popup()
+    $report/outer.visible = true
+    NodeExtFn.disable($item_selector)

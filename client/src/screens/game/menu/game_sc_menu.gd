@@ -35,7 +35,7 @@ var _is_open: bool = false
 
 func _ready() -> void:
     # the top-right menu button.
-    $menu_button.pressed.connect(func(): self.toggle())
+    $menu_button_layer/menu_button.pressed.connect(func(): self.toggle())
 
 func _input(event: InputEvent) -> void:
     var pause_just_released = event.is_action_released("pause")

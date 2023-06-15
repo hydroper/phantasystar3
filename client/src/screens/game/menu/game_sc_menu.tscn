@@ -9,7 +9,10 @@ script = ExtResource("1_uvmsj")
 
 [node name="sub" type="CanvasLayer" parent="."]
 
-[node name="menu_button" parent="." instance=ExtResource("1_cdvvy")]
+[node name="menu_button_layer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="menu_button" parent="menu_button_layer" instance=ExtResource("1_cdvvy")]
 custom_minimum_size = Vector2(75, 75)
 anchors_preset = 1
 anchor_left = 1.0
@@ -21,7 +24,7 @@ offset_bottom = 83.0
 grow_horizontal = 0
 grow_vertical = 1
 
-[node name="icon" type="TextureRect" parent="menu_button/content" index="0"]
+[node name="icon" type="TextureRect" parent="menu_button_layer/menu_button/content" index="0"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,7 +40,7 @@ grow_vertical = 2
 texture = ExtResource("3_ikkeh")
 expand_mode = 1
 
-[node name="label" parent="menu_button/content" index="1"]
+[node name="label" parent="menu_button_layer/menu_button/content" index="1"]
 visible = false
 
-[editable path="menu_button"]
+[editable path="menu_button_layer/menu_button"]
