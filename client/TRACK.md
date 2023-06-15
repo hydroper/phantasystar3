@@ -17,8 +17,10 @@
       - [ ] Character
         - [ ] Equipment
           - https://youtu.be/jz92sYbwIKw?t=1238
-          - [ ] Implement "Equip" button (invoke `_update_items()` after data mutation and collapse context menu)
-          - [ ] Implement "Unequip" button (invoke `_update_items()` after data mutation and collapse context menu)
+          - [ ] Implement "Equip" and "Unequip" buttons (invoke `_update_items()` after data mutation and collapse context menu)
+              - Popup report based on `_popup_context`
+              - Open a report dialog after equipping or unequipping.
+              - If inventory is full, report an error.
         - [ ] Tech
       - [ ] Party Order
       - [ ] Macro

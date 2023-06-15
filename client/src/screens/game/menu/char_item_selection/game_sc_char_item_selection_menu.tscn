@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccs5ihnn1281n"]
+[gd_scene load_steps=19 format=3 uid="uid://ccs5ihnn1281n"]
 
 [ext_resource type="Script" path="res://src/screens/game/menu/char_item_selection/game_sc_char_item_selection_menu.gd" id="1_5o0t0"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="2_a17xg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d3uburhoimgku" path="res://src/ui/inventory/ps3_selectable_item_button.tscn" id="5_n2qm2"]
 [ext_resource type="PackedScene" uid="uid://d1jxl5oy70gnh" path="res://src/ui/ps3_context_menu.tscn" id="6_pr2v6"]
 [ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="7_7044v"]
+[ext_resource type="PackedScene" uid="uid://cdonwod04qmwr" path="res://src/ui/ps3_headerless_panel.tscn" id="8_pfuqv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqyf5"]
 
@@ -227,6 +228,35 @@ focus_neighbor_bottom = NodePath("../equip_btn")
 [node name="label" parent="context/context/main/list/unequip_btn/content" index="0"]
 text = "Unequip"
 
+[node name="report" type="CanvasLayer" parent="."]
+layer = 6
+
+[node name="outer" type="Button" parent="report"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1unpf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ct81b")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hk57n")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ogkq2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o8pvk")
+
+[node name="report" parent="report" instance=ExtResource("8_pfuqv")]
+custom_minimum_size = Vector2(600, 210)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="label" type="RichTextLabel" parent="report/report/main" index="0"]
+layout_mode = 2
+text = "Report message."
+
 [editable path="item_selector"]
 [editable path="item_selector/container/container/main/container/tabs"]
 [editable path="item_selector/container/container/main/container/tabs/content/tabs/left_hand"]
@@ -236,3 +266,4 @@ text = "Unequip"
 [editable path="context/context"]
 [editable path="context/context/main/list/equip_btn"]
 [editable path="context/context/main/list/unequip_btn"]
+[editable path="report/report"]
