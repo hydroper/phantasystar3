@@ -102,7 +102,7 @@ func _process(_delta: float) -> void:
     else: $item_details.popup()
 
 func _input(event: InputEvent) -> void:
-    if self._sublayer != null or $context/context.is_open:
+    if self._sublayer != null or $context/context.is_open or $report/report.is_open:
         return
     self._tab_bar.current_tab += -1 if event.is_action_released("ui_left") else 1 if event.is_action_released("ui_right") else 0
 
