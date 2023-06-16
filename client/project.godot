@@ -22,7 +22,7 @@ gdscript/warnings/shadowed_variable=0
 [display]
 
 window/size/viewport_width=1300
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://res/img/cursor.png"
 
 [gui]
