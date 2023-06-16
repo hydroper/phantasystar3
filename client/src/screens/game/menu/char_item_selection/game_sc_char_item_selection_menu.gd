@@ -152,8 +152,7 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
         var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
         self._update_item_details(btn.item))
     r.get_node("button").focus_exited.connect(func():
-        var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
-        self._update_item_details(btn.item if btn != null else self._prev_selected_item))
+        self._update_item_details(null))
     return r
 
 func _show_context() -> void:
