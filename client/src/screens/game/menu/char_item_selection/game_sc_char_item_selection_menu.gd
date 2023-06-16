@@ -265,6 +265,8 @@ func _unequip() -> void:
     # move item to inventory
     self.game_data.items.append(self._prev_selected_item)
 
+    self._selected_item = null
+
     $context/context.collapse("close_context")
     self._update_items()
 
