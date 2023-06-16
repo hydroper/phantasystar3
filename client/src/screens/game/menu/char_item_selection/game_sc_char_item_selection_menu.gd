@@ -55,6 +55,7 @@ func _ready() -> void:
         self.close_sublayer(null))
 
     self._tab_bar.tab_changed.connect(func(_tab):
+        self._selected_item = null
         self._update_items())
 
     $item_selector.on_collapse.connect(func(goal, _data):
@@ -266,6 +267,7 @@ func _unequip() -> void:
     self.game_data.items.append(self._prev_selected_item)
 
     self._selected_item = null
+    self._prev_selected_item = null
 
     $context/context.collapse("close_context")
     self._update_items()
