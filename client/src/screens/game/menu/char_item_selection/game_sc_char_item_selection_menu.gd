@@ -83,6 +83,7 @@ func _ready() -> void:
 
     $context/context.on_collapse.connect(func(goal, _data):
         $context/outer.visible = false
+        NodeExtFn.enable($item_selector)
         if goal == "close_context":
             self._focus_item_again()
         elif goal == "to_equip":
@@ -104,8 +105,12 @@ func _input(event: InputEvent) -> void:
         return
     self._tab_bar.current_tab += -1 if event.is_action_released("ui_left") else 1 if event.is_action_released("ui_right") else 0
 
+var _tab_type: String:
+    get:
+        return "left_hand" if self._tab_bar.current_tab == 0 else "right_hand" if self._tab_bar.current_tab == 1 else "armor"
+
 func _update_items() -> void:
-    var type = "left_hand" if self._tab_bar.current_tab == 0 else "right_hand" if self._tab_bar.current_tab == 1 else "armor"
+    var type = self._tab_type
     NodeExtFn.remove_all_children(self._items_container)
     var character: PS3CharacterData = self.game_data.characters[self._selected_character]
 
@@ -180,22 +185,88 @@ func _focus_item_again() -> void:
     NodeExtFn.enable($item_selector)
     if len(m) != 0:
         m[0].get_node("button").grab_focus()
+    elif self._items_container.get_child_count() != 0:
+        self._items_container.get_child(0).get_node("button").grab_focus()
 
 func _equip() -> void:
     if self.game_data.inventory_is_full:
         $report/report/main/label.text = "Inventory is full."
         self._show_report()
         return
-    $report/report/main/label.text = "Equip unimplemented."
-    self._show_report()
+
+    var tab_type = self._tab_type
+    var character = self.game_data.characters[self._selected_character]
+    var item = self._prev_selected_item
+
+    var item_index = self.game_data.items.find(item)
+    self.game_data.items.remove_at(item_index)
+
+    if tab_type == "left_hand":
+        if character.left_hand != null:
+            # swap
+            self.game_data.items[item_index] = character.left_hand
+        character.left_hand = item
+    elif tab_type == "right_hand":
+        if character.right_hand != null:
+            # swap
+            self.game_data.items[item_index] = character.right_hand
+        character.right_hand = item
+    elif item.type.category == PS3ItemCategory.HEAD:
+        if character.head != null:
+            # swap
+            self.game_data.items[item_index] = character.head
+        character.head = item
+    elif item.type.category == PS3ItemCategory.TORSO:
+        if character.torso != null:
+            # swap
+            self.game_data.items[item_index] = character.torso
+        character.torso = item
+    elif item.type.category == PS3ItemCategory.FEET:
+        if character.feet != null:
+            # swap
+            self.game_data.items[item_index] = character.feet
+        character.feet = item
+    elif item.type.category == PS3ItemCategory.BUCKLE:
+        if character.buckle != null:
+            # swap
+            self.game_data.items[item_index] = character.buckle
+        character.buckle = item
+
+    $context/context.collapse("close_context")
+    self._update_items()
+
+    # reset scroll
+    $item_selector/container/container/main/container/scrollable.scroll_vertical = 0
 
 func _unequip() -> void:
     if self.game_data.inventory_is_full:
         $report/report/main/label.text = "Inventory is full."
         self._show_report()
         return
-    $report/report/main/label.text = "Unequip unimplemented."
-    self._show_report()
+
+    var tab_type = self._tab_type
+    var character = self.game_data.characters[self._selected_character]
+    var item = self._prev_selected_item
+
+    # remove item from character
+    if tab_type == "left_hand":
+        character.left_hand = null
+    elif tab_type == "right_hand":
+        character.right_hand = null
+    elif item.type.category == PS3ItemCategory.HEAD:
+        character.head = null
+    elif item.type.category == PS3ItemCategory.TORSO:
+        character.torso = null
+    elif item.type.category == PS3ItemCategory.FEET:
+        character.feet = null
+    elif item.type.category == PS3ItemCategory.BUCKLE:
+        character.buckle = null
+
+    # move item to inventory
+    self.game_data.items.append(self._prev_selected_item)
+
+    $context/context.collapse("close_context")
+    self._update_items()
 
 func _show_report() -> void:
     $report/report.popup()

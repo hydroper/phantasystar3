@@ -2,18 +2,7 @@
 
 ## Current Tasks
 
-`Character > Item Selection`
-
-- Equip
-  - Left Arm
-    - If left arm is already occupied, swap items.
-  - Right Arm
-    - If right arm is already occupied, swap items.
-  - Armor
-- Unequip
-  - If inventory is full, report error; otherwise move item from character to inventory and nullify the character's assigned item.
-
-Invoke `_update_items()` after any data mutation and collapse the context menu or report. If updating item list, reset scroll position Y.
+`Character > Tech`
 
 ## PSO2 references
 
