@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bon6fhqqtbuym"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6155k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vikgj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fplb3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xvf4d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mkyyt"]
+
+[node name="GameScCharTechMenu" type="CanvasLayer"]
+
+[node name="outer" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6155k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vikgj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fplb3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xvf4d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mkyyt")
