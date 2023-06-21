@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bon6fhqqtbuym"]
+[gd_scene load_steps=7 format=3 uid="uid://bon6fhqqtbuym"]
+
+[ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_16exq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6155k"]
 
@@ -24,3 +26,23 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_vikgj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_fplb3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_xvf4d")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mkyyt")
+
+[node name="tech_selection" parent="." instance=ExtResource("1_16exq")]
+custom_minimum_size = Vector2(503, 525)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -262.5
+offset_right = 583.0
+offset_bottom = 262.5
+grow_horizontal = 1
+
+[node name="label" parent="tech_selection/container/container/header" index="1"]
+text = "Tech Selection"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="tech_selection/container/container/main" index="0"]
+layout_mode = 2
+
+[editable path="tech_selection"]
