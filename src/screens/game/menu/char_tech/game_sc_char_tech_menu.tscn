@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bon6fhqqtbuym"]
+[gd_scene load_steps=8 format=3 uid="uid://bon6fhqqtbuym"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_16exq"]
+[ext_resource type="Script" path="res://src/screens/game/menu/char_tech/game_sc_char_tech_menu.gd" id="1_vbj1y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6155k"]
 
@@ -13,6 +14,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mkyyt"]
 
 [node name="GameScCharTechMenu" type="CanvasLayer"]
+script = ExtResource("1_vbj1y")
 
 [node name="outer" type="Button" parent="."]
 anchors_preset = 15
