@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bon6fhqqtbuym"]
+[gd_scene load_steps=9 format=3 uid="uid://bon6fhqqtbuym"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_16exq"]
 [ext_resource type="Script" path="res://src/screens/game/menu/char_tech/game_sc_char_tech_menu.gd" id="1_vbj1y"]
+[ext_resource type="PackedScene" uid="uid://b4hpj24bp0u25" path="res://src/ui/inventory/ps3_selectable_tech_button.tscn" id="3_lm6cm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6155k"]
 
@@ -47,4 +48,24 @@ text = "Tech Selection"
 [node name="ScrollContainer" type="ScrollContainer" parent="tech_selection/container/container/main" index="0"]
 layout_mode = 2
 
+[node name="PS3SelectableTechButton" parent="tech_selection/container/container/main/ScrollContainer" instance=ExtResource("3_lm6cm")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="tech_details" parent="." instance=ExtResource("1_16exq")]
+custom_minimum_size = Vector2(448, 400)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -200.0
+offset_right = -72.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="label" parent="tech_details/container/container/header" index="1"]
+text = "Tech Details"
+
 [editable path="tech_selection"]
+[editable path="tech_details"]
