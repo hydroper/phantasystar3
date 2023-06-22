@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_16exq"]
 [ext_resource type="Script" path="res://src/screens/game/menu/char_tech/game_sc_char_tech_menu.gd" id="1_vbj1y"]
-[ext_resource type="PackedScene" uid="uid://b4hpj24bp0u25" path="res://src/ui/inventory/ps3_selectable_tech_button.tscn" id="3_lm6cm"]
+[ext_resource type="PackedScene" path="res://src/ui/tech/ps3_selectable_tech_button.tscn" id="3_usuwa"]
 [ext_resource type="PackedScene" uid="uid://d1jxl5oy70gnh" path="res://src/ui/ps3_context_menu.tscn" id="4_pijw8"]
 [ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="5_nba0q"]
 [ext_resource type="PackedScene" uid="uid://cdonwod04qmwr" path="res://src/ui/ps3_headerless_panel.tscn" id="6_68l37"]
@@ -51,12 +51,16 @@ grow_horizontal = 1
 [node name="label" parent="tech_selection/container/container/header" index="1"]
 text = "Tech Selection"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="tech_selection/container/container/main" index="0"]
+[node name="scrollable" type="ScrollContainer" parent="tech_selection/container/container/main" index="0"]
 layout_mode = 2
 
-[node name="PS3SelectableTechButton" parent="tech_selection/container/container/main/ScrollContainer" instance=ExtResource("3_lm6cm")]
+[node name="container" type="VBoxContainer" parent="tech_selection/container/container/main/scrollable"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="example_btn" parent="tech_selection/container/container/main/scrollable/container" instance=ExtResource("3_usuwa")]
+layout_mode = 2
 
 [node name="tech_details" parent="." instance=ExtResource("1_16exq")]
 custom_minimum_size = Vector2(448, 400)

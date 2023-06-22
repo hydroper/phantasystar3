@@ -149,6 +149,8 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
     r.is_equipped = equipped
     r.get_node("button").pressed.connect(self._show_context)
     r.get_node("button").focus_entered.connect(func():
+        # fix: I guess that lookup is not necessary; couldn't simply use
+        # 'r' since it's specific to that function's scope?
         var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
         self._update_item_details(btn.item))
     r.get_node("button").focus_exited.connect(func():
