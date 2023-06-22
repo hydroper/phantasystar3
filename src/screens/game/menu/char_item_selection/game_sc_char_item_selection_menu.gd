@@ -56,7 +56,9 @@ func _ready() -> void:
 
     self._tab_bar.tab_changed.connect(func(_tab):
         self._selected_item = null
-        self._update_items())
+        self._update_items()
+        # reset scroll
+        $item_selector/container/container/main/container/scrollable.scroll_vertical = 0)
 
     $item_selector.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
@@ -141,21 +143,23 @@ func _update_items() -> void:
         # self._tab_bar.get_node("content/tabs/" + type).grab_focus()
         pass
     else:
+        # focus_neighbor_top
+        self._items_container.get_child(0).get_node("button").focus_neighbor_top = self._items_container.get_child(-1).get_node("button").get_path()
+        # focus_neighbor_bottom
+        self._items_container.get_child(-1).get_node("button").focus_neighbor_bottom = self._items_container.get_child(0).get_node("button").get_path()
+        # focus
         self._items_container.get_child(0).get_node("button").grab_focus()
 
 func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButton:
-    var r = preload("res://src/ui/inventory/ps3_selectable_item_button.tscn").instantiate()
-    r.display_item(item)
-    r.is_equipped = equipped
-    r.get_node("button").pressed.connect(self._show_context)
-    r.get_node("button").focus_entered.connect(func():
-        # fix: I guess that lookup is not necessary; couldn't simply use
-        # 'r' since it's specific to that function's scope?
-        var btn = PS3SelectableItemButton.get_focused_from_list(self._items_container)
+    var btn = preload("res://src/ui/inventory/ps3_selectable_item_button.tscn").instantiate()
+    btn.display_item(item)
+    btn.is_equipped = equipped
+    btn.get_node("button").pressed.connect(self._show_context)
+    btn.get_node("button").focus_entered.connect(func():
         self._update_item_details(btn.item))
-    r.get_node("button").focus_exited.connect(func():
+    btn.get_node("button").focus_exited.connect(func():
         self._update_item_details(null))
-    return r
+    return btn
 
 func _show_context() -> void:
     var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)

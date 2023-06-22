@@ -49,14 +49,26 @@ func _list_tech() -> void:
     for tech in self._character.learned_tech:
         if tech.available_on_camp:
             self._tech_list_container.add_child(self._create_tech_button(tech))
+    if self._tech_list_container.get_child_count() != 0:
+        # focus_neighbor_top
+        self._tech_list_container.get_child(0).get_node("button").focus_neighbor_top = self._tech_list_container.get_child(-1).get_node("button").get_path()
+        # focus_neighbor_bottom
+        self._tech_list_container.get_child(-1).get_node("button").focus_neighbor_bottom = self._tech_list_container.get_child(0).get_node("button").get_path()
+        # focus
+        self._tech_list_container.get_child(0).get_node("button").grab_focus()
 
 func _create_tech_button(tech: PS3TechType) -> PS3SelectableTechButton:
-    var r: PS3SelectableTechButton = preload("res://src/ui/tech/ps3_selectable_tech_button.tscn").instantiate()
-    r.display_tech(tech)
-    r.get_node("button").pressed.connect(func():
+    var btn: PS3SelectableTechButton = preload("res://src/ui/tech/ps3_selectable_tech_button.tscn").instantiate()
+    btn.display_tech(tech)
+    btn.get_node("button").pressed.connect(func():
         pass)
-    r.get_node("button").focus_entered.connect(func():
-        pass)
-    r.get_node("button").focus_exited.connect(func():
-        pass)
-    return r
+    btn.get_node("button").focus_entered.connect(func():
+        self._tech = tech
+        self._update_tech_details())
+    btn.get_node("button").focus_exited.connect(func():
+        self._tech = null)
+    return btn
+
+func _update_tech_details() -> void:
+    $tech_details/container/container/main/container/cost/attr/value.text = str(self._tech.cost)
+    $tech_details/container/container/main/container/description/attr/value.text = self._tech.description
