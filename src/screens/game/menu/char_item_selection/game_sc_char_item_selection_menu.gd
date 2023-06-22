@@ -30,7 +30,7 @@ func close_sublayer(data: Variant) -> void:
         $context/context.collapse()
         $report/report.collapse()
 
-var _sublayer: UISublayer
+var _sublayer: UISublayer = null
 
 var _selected_item: PS3Item
 
@@ -64,7 +64,7 @@ func _ready() -> void:
         if goal == "close_current" or goal == "close_current_and_parent":
             super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
 
-    $item_details.on_collapse.connect(func(goal, _data):
+    $item_details.on_collapse.connect(func(_goal, _data):
         pass)
 
     # equip button

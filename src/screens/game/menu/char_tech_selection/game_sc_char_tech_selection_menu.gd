@@ -14,12 +14,25 @@ func open(data: Variant) -> void:
 
 # Closes any sublayer and the current layer itself.
 func close(data: Variant) -> void:
-    pass
+    $tech_selection.collapse("close_current_and_parent")
+    $tech_details.collapse()
+    $context/context.collapse()
+    $report/report.collapse()
 
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
 func close_sublayer(data: Variant) -> void:
-    pass
+    if $context/context.is_open:
+        $context/context.collapse("close_context")
+    elif $report/report.is_open:
+        $report/report.collapse("close_report")
+    else:
+        $tech_selection.collapse("close_current")
+        $tech_details.collapse()
+        $context/context.collapse()
+        $report/report.collapse()
+
+var _sublayer: UISublayer = null
 
 var _character: PS3CharacterData = null
 
@@ -33,11 +46,21 @@ func _ready() -> void:
     $outer.pressed.connect(func():
         self.close_sublayer(null))
 
+    $context/outer.pressed.connect(func():
+        self.close_sublayer(null))
+
+    $report/outer.pressed.connect(func():
+        self.close_sublayer(null))
+
     $tech_selection.on_popup.connect(func(_goal, _data):
         pass)
 
-    $tech_selection.on_collapse.connect(func(_goal, _data):
-        pass)
+    $tech_selection.on_collapse.connect(func(goal, _data):
+        if goal == "close_current" or goal == "close_current_and_parent":
+            super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
+    
+    $context/context.on_popup.connect(func(_goal, _data):
+        $context/context/main/container/use_btn.grab_focus())
 
 func _process(_delta: float) -> void:
     if self._tech == null:
