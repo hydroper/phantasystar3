@@ -33,10 +33,10 @@ func _ready() -> void:
     $outer.pressed.connect(func():
         self.close_sublayer(null))
 
-    $tech_selection.on_popup(func(_goal, _data):
+    $tech_selection.on_popup.connect(func(_goal, _data):
         pass)
 
-    $tech_selection.on_collapse(func(_goal, _data):
+    $tech_selection.on_collapse.connect(func(_goal, _data):
         pass)
 
 func _process(_delta: float) -> void:
