@@ -1,0 +1,194 @@
+[gd_scene load_steps=12 format=3 uid="uid://comaycac1yqee"]
+
+[ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_4hcgk"]
+[ext_resource type="Script" path="res://src/screens/game/menu/char_tech_selection/game_sc_char_tech_selection_menu.gd" id="1_5n1lb"]
+[ext_resource type="PackedScene" uid="uid://d1jxl5oy70gnh" path="res://src/ui/ps3_context_menu.tscn" id="4_om0yb"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="5_8htlb"]
+[ext_resource type="PackedScene" uid="uid://cdonwod04qmwr" path="res://src/ui/ps3_headerless_panel.tscn" id="6_x5vuf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4dgf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3s6ei"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tqeb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nu25o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ol0v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_arqa5"]
+content_margin_right = 7.0
+
+[node name="GameScCharTechSelectionMenu" type="CanvasLayer"]
+script = ExtResource("1_5n1lb")
+
+[node name="outer" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c4dgf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3s6ei")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1tqeb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nu25o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4ol0v")
+
+[node name="tech_selection" parent="." instance=ExtResource("1_4hcgk")]
+custom_minimum_size = Vector2(454, 427)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -213.5
+offset_right = 534.0
+offset_bottom = 213.5
+grow_horizontal = 1
+
+[node name="label" parent="tech_selection/container/container/header" index="1"]
+text = "Tech Selection"
+
+[node name="scrollable" type="ScrollContainer" parent="tech_selection/container/container/main" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_arqa5")
+follow_focus = true
+
+[node name="container" type="VBoxContainer" parent="tech_selection/container/container/main/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="tech_details" parent="." instance=ExtResource("1_4hcgk")]
+custom_minimum_size = Vector2(448, 408)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -204.0
+offset_right = -88.0
+offset_bottom = 204.0
+grow_horizontal = 0
+
+[node name="label" parent="tech_details/container/container/header" index="1"]
+text = "Tech Details"
+
+[node name="container" type="VBoxContainer" parent="tech_details/container/container/main" index="0"]
+layout_mode = 2
+
+[node name="cost" type="VBoxContainer" parent="tech_details/container/container/main/container"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="tech_details/container/container/main/container/cost"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="tech_details/container/container/main/container/cost/attr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.819608, 0.945098, 1)
+theme_override_constants/line_spacing = 0
+text = "Cost"
+
+[node name="value" type="Label" parent="tech_details/container/container/main/container/cost/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="hr" type="ColorRect" parent="tech_details/container/container/main/container/cost"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="description" type="VBoxContainer" parent="tech_details/container/container/main/container"]
+layout_mode = 2
+
+[node name="attr" type="HBoxContainer" parent="tech_details/container/container/main/container/description"]
+layout_mode = 2
+
+[node name="value" type="Label" parent="tech_details/container/container/main/container/description/attr"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 5
+text = "Description."
+autowrap_mode = 3
+
+[node name="hr" type="ColorRect" parent="tech_details/container/container/main/container/description"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="context" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="outer" type="Button" parent="context"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c4dgf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3s6ei")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1tqeb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nu25o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4ol0v")
+
+[node name="context" parent="context" instance=ExtResource("4_om0yb")]
+custom_minimum_size = Vector2(432, 102)
+offset_left = 400.0
+offset_top = 176.0
+offset_right = -468.0
+offset_bottom = -370.0
+
+[node name="container" type="VBoxContainer" parent="context/context/main" index="0"]
+layout_mode = 2
+
+[node name="use_btn" parent="context/context/main/container" instance=ExtResource("5_8htlb")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="label" parent="context/context/main/container/use_btn/content" index="0"]
+text = "Use"
+
+[node name="report" type="CanvasLayer" parent="."]
+layer = 6
+
+[node name="outer" type="Button" parent="report"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c4dgf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3s6ei")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1tqeb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nu25o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4ol0v")
+
+[node name="report" parent="report" instance=ExtResource("6_x5vuf")]
+custom_minimum_size = Vector2(644, 246)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -123.0
+offset_right = 322.0
+offset_bottom = 123.0
+
+[node name="label" type="RichTextLabel" parent="report/report/main" index="0"]
+layout_mode = 2
+text = "Report."
+
+[editable path="tech_selection"]
+[editable path="tech_details"]
+[editable path="context/context"]
+[editable path="context/context/main/container/use_btn"]
+[editable path="report/report"]

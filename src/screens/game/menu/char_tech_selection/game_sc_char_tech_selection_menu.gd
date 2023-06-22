@@ -47,7 +47,8 @@ func _process(_delta: float) -> void:
 # lists only camp techniques.
 func _list_tech() -> void:
     for tech in self._character.learned_tech:
-        self._tech_list_container.add_child(self._create_tech_button(tech))
+        if tech.available_on_camp:
+            self._tech_list_container.add_child(self._create_tech_button(tech))
 
 func _create_tech_button(tech: PS3TechType) -> PS3SelectableTechButton:
     var r: PS3SelectableTechButton = preload("res://src/ui/tech/ps3_selectable_tech_button.tscn").instantiate()

@@ -31,7 +31,7 @@ func open(data: Variant) -> void:
 
 # Closes any sublayer and the current layer itself.
 func close(data: Variant) -> void:
-    if data == "close_current_and_parent_from_item_selector":
+    if data == "close_current_and_parent_from_item_selection" or data == "close_current_and_parent_from_tech_selection":
         super.close("close_current")
     elif self._sublayer == null:
         $list.collapse("close_current_and_parent")
@@ -66,8 +66,10 @@ func _ready() -> void:
     $list.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
             super.close(null as Variant if goal == "close_current" else "close_current" as Variant)
-        elif goal == "open_item_selector":
-            self._open_item_selector())
+        elif goal == "open_item_selection":
+            self._open_item_selection()
+        elif goal == "open_tech_selection":
+            self._open_tech_selection())
     $context/outer.pressed.connect(func():
         if $context/context.is_open:
             self.close_sublayer(null))
@@ -76,7 +78,11 @@ func _ready() -> void:
         if goal == "close_context":
             self._focus_char_btn())
     $context/context/main/list/select_item_btn.pressed.connect(func():
-        $list.collapse("open_item_selector")
+        $list.collapse("open_item_selection")
+        $context/context.collapse()
+        $status.collapse())
+    $context/context/main/list/tech_btn.pressed.connect(func():
+        $list.collapse("open_tech_selection")
         $context/context.collapse()
         $status.collapse())
 
@@ -102,15 +108,28 @@ func _update_status() -> void:
     vl.get_node("luck/attr/value").text = NumberExtFn.comma_sep(character.luck)
     vl.get_node("skill/attr/value").text = NumberExtFn.comma_sep(character.skill)
 
-func _open_item_selector() -> void:
+func _open_item_selection() -> void:
     var sublayer = preload("res://src/screens/game/menu/char_item_selection/game_sc_char_item_selection_menu.tscn").instantiate()
     sublayer.game_data = self.game_data
     sublayer.on_close.connect(func(data):
         self._sublayer = null
         if data == "close_current_and_parent":
-            self.close("close_current_and_parent_from_item_selector")
+            self.close("close_current_and_parent_from_item_selection")
         else:
             self.open(self._selected_character))
     self._sublayer = sublayer
     self.add_child(sublayer)
     sublayer.open(self._selected_character)
+
+func _open_tech_selection() -> void:
+    var sublayer = preload("res://src/screens/game/menu/char_tech_selection/game_sc_char_tech_selection_menu.tscn").instantiate()
+    sublayer.game_data = self.game_data
+    sublayer.on_close.connect(func(data):
+        self._sublayer = null
+        if data == "close_current_and_parent":
+            self.close("close_current_and_parent_from_tech_selection")
+        else:
+            self.open(self._selected_character))
+    self._sublayer = sublayer
+    self.add_child(sublayer)
+    sublayer.open({character_data = self.game_data.characters[self._selected_character]})
