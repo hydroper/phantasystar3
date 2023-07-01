@@ -152,6 +152,8 @@ func _ask_target_char() -> void:
     for character in self.game_data.party:
         list.add_child(self._create_target_char_btn(character))
     list.get_child(0).grab_focus()
+    list.get_child(0).focus_neighbor_top = list.get_child(-1).get_path()
+    list.get_child(-1).focus_neighbor_bottom = list.get_child(0).get_path()
 
 func _create_target_char_btn(character: PS3Character) -> PS3Button:
     var btn = preload("res://src/ui/ps3_button.tscn").instantiate()
