@@ -172,7 +172,7 @@ func _update_item_details(item: PS3Item) -> void:
     self._selected_item = item
     if item == null:
         return
-    var character: PS3CharacterData = self.game_data.characters[self._selected_character]
+    var character: PS3CharacterData = self.game_data.character(self._selected_character)
     var status = character.status_if_equipped(item)
     self._details_container.get_node("damage/attr/value").text = str(status.damage) + " (" + ("+" if status.damage_diff >= 0 else "") + str(status.damage_diff) + ")"
     self._details_container.get_node("defense/attr/value").text = str(status.defense) + " (" + ("+" if status.defense_diff >= 0 else "") + str(status.defense_diff) + ")"
@@ -196,7 +196,7 @@ func _equip() -> void:
         return
 
     var tab_type = self._tab_type
-    var character = self.game_data.characters[self._selected_character]
+    var character = self.game_data.character(self._selected_character)
     var item = self._prev_selected_item
 
     var item_index = self.game_data.items.find(item)

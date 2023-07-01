@@ -5,7 +5,7 @@ var game_data: PS3GameData = null
 func open(data: Variant) -> void:
     NodeExtFn.remove_all_children(self._char_list)
     for character_type in self.game_data.party:
-        var character = self.game_data.characters[character_type]
+        var character = self.game_data.character(character_type)
         var char_btn = preload("res://src/ui/ps3_button.tscn").instantiate()
         char_btn.meta_data = character_type
         char_btn.get_node("content/label").text = character.name
@@ -88,7 +88,7 @@ func _focus_char_btn() -> void:
     self._char_list.get_children().filter(func(a): return (a as PS3Button).meta_data == self._selected_character)[0].grab_focus()
 
 func _update_status() -> void:
-    var character = self.game_data.characters[self._selected_character]
+    var character = self.game_data.character(self._selected_character)
     $status/container/container/header/label.text = character.name
     var hl = $status/container/container/main/horizontal_list
     var vl = hl.get_node("scrollable/list")
@@ -130,4 +130,4 @@ func _open_tech_selection() -> void:
             self.open(self._selected_character))
     self._sublayer = sublayer
     self.add_child(sublayer)
-    sublayer.open({character_data = self.game_data.characters[self._selected_character]})
+    sublayer.open({character_data = self.game_data.character(self._selected_character)})

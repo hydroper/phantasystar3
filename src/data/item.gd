@@ -11,6 +11,10 @@ var description: String:
     get:
         return self.type.description
 
+var is_targetted_recovery_item: bool:
+    get:
+        return self.type.is_targetted_recovery_item
+
 func _init(type: PS3ItemType, quantity: int = 1):
     self.type = type
     self.quantity = quantity

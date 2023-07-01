@@ -209,6 +209,8 @@ func _show_report() -> void:
 
 func _use() -> void:
     $items.temporarily_disabled = true
+    # after successfully applying the item,
+    # drop it (-1).
     assert(false, "'Use' not implemented.")
 
 func _drop() -> void:

@@ -144,7 +144,7 @@ func _use_tech() -> void:
         $context/context.collapse("tech_result", {result = result})
 
 func _use_tech_for_target_char(character: PS3Character) -> void:
-    var result = self.game_data.use_targetted_tech(self._character, self._tech, self.game_data.characters[character])
+    var result = self.game_data.use_targetted_tech(self._character, self._tech, self.game_data.character(character))
     $target_char/target_char.collapse("tech_result", {result = result})
 
 func _ask_target_char() -> void:

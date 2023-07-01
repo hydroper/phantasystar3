@@ -34,6 +34,12 @@ var description: String:
     get:
         return self.get_description()
 
+var targetted_recovery: Variant:
+    get:
+        if self == PS3ItemType.MONOMATE:
+            return {type = "hp", hp = 10}
+        return null
+
 func get_description() -> String:
     return "No description available."
 
