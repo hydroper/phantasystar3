@@ -171,7 +171,7 @@ theme_override_constants/separation = 11
 [node name="name" type="Label" parent="item_details/container/container/main/scrollable/list"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_kfj5e")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 30
 text = "Name"
 
 [node name="description" type="RichTextLabel" parent="item_details/container/container/main/scrollable/list"]
