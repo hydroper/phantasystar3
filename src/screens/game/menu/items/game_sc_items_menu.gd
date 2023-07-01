@@ -49,6 +49,8 @@ var _tab_bar = $items/container/container/main/container/tabs
 var _items_container = $items/container/container/main/container/scrollable/list
 @onready
 var _subpanels: Array[PS3BaseAnimatedPanel] = [$context/context, $report/report, $target_char/target_char]
+@onready
+var _sort_btn: Button = $items/container/container/main/container/sort_btn
 
 func _ready() -> void:
     # outer
@@ -74,10 +76,12 @@ func _ready() -> void:
         pass)
 
     # sort button
-    $items/container/container/main/container/sort_btn.pressed.connect(func():
+    self._sort_btn.pressed.connect(func():
         self.game_data.items.sort_custom(func(a, b): return b.name > a.name)
         self._selected_item = null
-        self._update_items())
+        self._update_items()
+        # reset scroll
+        $items/container/container/main/container/scrollable.scroll_vertical = 0)
 
     # use button
     $context/context/main/list/use_btn.pressed.connect(func():
@@ -144,10 +148,12 @@ func _update_items() -> void:
         self._items_container.add_child(self._create_item_button(item))
 
     if self._items_container.get_child_count() == 0:
-        pass
+        self._sort_btn.focus_neighbor_top = ""
+        self._sort_btn.focus_neighbor_bottom = ""
     else:
-        self._items_container.get_child(0).button.focus_neighbor_top = self._items_container.get_child(-1).button.get_path()
-        self._items_container.get_child(-1).button.focus_neighbor_bottom = self._items_container.get_child(0).button.get_path()
+        self._items_container.get_child(0).button.focus_neighbor_top = self._sort_btn.get_path()
+        self._sort_btn.focus_neighbor_top = self._items_container.get_child(-1).button.get_path()
+        self._sort_btn.focus_neighbor_bottom = self._items_container.get_child(0).button.get_path()
         self._items_container.get_child(0).button.grab_focus()
 
 func _create_item_button(item: PS3Item) -> PS3SelectableItemButton:

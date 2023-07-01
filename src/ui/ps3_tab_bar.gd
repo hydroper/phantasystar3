@@ -8,7 +8,7 @@ var current_tab: int:
     get:
         return self._current_tab
     set(value):
-        value = clampi(value, 0, self._tab_count - 1)
+        value = 0 if value >= self._tab_count else self._tab_count - 1 if value == -1 else value
         if self._current_tab == value:
             return
         self._current_tab = value
