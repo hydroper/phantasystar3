@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dketti14gbjlt"]
+[gd_scene load_steps=22 format=3 uid="uid://dketti14gbjlt"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_kqwji"]
 [ext_resource type="Script" path="res://src/screens/game/menu/items/game_sc_items_menu.gd" id="1_qulef"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cdksxct16ho8y" path="res://src/ui/ps3_tab_bar_button.tscn" id="3_fe44v"]
 [ext_resource type="PackedScene" uid="uid://d3uburhoimgku" path="res://src/ui/inventory/ps3_selectable_item_button.tscn" id="4_y77q5"]
 [ext_resource type="FontFile" uid="uid://dtlg8neib1d0e" path="res://res/fonts/roboto/Roboto-Bold.ttf" id="5_kfj5e"]
+[ext_resource type="PackedScene" uid="uid://cdonwod04qmwr" path="res://src/ui/ps3_headerless_panel.tscn" id="7_tml36"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="8_i6bfm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywr5t"]
 
@@ -22,6 +24,19 @@ content_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ogyt"]
 content_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nwvg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mm032"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ahba"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3a82"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syxyo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8aiq"]
+content_margin_right = 7.0
 
 [node name="GameScItemsMenu" type="CanvasLayer"]
 script = ExtResource("1_qulef")
@@ -152,6 +167,7 @@ size_flags_vertical = 3
 text = "Description"
 
 [node name="context" type="CanvasLayer" parent="."]
+layer = 6
 
 [node name="outer" type="Button" parent="context"]
 anchors_preset = 15
@@ -166,9 +182,108 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_xrbfr")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ycmwb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3iu6g")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="context" parent="context" instance=ExtResource("7_tml36")]
+visible = false
+custom_minimum_size = Vector2(406, 190)
+offset_left = 440.0
+offset_top = 199.0
+offset_right = -454.0
+offset_bottom = -259.0
+
+[node name="list" type="VBoxContainer" parent="context/context/main" index="0"]
+layout_mode = 2
+
+[node name="use_btn" parent="context/context/main/list" instance=ExtResource("8_i6bfm")]
+custom_minimum_size = Vector2(0, 77)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="label" parent="context/context/main/list/use_btn/content" index="0"]
+text = "Use"
+
+[node name="drop_btn" parent="context/context/main/list" instance=ExtResource("8_i6bfm")]
+custom_minimum_size = Vector2(0, 77)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="label" parent="context/context/main/list/drop_btn/content" index="0"]
+text = "Drop"
+
+[node name="report" type="CanvasLayer" parent="."]
+layer = 7
+
+[node name="outer" type="Button" parent="report"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6nwvg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mm032")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4ahba")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t3a82")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_syxyo")
+
+[node name="report" parent="report" instance=ExtResource("7_tml36")]
+visible = false
+custom_minimum_size = Vector2(600, 210)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="label" type="RichTextLabel" parent="report/report/main" index="0"]
+layout_mode = 2
+text = "Report message."
+
+[node name="target_char" type="CanvasLayer" parent="."]
+layer = 8
+
+[node name="outer" type="Button" parent="target_char"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6nwvg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mm032")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4ahba")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t3a82")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_syxyo")
+
+[node name="target_char" parent="target_char" instance=ExtResource("1_kqwji")]
+custom_minimum_size = Vector2(534, 432)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.0
+offset_top = -216.0
+offset_right = 267.0
+offset_bottom = 216.0
+
+[node name="label" parent="target_char/target_char/container/container/header" index="1"]
+text = "Target Character"
+
+[node name="scrollable" type="ScrollContainer" parent="target_char/target_char/container/container/main" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_j8aiq")
+follow_focus = true
+
+[node name="list" type="VBoxContainer" parent="target_char/target_char/container/container/main/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="example_btn" parent="target_char/target_char/container/container/main/scrollable/list" instance=ExtResource("8_i6bfm")]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
 
 [editable path="items"]
 [editable path="items/container/container/main/container/tabs"]
@@ -177,3 +292,9 @@ offset_bottom = 40.0
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/armor"]
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/consumable"]
 [editable path="item_details"]
+[editable path="context/context"]
+[editable path="context/context/main/list/use_btn"]
+[editable path="context/context/main/list/drop_btn"]
+[editable path="report/report"]
+[editable path="target_char/target_char"]
+[editable path="target_char/target_char/container/container/main/scrollable/list/example_btn"]
