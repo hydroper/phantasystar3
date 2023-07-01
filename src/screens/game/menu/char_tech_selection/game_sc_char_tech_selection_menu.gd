@@ -77,8 +77,11 @@ func _ready() -> void:
         if goal == "close_report":
             self._focus_tech_back())
 
-    $target_char/target_char.on_collapse.connect(func(goal, _data):
+    $target_char/target_char.on_collapse.connect(func(goal, data):
         $target_char/outer.visible = false
+        if goal == "tech_result":
+            self._display_result(data.result)
+            return
         $tech_selection.temporarily_disabled = false
         if goal == "close_target_char":
             self._focus_tech_back())
@@ -130,7 +133,7 @@ func _update_tech_details() -> void:
 func _focus_tech_back() -> void:
     var buttons = self._tech_list_container.get_children().filter(func(button): return button.tech == self._tech)
     if len(buttons) != 0:
-        buttons[0].grab_focus()
+        buttons[0].button.grab_focus()
 
 func _use_tech() -> void:
     var result = self.game_data.use_tech(self._character, self._tech)
@@ -142,7 +145,7 @@ func _use_tech() -> void:
 
 func _use_tech_for_target_char(character: PS3Character) -> void:
     var result = self.game_data.use_targetted_tech(self._character, self._tech, self.game_data.characters[character])
-    $context/context.collapse("tech_result", {result = result})
+    $target_char/target_char.collapse("tech_result", {result = result})
 
 func _ask_target_char() -> void:
     $target_char/outer.visible = true

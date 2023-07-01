@@ -18,10 +18,10 @@
     - [ ] Main Menu
       - [ ] https://youtu.be/jz92sYbwIKw?t=1318
       - [ ] Items
-      - [ ] Character
-        - [ ] Equipment
+      - [x] Character
+        - [x] Equipment
           - https://youtu.be/jz92sYbwIKw?t=1238
-        - [ ] Tech
+        - [x] Tech
       - [ ] Party Order
       - [ ] Macro
       - [ ] Talk
