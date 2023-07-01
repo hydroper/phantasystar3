@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dketti14gbjlt"]
+[gd_scene load_steps=14 format=3 uid="uid://dketti14gbjlt"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_kqwji"]
+[ext_resource type="Script" path="res://src/screens/game/menu/items/game_sc_items_menu.gd" id="1_qulef"]
 [ext_resource type="PackedScene" uid="uid://gwi1vyaotetu" path="res://src/ui/ps3_tab_bar.tscn" id="2_havn4"]
 [ext_resource type="PackedScene" uid="uid://cdksxct16ho8y" path="res://src/ui/ps3_tab_bar_button.tscn" id="3_fe44v"]
 [ext_resource type="PackedScene" uid="uid://d3uburhoimgku" path="res://src/ui/inventory/ps3_selectable_item_button.tscn" id="4_y77q5"]
+[ext_resource type="FontFile" uid="uid://dtlg8neib1d0e" path="res://res/fonts/roboto/Roboto-Bold.ttf" id="5_kfj5e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywr5t"]
 
@@ -18,7 +20,11 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfg4b"]
 content_margin_bottom = 5.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ogyt"]
+content_margin_right = 5.0
+
 [node name="GameScItemsMenu" type="CanvasLayer"]
+script = ExtResource("1_qulef")
 
 [node name="outer" type="Button" parent="."]
 anchors_preset = 15
@@ -108,9 +114,66 @@ size_flags_vertical = 3
 [node name="example_btn" parent="items/container/container/main/container/scrollable/list" instance=ExtResource("4_y77q5")]
 layout_mode = 2
 
+[node name="item_details" parent="." instance=ExtResource("1_kqwji")]
+custom_minimum_size = Vector2(423, 388)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -455.0
+offset_top = -194.0
+offset_right = -32.0
+offset_bottom = 194.0
+grow_horizontal = 0
+
+[node name="label" parent="item_details/container/container/header" index="1"]
+text = "Item Details"
+
+[node name="scrollable" type="ScrollContainer" parent="item_details/container/container/main" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4ogyt")
+follow_focus = true
+
+[node name="list" type="VBoxContainer" parent="item_details/container/container/main/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 11
+
+[node name="name" type="Label" parent="item_details/container/container/main/scrollable/list"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_kfj5e")
+theme_override_font_sizes/font_size = 25
+text = "Name"
+
+[node name="description" type="RichTextLabel" parent="item_details/container/container/main/scrollable/list"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description"
+
+[node name="context" type="CanvasLayer" parent="."]
+
+[node name="outer" type="Button" parent="context"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ywr5t")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3y855")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xrbfr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ycmwb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3iu6g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [editable path="items"]
 [editable path="items/container/container/main/container/tabs"]
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/all"]
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/weapon"]
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/armor"]
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/consumable"]
+[editable path="item_details"]
