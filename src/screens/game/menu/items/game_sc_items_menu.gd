@@ -112,8 +112,7 @@ func _ready() -> void:
     $report/report.on_collapse.connect(func(goal, _data):
         $report/outer.visible = false
         $items.temporarily_disabled = false
-        self._reflect_drop()
-        if goal == "close_report": self._focus_item_again())
+        if goal == "close_report": self._reflect_drop_or_focus_item_again())
 
     $target_char/target_char.on_collapse.connect(func(goal, data):
         $target_char/outer.visible = false
@@ -217,8 +216,6 @@ func _use() -> void:
     $items.temporarily_disabled = true
     var result = self.game_data.use_item(self._selected_item)
     if result.type == "ask_for_party_target":
-        # after successfully applying a "consumable",
-        # drop it (-1) and reflect the drop after report collapse.
         self._show_party_target_selection()
     else:
         $report/report/main/label.text = PS3Messages.item_result(result)
@@ -251,10 +248,10 @@ func _create_party_target_button(character: PS3Character) -> Button:
 
 func _drop() -> void:
     self._selected_item.quantity -= 1
-    self._reflect_drop()
+    self._reflect_drop_or_focus_item_again()
     $items.temporarily_disabled = false
 
-func _reflect_drop() -> void:
+func _reflect_drop_or_focus_item_again() -> void:
     var btn = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)[0]
     if self._selected_item.quantity == 0:
         self.game_data.items.remove_at(self.game_data.items.find(self._selected_item))

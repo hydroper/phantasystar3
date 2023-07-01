@@ -16,8 +16,8 @@
     - [ ] Local Shop
       - [ ] For weapons or armor, display which characters can equip the item and the status compared to the current equipment.
     - [ ] Main Menu
-      - [ ] https://youtu.be/jz92sYbwIKw?t=1318
-      - [ ] Items
+      - https://youtu.be/jz92sYbwIKw?t=1318
+      - [x] Items
       - [x] Character
         - [x] Equipment
           - https://youtu.be/jz92sYbwIKw?t=1238
