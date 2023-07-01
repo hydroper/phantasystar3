@@ -80,6 +80,9 @@ func use_targetted_item(item: PS3Item, target: Variant) -> Dictionary:
             if target.hp == target.max_hp:
                 return {type = "hp_already_full", party_char = target}
             else:
+                item.quantity -= 1
+                if item.quantity == 0:
+                    self.items.remove_at(self.items.find(item))
                 var k = target.hp
                 target.hp = mini(target.hp + recovery.hp, target.max_hp)
                 return {type = "restored_hp", party_char = target, restored_hp = target.hp - k}

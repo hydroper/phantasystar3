@@ -11,9 +11,9 @@ var description: String:
     get:
         return self.type.description
 
-var is_targetted_recovery_item: bool:
+var targetted_recovery: Variant:
     get:
-        return self.type.is_targetted_recovery_item
+        return self.type.targetted_recovery
 
 func _init(type: PS3ItemType, quantity: int = 1):
     self.type = type

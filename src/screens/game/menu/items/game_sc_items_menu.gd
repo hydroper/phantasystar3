@@ -112,12 +112,18 @@ func _ready() -> void:
     $report/report.on_collapse.connect(func(goal, _data):
         $report/outer.visible = false
         $items.temporarily_disabled = false
+        self._reflect_drop()
         if goal == "close_report": self._focus_item_again())
 
-    $target_char/target_char.on_collapse.connect(func(goal, _data):
+    $target_char/target_char.on_collapse.connect(func(goal, data):
         $target_char/outer.visible = false
         $items.temporarily_disabled = false
-        if goal == "close_target_char": self._focus_item_again())
+        if goal == "use_item":
+            self._use_targetted(data.character)
+            return
+        if goal == "close_target_char":
+            self._focus_item_again()
+            return)
 
 func _process(_delta: float) -> void:
     if self._selected_item == null:
@@ -209,12 +215,46 @@ func _show_report() -> void:
 
 func _use() -> void:
     $items.temporarily_disabled = true
-    # after successfully applying the item,
-    # drop it (-1).
-    assert(false, "'Use' not implemented.")
+    var result = self.game_data.use_item(self._selected_item)
+    if result.type == "ask_for_party_target":
+        # after successfully applying a "consumable",
+        # drop it (-1) and reflect the drop after report collapse.
+        self._show_party_target_selection()
+    else:
+        $report/report/main/label.text = PS3Messages.item_result(result)
+        self._show_report()
+
+func _use_targetted(target: Variant) -> void:
+    $items.temporarily_disabled = true
+    var result = self.game_data.use_targetted_item(self._selected_item, target)
+    $report/report/main/label.text = PS3Messages.item_result(result)
+    self._show_report()
+
+func _show_party_target_selection() -> void:
+    var list = $target_char/target_char/container/container/main/scrollable/list
+    NodeExtFn.remove_all_children(list)
+    for character in self.game_data.party:
+        list.add_child(self._create_party_target_button(character))
+    list.get_child(0).grab_focus()
+    list.get_child(0).focus_neighbor_top = list.get_child(-1).get_path()
+    list.get_child(-1).focus_neighbor_bottom = list.get_child(0).get_path()
+    $target_char/target_char.popup()
+
+func _create_party_target_button(character: PS3Character) -> Button:
+    var char_data := self.game_data.character(character)
+    var btn = preload("res://src/ui/ps3_button.tscn").instantiate()
+    btn.custom_minimum_size.y = 90
+    btn.get_node("content/label").text = char_data.name
+    btn.pressed.connect(func():
+        $target_char/target_char.collapse("use_item", {character = char_data}))
+    return btn
 
 func _drop() -> void:
     self._selected_item.quantity -= 1
+    self._reflect_drop()
+    $items.temporarily_disabled = false
+
+func _reflect_drop() -> void:
     var btn = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)[0]
     if self._selected_item.quantity == 0:
         self.game_data.items.remove_at(self.game_data.items.find(self._selected_item))
@@ -228,4 +268,3 @@ func _drop() -> void:
     else:
         btn.display_item(self._selected_item)
         btn.button.grab_focus()
-    $items.temporarily_disabled = false
