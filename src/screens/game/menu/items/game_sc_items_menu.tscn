@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dketti14gbjlt"]
+[gd_scene load_steps=23 format=3 uid="uid://dketti14gbjlt"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_kqwji"]
 [ext_resource type="Script" path="res://src/screens/game/menu/items/game_sc_items_menu.gd" id="1_qulef"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdksxct16ho8y" path="res://src/ui/ps3_tab_bar_button.tscn" id="3_fe44v"]
 [ext_resource type="PackedScene" uid="uid://d3uburhoimgku" path="res://src/ui/inventory/ps3_selectable_item_button.tscn" id="4_y77q5"]
 [ext_resource type="FontFile" uid="uid://dtlg8neib1d0e" path="res://res/fonts/roboto/Roboto-Bold.ttf" id="5_kfj5e"]
+[ext_resource type="PackedScene" uid="uid://bcgrw250hm5c2" path="res://src/ui/ps3_secondary_button.tscn" id="6_pr0lm"]
 [ext_resource type="PackedScene" uid="uid://cdonwod04qmwr" path="res://src/ui/ps3_headerless_panel.tscn" id="7_tml36"]
 [ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="8_i6bfm"]
 
@@ -128,6 +129,13 @@ size_flags_vertical = 3
 
 [node name="example_btn" parent="items/container/container/main/container/scrollable/list" instance=ExtResource("4_y77q5")]
 layout_mode = 2
+
+[node name="sort_btn" parent="items/container/container/main/container" instance=ExtResource("6_pr0lm")]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+
+[node name="label" parent="items/container/container/main/container/sort_btn/content" index="0"]
+text = "Sort"
 
 [node name="item_details" parent="." instance=ExtResource("1_kqwji")]
 custom_minimum_size = Vector2(423, 388)
@@ -291,6 +299,7 @@ layout_mode = 2
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/weapon"]
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/armor"]
 [editable path="items/container/container/main/container/tabs/content/tabs/scrollable/list/consumable"]
+[editable path="items/container/container/main/container/sort_btn"]
 [editable path="item_details"]
 [editable path="context/context"]
 [editable path="context/context/main/list/use_btn"]

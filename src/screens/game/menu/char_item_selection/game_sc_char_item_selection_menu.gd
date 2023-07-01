@@ -136,7 +136,6 @@ func _update_items() -> void:
                 self._items_container.add_child(self._create_item_button(item, false))
 
     if self._items_container.get_child_count() == 0:
-        # self._tab_bar.get_node("content/tabs/" + type).grab_focus()
         pass
     else:
         # focus_neighbor_top
