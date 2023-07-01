@@ -3,6 +3,10 @@ extends Control
 
 var tech: PS3TechType
 
+var button: PS3Button:
+    get:
+        return $button
+
 func display_tech(tech: PS3TechType) -> void:
     self.tech = tech
     $button/content/container/right/label.text = self.tech.name

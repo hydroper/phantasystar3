@@ -3,6 +3,10 @@ extends Control
 
 var item: PS3Item
 
+var button: PS3Button:
+    get:
+        return $button
+
 var is_equipped: bool:
     get:
         return self._is_equipped
