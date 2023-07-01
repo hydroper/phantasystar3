@@ -4,15 +4,13 @@ extends UISublayer
 var game_data: PS3GameData = null
 
 static var _tabs: Dictionary = {
-    [0]: "all",
-    [1]: "weapon",
-    [2]: "armor",
-    [3]: "consumable",
+    0: "all",
+    1: "weapon",
+    2: "armor",
+    3: "consumable",
 }
 
-func open(data: Variant) -> void:
-    # data is PS3Character
-    self._selected_character = data
+func open(_data: Variant) -> void:
     $items.popup()
     $context/outer.visible = false
     $report/outer.visible = false
@@ -74,7 +72,7 @@ func _ready() -> void:
 
     # sort button
     $items/container/container/main/container/sort_btn.pressed.connect(func():
-        self.game_data.items.sort_custom(func(a, b): return b > a)
+        self.game_data.items.sort_custom(func(a, b): return b.name > a.name)
         self._selected_item = null
         self._update_items())
 
@@ -170,7 +168,7 @@ func _show_context() -> void:
     $items.temporarily_disabled = true
 
 @onready
-var _details_container: VBoxContainer = $item_details/container/container/main/scrollable
+var _details_container: ScrollContainer = $item_details/container/container/main/scrollable
 
 func _update_item_details(item: PS3Item) -> void:
     self._selected_item = item
@@ -184,7 +182,7 @@ func _update_item_details(item: PS3Item) -> void:
 func _focus_item_again() -> void:
     self._selected_item = self._prev_selected_item
     var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)
-    $item_selector.temporarily_disabled = false
+    $items.temporarily_disabled = false
     if len(m) != 0:
         m[0].button.grab_focus()
     elif self._items_container.get_child_count() != 0:
@@ -196,7 +194,9 @@ func _show_report() -> void:
     $items.temporarily_disabled = true
 
 func _use() -> void:
+    $items.temporarily_disabled = true
     assert(false, "'Use' not implemented.")
 
 func _drop() -> void:
+    $items.temporarily_disabled = true
     assert(false, "'Drop' not implemented.")

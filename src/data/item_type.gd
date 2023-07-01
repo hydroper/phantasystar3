@@ -30,6 +30,10 @@ var name: String:
     get:
         return self._name
 
+var description: String:
+    get:
+        return self.get_description()
+
 func get_description() -> String:
     return "No description available."
 

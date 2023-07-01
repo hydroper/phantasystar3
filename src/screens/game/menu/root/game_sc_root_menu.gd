@@ -2,7 +2,7 @@ extends UISublayer
 
 var game_data: PS3GameData = null
 
-func open(data: Variant) -> void:
+func open(_data: Variant) -> void:
     $menu.visible = true
     self._temporarily_disabled.disabled = false
     if self._last_focused_button == null:
@@ -31,9 +31,26 @@ var _temporarily_disabled: TemporarilyDisabled
 func _ready() -> void:
     self._temporarily_disabled = TemporarilyDisabled.new($menu/list)
     $outer.pressed.connect(func(): self.close_sublayer(null))
+    $menu/list/items_btn.pressed.connect(func():
+        self._last_focused_button = $menu/list/items_btn
+        self._open_items())
     $menu/list/char_btn.pressed.connect(func():
         self._last_focused_button = $menu/list/char_btn
         self._open_characters())
+
+func _open_items() -> void:
+    self._temporarily_disabled.disabled = true
+    var sublayer = preload("res://src/screens/game/menu/items/game_sc_items_menu.tscn").instantiate()
+    sublayer.game_data = self.game_data
+    sublayer.on_close.connect(func(data):
+        self._sublayer = null
+        if data == "close_current":
+            self.close(null)
+        else:
+            self.open(null))
+    self._sublayer = sublayer
+    self.add_child(sublayer)
+    sublayer.open(null)        
 
 func _open_characters() -> void:
     self._temporarily_disabled.disabled = true
@@ -41,7 +58,6 @@ func _open_characters() -> void:
     sublayer.game_data = self.game_data
     sublayer.on_close.connect(func(data):
         self._sublayer = null
-        print("Closed character menu with data: ", data)
         if data == "close_current":
             self.close(null)
         else:
