@@ -114,7 +114,7 @@ text = "Item Details"
 
 [node name="container" type="VBoxContainer" parent="item_details/container/container/main" index="0"]
 layout_mode = 2
-theme_override_constants/separation = 7
+theme_override_constants/separation = 10
 
 [node name="damage" type="VBoxContainer" parent="item_details/container/container/main/container"]
 layout_mode = 2
