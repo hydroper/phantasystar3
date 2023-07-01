@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4hpj24bp0u25"]
+[gd_scene load_steps=5 format=3 uid="uid://b4hpj24bp0u25"]
 
 [ext_resource type="Script" path="res://src/ui/tech/ps3_selectable_tech_button.gd" id="1_8midb"]
 [ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="2_ejvfk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_314ga"]
+content_margin_left = 15.0
+content_margin_top = 3.0
+content_margin_right = 15.0
+content_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b55hw"]
 content_margin_left = 7.0
@@ -23,16 +29,14 @@ script = ExtResource("1_8midb")
 [node name="button" parent="." instance=ExtResource("2_ejvfk")]
 layout_mode = 1
 
+[node name="content" parent="button" index="1"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_314ga")
+
 [node name="label" parent="button/content" index="0"]
 visible = false
 
 [node name="container" type="HBoxContainer" parent="button/content" index="1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="right" type="VBoxContainer" parent="button/content/container"]

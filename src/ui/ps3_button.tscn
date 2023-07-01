@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6eieg4kf6hia"]
+[gd_scene load_steps=14 format=3 uid="uid://c6eieg4kf6hia"]
 
 [ext_resource type="Theme" uid="uid://dfpxcklbmeuya" path="res://src/themes/default.tres" id="1_mvf6s"]
 [ext_resource type="Script" path="res://src/ui/ps3_button.gd" id="2_b3wm3"]
@@ -93,6 +93,12 @@ _data = {
 "anim": SubResource("Animation_nprkl")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w06qb"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+
 [node name="PS3Button" type="Button"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,7 +175,7 @@ libraries = {
 "": SubResource("AnimationLibrary_m38e3")
 }
 
-[node name="content" type="Control" parent="."]
+[node name="content" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -177,14 +183,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_w06qb")
 
 [node name="label" type="Label" parent="content"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "undefined"
 horizontal_alignment = 1
 vertical_alignment = 1
