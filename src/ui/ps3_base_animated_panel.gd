@@ -10,10 +10,7 @@ var disabled: bool:
         return self._disabled
     set(value):
         self._disabled = value
-        if value:
-            NodeExtFn.disable(self)
-        else:
-            NodeExtFn.enable(self)
+        NodeExtFn.set_disabled(self, value)
 
 var temporarily_disabled: bool:
     get:

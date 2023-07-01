@@ -1,5 +1,6 @@
 class_name NodeExtFn
 
+# Enables or disables a node recursively.
 static func set_disabled(node: Node, value: bool) -> void:
     if value:
         NodeExtFn.disable(node)
@@ -14,10 +15,12 @@ static func get_enabled(node: Node) -> bool:
 static func get_disabled(node: Node) -> bool:
     return node.get_disabled() if node.has_method("get_disabled") else not node.get_editable() if node.has_method("get_editable") else false
 
+# Enables a node recursively.
 static func enable(node: Node) -> void:
     node.propagate_call("set_disabled", [false])
     node.propagate_call("set_editable", [true])
 
+# Disables a node recursively.
 static func disable(node: Node) -> void:
     node.propagate_call("set_disabled", [true])
     node.propagate_call("set_editable", [false])
