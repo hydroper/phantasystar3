@@ -3,9 +3,9 @@ extends Button
 
 var meta_data: Variant = null
 
-enum Reflected { DEFAULT, DISABLED, DISABLED_FOCUSED, HOVER_OR_FOCUS, PRESSED }
+enum Reflected { UNINIT, DEFAULT, DISABLED, DISABLED_FOCUSED, HOVER_OR_FOCUS, PRESSED }
 
-var _reflected: Reflected = Reflected.DEFAULT
+var _reflected: Reflected = Reflected.UNINIT
 
 func _ready():
     self._reflect_state()
