@@ -14,6 +14,10 @@ var current_tab: int:
         self._current_tab = value
         self.tab_changed.emit(value)
 
+var current_tab_button: PS3TabBarButton:
+    get:
+        return null if len(self._reflected_btns) == 0 else self._reflected_btns[self._current_tab]
+
 var tab_count: int:
     get:
         return self._tab_count

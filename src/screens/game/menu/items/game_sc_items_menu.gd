@@ -63,6 +63,9 @@ func _ready() -> void:
         # reset scroll
         $items/container/container/main/container/scrollable.scroll_vertical = 0)
 
+    # tab bar scroll follow
+    PS3TabBarScrollFollow.apply(self._tab_bar, $items/container/container/main/container/tabs/content/tabs/scrollable)
+
     $items.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":
             super.close(null as Variant if goal == "close_current" else "close_current_and_parent" as Variant))
