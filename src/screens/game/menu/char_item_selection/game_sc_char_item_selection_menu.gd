@@ -153,12 +153,12 @@ func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButt
     btn.button.focus_entered.connect(func():
         self._update_item_details(btn.item))
     btn.button.focus_exited.connect(func():
-        self._update_item_details(null))
+        pass)
     return btn
 
 func _show_context() -> void:
     var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)
-    self._update_item_details(btn.item)
+    # self._update_item_details(btn.item)
     self._prev_selected_item = btn.item
     $context/context.position.y = btn.button.global_position.y
     $context/context.popup("unequip" if btn.is_equipped else "equip")

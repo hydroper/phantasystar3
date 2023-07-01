@@ -42,7 +42,6 @@ func close_sublayer(_data: Variant) -> void:
 
 var _sublayer: UISublayer = null
 var _selected_item: PS3Item
-var _prev_selected_item: PS3Item
 @onready
 var _tab_bar = $items/container/container/main/container/tabs
 @onready
@@ -104,6 +103,12 @@ func _ready() -> void:
         elif goal == "to_drop":
             self._drop())
 
+    $context/context/main/list/use_btn.pressed.connect(func():
+        $context/context.collapse("to_use"))
+
+    $context/context/main/list/drop_btn.pressed.connect(func():
+        $context/context.collapse("to_drop"))
+
     $report/report.on_collapse.connect(func(goal, _data):
         $report/outer.visible = false
         $items.temporarily_disabled = false
@@ -150,11 +155,13 @@ func _update_items() -> void:
     if self._items_container.get_child_count() == 0:
         self._sort_btn.focus_neighbor_top = ""
         self._sort_btn.focus_neighbor_bottom = ""
+        self._selected_item = null
     else:
         self._items_container.get_child(0).button.focus_neighbor_top = self._sort_btn.get_path()
         self._sort_btn.focus_neighbor_top = self._items_container.get_child(-1).button.get_path()
         self._sort_btn.focus_neighbor_bottom = self._items_container.get_child(0).button.get_path()
         self._items_container.get_child(0).button.grab_focus()
+        self._selected_item = self._items_container.get_child(0).item
 
 func _create_item_button(item: PS3Item) -> PS3SelectableItemButton:
     var btn = preload("res://src/ui/inventory/ps3_selectable_item_button.tscn").instantiate()
@@ -164,13 +171,12 @@ func _create_item_button(item: PS3Item) -> PS3SelectableItemButton:
     btn.button.focus_entered.connect(func():
         self._update_item_details(btn.item))
     btn.button.focus_exited.connect(func():
-        self._update_item_details(null))
+        pass)
     return btn
 
 func _show_context() -> void:
     var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)
-    self._update_item_details(btn.item)
-    self._prev_selected_item = btn.item
+    # self._update_item_details(btn.item)
     $context/context.position.y = btn.button.global_position.y
     $context/context.popup()
     $context/outer.visible = true
@@ -189,7 +195,6 @@ func _update_item_details(item: PS3Item) -> void:
 # Called when, for example, the context menu collapses and returns
 # to the item selector.
 func _focus_item_again() -> void:
-    self._selected_item = self._prev_selected_item
     var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)
     $items.temporarily_disabled = false
     if len(m) != 0:
@@ -207,5 +212,18 @@ func _use() -> void:
     assert(false, "'Use' not implemented.")
 
 func _drop() -> void:
-    $items.temporarily_disabled = true
-    assert(false, "'Drop' not implemented.")
+    self._selected_item.quantity -= 1
+    var btn = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)[0]
+    if self._selected_item.quantity == 0:
+        self.game_data.items.remove_at(self.game_data.items.find(self._selected_item))
+        self._selected_item = null
+        var i = NodeExtFn.child_index_from_parent(btn)
+        self._items_container.remove_child(btn)
+        if self._items_container.get_child_count() == 0:
+            i = 0
+        if self._items_container.get_child_count() != 0:
+            self._items_container.get_child(i).button.grab_focus()
+    else:
+        btn.display_item(self._selected_item)
+        btn.button.grab_focus()
+    $items.temporarily_disabled = false

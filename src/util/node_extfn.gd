@@ -47,6 +47,9 @@ static func remove_all_children(node: Node) -> void:
     for child in node.get_children():
         node.remove_child(child)
 
+static func child_index_from_parent(node: Node) -> int:
+    return node.get_parent().get_children().find(node)
+
 static func outer_clicked(node: Node, event: InputEvent) -> bool:
     if not (event is InputEventMouseButton and event.pressed and node is Control and node.visible):
         return false
