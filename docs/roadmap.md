@@ -8,6 +8,10 @@
 
 - Gameplay: https://youtu.be/jz92sYbwIKw?t=8
 
+## Godot
+
+- [ ] Check if HTML5 Unicode rendering issue is fixed for special characters such as multiplication sisgn. And check if the system font fallbacks are necessary: if not, then remove them for each custom font.
+
 ## Implemented
 
 - [ ] Gameplay
