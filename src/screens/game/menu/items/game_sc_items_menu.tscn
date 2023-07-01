@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dketti14gbjlt"]
+[gd_scene load_steps=24 format=3 uid="uid://dketti14gbjlt"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_kqwji"]
 [ext_resource type="Script" path="res://src/screens/game/menu/items/game_sc_items_menu.gd" id="1_qulef"]
@@ -22,6 +22,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfg4b"]
 content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ufv0n"]
+content_margin_left = 0.0
+content_margin_right = 10.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ogyt"]
 content_margin_right = 5.0
@@ -120,6 +124,7 @@ text = "Consumable"
 [node name="scrollable" type="ScrollContainer" parent="items/container/container/main/container"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ufv0n")
 follow_focus = true
 
 [node name="list" type="VBoxContainer" parent="items/container/container/main/container/scrollable"]
