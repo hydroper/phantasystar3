@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://gwi1vyaotetu"]
+[gd_scene load_steps=14 format=3 uid="uid://gwi1vyaotetu"]
 
 [ext_resource type="Script" path="res://src/ui/ps3_tab_bar.gd" id="1_cftwn"]
 [ext_resource type="PackedScene" uid="uid://yy0qrn5rvaer" path="res://src/ui/ps3_tab_bar_prev_btn.tscn" id="2_68ejg"]
-[ext_resource type="Texture2D" uid="uid://bljfb8r7dihlu" path="res://res/img/tab-next.svg" id="3_lu3ry"]
+[ext_resource type="PackedScene" uid="uid://bk84f670jrlp1" path="res://src/ui/ps3_tab_bar_next_btn.tscn" id="3_eyf5k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_734af"]
 content_margin_right = 56.0
@@ -19,8 +19,25 @@ content_margin_right = 56.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jwlwa"]
 content_margin_right = 56.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ch320"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8xlyc"]
 content_margin_left = 56.0
+content_margin_right = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exlar"]
+content_margin_left = 56.0
+content_margin_right = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0pmf"]
+content_margin_left = 56.0
+content_margin_right = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2rlf"]
+content_margin_left = 56.0
+content_margin_right = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pv14y"]
+content_margin_left = 56.0
+content_margin_right = 0.0
 
 [node name="PS3TabBar" type="Control"]
 custom_minimum_size = Vector2(0, 65)
@@ -54,26 +71,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="next_btn" type="Button" parent="content"]
+[node name="next_btn" parent="content" instance=ExtResource("3_eyf5k")]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ch320")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_ch320")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ch320")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_ch320")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ch320")
-
-[node name="icon" type="TextureRect" parent="content/next_btn"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = -24.0
-offset_right = 24.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_lu3ry")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8xlyc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_exlar")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e0pmf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t2rlf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pv14y")
