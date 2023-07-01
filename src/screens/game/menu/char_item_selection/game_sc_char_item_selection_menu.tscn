@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ccs5ihnn1281n"]
+[gd_scene load_steps=20 format=3 uid="uid://ccs5ihnn1281n"]
 
 [ext_resource type="Script" path="res://src/screens/game/menu/char_item_selection/game_sc_char_item_selection_menu.gd" id="1_5o0t0"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="2_a17xg"]
@@ -18,6 +18,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ivaen"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hryx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhp4u"]
+content_margin_right = 15.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1unpf"]
 
@@ -88,6 +91,7 @@ text = "Armor"
 [node name="scrollable" type="ScrollContainer" parent="item_selector/container/container/main/container"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qhp4u")
 follow_focus = true
 horizontal_scroll_mode = 0
 
