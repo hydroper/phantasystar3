@@ -3,7 +3,7 @@ extends UISublayer
 var game_data: PS3GameData = null
 
 func open(data: Variant) -> void:
-    NodeExtFn.remove_all_children(self.char_list)
+    NodeExtFn.remove_all_children(self._char_list)
     for character_type in self.game_data.party:
         var character = self.game_data.characters[character_type]
         var char_btn = preload("res://src/ui/ps3_button.tscn").instantiate()
@@ -11,17 +11,17 @@ func open(data: Variant) -> void:
         char_btn.get_node("content/label").text = character.name
         char_btn.custom_minimum_size.y = 75
         char_btn.focus_entered.connect(func():
-            self._selected_character = (NodeExtFn.get_focused(self.char_list) as PS3Button).meta_data
+            self._selected_character = (NodeExtFn.get_focused(self._char_list) as PS3Button).meta_data
             self._update_status())
         char_btn.pressed.connect(func():
-            var pressed_btn = NodeExtFn.get_pressed_button(self.char_list)
+            var pressed_btn = NodeExtFn.get_pressed_button(self._char_list)
             $context/context.position.y = pressed_btn.global_position.y
             $context/context.popup()
             $context/outer.visible = true
             $context/context/main/list/select_item_btn.grab_focus())
-        self.char_list.add_child(char_btn)
-    self.char_list.get_child(0).focus_neighbor_top = self.char_list.get_child(-1).get_path()
-    self.char_list.get_child(-1).focus_neighbor_bottom = self.char_list.get_child(0).get_path()
+        self._char_list.add_child(char_btn)
+    self._char_list.get_child(0).focus_neighbor_top = self._char_list.get_child(-1).get_path()
+    self._char_list.get_child(-1).focus_neighbor_bottom = self._char_list.get_child(0).get_path()
     self._selected_character = data if data is PS3Character else self.game_data.party[0]
     self._update_status()
     $list.popup()
@@ -52,14 +52,12 @@ func close_sublayer(data: Variant) -> void:
         $context/context.collapse()
         $status.collapse()
 
-var char_list: VBoxContainer
-
+var _char_list: VBoxContainer
 var _sublayer: UISublayer = null
-
 var _selected_character: PS3Character = null
 
 func _ready() -> void:
-    self.char_list = $list/container/container/main/scrollable/list
+    self._char_list = $list/container/container/main/scrollable/list
     $outer.pressed.connect(func(): self.close_sublayer(null))
     $list.on_popup.connect(func(_goal, _data):
         self._focus_char_btn())
@@ -87,7 +85,7 @@ func _ready() -> void:
         $status.collapse())
 
 func _focus_char_btn() -> void:
-    self.char_list.get_children().filter(func(a): return (a as PS3Button).meta_data == self._selected_character)[0].grab_focus()
+    self._char_list.get_children().filter(func(a): return (a as PS3Button).meta_data == self._selected_character)[0].grab_focus()
 
 func _update_status() -> void:
     var character = self.game_data.characters[self._selected_character]

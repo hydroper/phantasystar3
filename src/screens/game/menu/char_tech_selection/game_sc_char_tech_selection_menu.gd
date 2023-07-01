@@ -33,11 +33,8 @@ func close_sublayer(data: Variant) -> void:
         $report/report.collapse()
 
 var _sublayer: UISublayer = null
-
 var _character: PS3CharacterData = null
-
 var _tech: PS3TechType = null
-
 var _tech_list_container: VBoxContainer = null
 
 func _ready() -> void:

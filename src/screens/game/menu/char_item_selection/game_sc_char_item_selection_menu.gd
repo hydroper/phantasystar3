@@ -31,18 +31,13 @@ func close_sublayer(data: Variant) -> void:
         $report/report.collapse()
 
 var _sublayer: UISublayer = null
-
 var _selected_item: PS3Item
-
 var _prev_selected_item: PS3Item
-
+var _selected_character: PS3Character
 @onready
 var _tab_bar = $item_selector/container/container/main/container/tabs
-
 @onready
 var _items_container = $item_selector/container/container/main/container/scrollable/list
-
-var _selected_character: PS3Character
 
 func _ready() -> void:
     $outer.pressed.connect(func():
