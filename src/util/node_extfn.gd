@@ -1,5 +1,19 @@
 class_name NodeExtFn
 
+static func set_disabled(node: Node, value: bool) -> void:
+    if value:
+        NodeExtFn.disable(node)
+    else: NodeExtFn.enable(node)
+
+static func can_be_disabled(node: Node) -> bool:
+    return node.has_method("set_disabled") or node.has_method("set_editable")
+
+static func get_enabled(node: Node) -> bool:
+    return not NodeExtFn.is_disabled(node)
+
+static func get_disabled(node: Node) -> bool:
+    return node.get_disabled() if node.has_method("get_disabled") else not node.get_editable() if node.has_method("get_editable") else false
+
 static func enable(node: Node) -> void:
     node.propagate_call("set_disabled", [false])
     node.propagate_call("set_editable", [true])

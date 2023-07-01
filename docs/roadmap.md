@@ -55,4 +55,3 @@
 
 - Forget to not call `grab_focus()` on `PS3SelectableItemButton`. Instead do `get_node("button").grab_focus()`.
 - Base animated panels re-enable their controls on popup. Separate a function for disabling the necessary controls.
-- Panels can be temporarily disabled due to a nested panel. When that nested panel collapses, disable what is necessary again after getting back to the other panels.

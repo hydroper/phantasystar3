@@ -86,7 +86,7 @@ func _ready() -> void:
 
     $context/context.on_collapse.connect(func(goal, _data):
         $context/outer.visible = false
-        NodeExtFn.enable($item_selector)
+        $item_selector.temporarily_disabled = false
         if goal == "close_context":
             self._focus_item_again()
         elif goal == "to_equip":
@@ -168,7 +168,7 @@ func _show_context() -> void:
     $context/context.position.y = btn.get_node("button").global_position.y
     $context/context.popup("unequip" if btn.is_equipped else "equip")
     $context/outer.visible = true
-    NodeExtFn.disable($item_selector)
+    $item_selector.temporarily_disabled = true
 
 @onready
 var _details_container: VBoxContainer = $item_details/container/container/main/container
@@ -188,7 +188,7 @@ func _update_item_details(item: PS3Item) -> void:
 func _focus_item_again() -> void:
     self._selected_item = self._prev_selected_item
     var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)
-    NodeExtFn.enable($item_selector)
+    $item_selector.temporarily_disabled = false
     if len(m) != 0:
         m[0].get_node("button").grab_focus()
     elif self._items_container.get_child_count() != 0:
@@ -280,4 +280,4 @@ func _unequip() -> void:
 func _show_report() -> void:
     $report/report.popup()
     $report/outer.visible = true
-    NodeExtFn.disable($item_selector)
+    $item_selector.temporarily_disabled = true

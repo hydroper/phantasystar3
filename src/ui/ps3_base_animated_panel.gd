@@ -15,6 +15,12 @@ var disabled: bool:
         else:
             NodeExtFn.enable(self)
 
+var temporarily_disabled: bool:
+    get:
+        return self._temporarily_disabled.disabled
+    set(value):
+        self._temporarily_disabled.disabled = value
+
 var is_open: bool:
     get:
         return !self._collapsed
@@ -30,7 +36,7 @@ func popup(goal: String = "", data: Variant = null) -> void:
     self._busy_collapsing = false
     self._trans_meta_data = [goal, data]
     self.visible = true
-    self.disabled = true
+    self.temporarily_disabled = true
     self._do_transition()
 
 func collapse(goal: String = "", data: Variant = null) -> void:
@@ -40,7 +46,7 @@ func collapse(goal: String = "", data: Variant = null) -> void:
     self._busy_collapsing = true
     self._trans_meta_data = [goal, data]
     self.visible = true
-    self.disabled = true
+    self.temporarily_disabled = true
     self._do_transition()
 
 var _busy: bool = false
@@ -53,6 +59,7 @@ var _trans_meta_data: Array = []
 
 var _collapsed: bool = true
 var _disabled: bool = true
+var _temporarily_disabled: TemporarilyDisabled = null
 
 var _postpone_transition: bool = false
 
@@ -60,6 +67,7 @@ func _init():
     self.visible = false
     self.scale.y = 0
     self.modulate = Color(1.0, 1.0, 1.0, 0.0)
+    self._temporarily_disabled = TemporarilyDisabled.new(self)
     self._scale_tween = LazyTween.new()
     self._modulate_tween = LazyTween.new()
 
@@ -73,10 +81,10 @@ func _init():
         self._busy = false
         self._busy_collapsing = false
         if self._collapsed:
-            self.disabled = true
+            self.temporarily_disabled = true
             self.on_collapse.emit(k[0], k[1])
         else:
-            self.disabled = false
+            self.temporarily_disabled = false
             self.on_popup.emit(k[0], k[1]))
 
 func _ready() -> void:
