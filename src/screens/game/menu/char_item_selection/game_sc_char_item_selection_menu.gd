@@ -139,20 +139,20 @@ func _update_items() -> void:
         pass
     else:
         # focus_neighbor_top
-        self._items_container.get_child(0).get_node("button").focus_neighbor_top = self._items_container.get_child(-1).get_node("button").get_path()
+        self._items_container.get_child(0).button.focus_neighbor_top = self._items_container.get_child(-1).button.get_path()
         # focus_neighbor_bottom
-        self._items_container.get_child(-1).get_node("button").focus_neighbor_bottom = self._items_container.get_child(0).get_node("button").get_path()
+        self._items_container.get_child(-1).button.focus_neighbor_bottom = self._items_container.get_child(0).button.get_path()
         # focus
-        self._items_container.get_child(0).get_node("button").grab_focus()
+        self._items_container.get_child(0).button.grab_focus()
 
 func _create_item_button(item: PS3Item, equipped: bool) -> PS3SelectableItemButton:
     var btn = preload("res://src/ui/inventory/ps3_selectable_item_button.tscn").instantiate()
     btn.display_item(item)
     btn.is_equipped = equipped
-    btn.get_node("button").pressed.connect(self._show_context)
-    btn.get_node("button").focus_entered.connect(func():
+    btn.button.pressed.connect(self._show_context)
+    btn.button.focus_entered.connect(func():
         self._update_item_details(btn.item))
-    btn.get_node("button").focus_exited.connect(func():
+    btn.button.focus_exited.connect(func():
         self._update_item_details(null))
     return btn
 
@@ -160,7 +160,7 @@ func _show_context() -> void:
     var btn = PS3SelectableItemButton.get_pressed_from_list(self._items_container)
     self._update_item_details(btn.item)
     self._prev_selected_item = btn.item
-    $context/context.position.y = btn.get_node("button").global_position.y
+    $context/context.position.y = btn.button.global_position.y
     $context/context.popup("unequip" if btn.is_equipped else "equip")
     $context/outer.visible = true
     $item_selector.temporarily_disabled = true
@@ -185,9 +185,9 @@ func _focus_item_again() -> void:
     var m = self._items_container.get_children().filter(func(btn): return btn.item == self._selected_item)
     $item_selector.temporarily_disabled = false
     if len(m) != 0:
-        m[0].get_node("button").grab_focus()
+        m[0].button.grab_focus()
     elif self._items_container.get_child_count() != 0:
-        self._items_container.get_child(0).get_node("button").grab_focus()
+        self._items_container.get_child(0).button.grab_focus()
 
 func _equip() -> void:
     if self.game_data.inventory_is_full:

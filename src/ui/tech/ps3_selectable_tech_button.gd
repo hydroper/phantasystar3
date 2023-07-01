@@ -13,12 +13,12 @@ func display_tech(tech: PS3TechType) -> void:
 
 static func get_pressed_from_list(list: Variant) -> PS3SelectableTechButton:
     if list is Array:
-        var f = list.filter(func(a): return a.get_node("button").button_pressed)
+        var f = list.filter(func(a): return a.button.button_pressed)
         return null if len(f) == 0 else f[0]
     return PS3SelectableTechButton.get_pressed_from_list(list.get_children()) if list is Node else null
 
 static func get_focused_from_list(list: Variant) -> PS3SelectableTechButton:
     if list is Array:
-        var f = list.filter(func(a): return a.get_node("button").has_focus())
+        var f = list.filter(func(a): return a.button.has_focus())
         return null if len(f) == 0 else f[0]
     return PS3SelectableTechButton.get_focused_from_list(list.get_children()) if list is Node else null
