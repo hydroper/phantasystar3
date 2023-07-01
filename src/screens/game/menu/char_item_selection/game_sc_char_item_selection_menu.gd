@@ -11,7 +11,7 @@ func open(data: Variant) -> void:
     self._update_items()
 
 # Closes any sublayer and the current layer itself.
-func close(data: Variant) -> void:
+func close(_data: Variant) -> void:
     $item_selector.collapse("close_current_and_parent")
     $item_details.collapse()
     $context/context.collapse()
@@ -19,7 +19,7 @@ func close(data: Variant) -> void:
 
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
-func close_sublayer(data: Variant) -> void:
+func close_sublayer(_data: Variant) -> void:
     if $context/context.is_open:
         $context/context.collapse("close_context")
     elif $report/report.is_open:
@@ -91,6 +91,7 @@ func _ready() -> void:
 
     $report/report.on_collapse.connect(func(goal, _data):
         $report/outer.visible = false
+        $item_selector.temporarily_disabled = false
         if goal == "close_report": self._focus_item_again())
 
 func _process(_delta: float) -> void:

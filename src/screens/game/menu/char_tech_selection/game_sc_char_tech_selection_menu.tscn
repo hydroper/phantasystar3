@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://comaycac1yqee"]
+[gd_scene load_steps=13 format=3 uid="uid://comaycac1yqee"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_4hcgk"]
 [ext_resource type="Script" path="res://src/screens/game/menu/char_tech_selection/game_sc_char_tech_selection_menu.gd" id="1_5n1lb"]
@@ -17,6 +17,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ol0v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_arqa5"]
+content_margin_right = 7.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_egsut"]
 content_margin_right = 7.0
 
 [node name="GameScCharTechSelectionMenu" type="CanvasLayer"]
@@ -188,8 +191,57 @@ offset_bottom = 123.0
 layout_mode = 2
 text = "Report."
 
+[node name="target_char" type="CanvasLayer" parent="."]
+layer = 7
+
+[node name="outer" type="Button" parent="target_char"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c4dgf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3s6ei")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1tqeb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nu25o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4ol0v")
+
+[node name="target_char" parent="target_char" instance=ExtResource("1_4hcgk")]
+custom_minimum_size = Vector2(524, 406)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -203.0
+offset_right = 262.0
+offset_bottom = 203.0
+
+[node name="label" parent="target_char/target_char/container/container/header" index="1"]
+text = "Target Character"
+
+[node name="scrollable" type="ScrollContainer" parent="target_char/target_char/container/container/main" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_egsut")
+follow_focus = true
+
+[node name="list" type="VBoxContainer" parent="target_char/target_char/container/container/main/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="PS3Button" parent="target_char/target_char/container/container/main/scrollable/list" instance=ExtResource("5_8htlb")]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
 [editable path="tech_selection"]
 [editable path="tech_details"]
 [editable path="context/context"]
 [editable path="context/context/main/container/use_btn"]
 [editable path="report/report"]
+[editable path="target_char/target_char"]
+[editable path="target_char/target_char/container/container/main/scrollable/list/PS3Button"]

@@ -21,7 +21,7 @@ var _top_node: Node
 var _previous_state: Dictionary = {}
 
 func _temporarily_disable(node: Node) -> void:
-    if NodeExtFn.can_be_disabled(node):
+    if NodeExtFn.can_be_disabled(node) and not self._previous_state.has(node):
         self._previous_state[node] = NodeExtFn.get_disabled(node)
         NodeExtFn.set_disabled(node, true)
     for child in node.get_children():
