@@ -15,7 +15,7 @@
 ## Implemented
 
 - [x] Intro screen
-  - [ ] Story
+  - [ ] Story (update `_skip_part` in that case)
   - [ ] Set it as the default scene
 - [ ] Main Menu
 - [ ] Gameplay

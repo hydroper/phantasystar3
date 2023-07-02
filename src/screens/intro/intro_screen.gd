@@ -5,7 +5,7 @@ var _animator: AnimationPlayer = $root/animator
 
 func _ready() -> void:
     self._animator.animation_finished.connect(func(_anim_name):
-        self.get_tree().change_scene_to_file("res://src/screens/main_menu/main_menu.tscn"))
+        self.get_tree().change_scene_to_file("res://src/screens/main_menu/main_menu_screen.tscn"))
     $root/skip_btn.pressed.connect(func():
         self._skip_part())
 

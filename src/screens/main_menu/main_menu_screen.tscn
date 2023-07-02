@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgd8c7rhxbnhm"]
+
+[ext_resource type="Script" path="res://src/screens/main_menu/main_menu_screen.gd" id="1_4ry2v"]
+[ext_resource type="Texture2D" uid="uid://cdvgues1ppokp" path="res://res/img/logo/logo.png" id="2_j8ta0"]
+
+[sub_resource type="Animation" id="Animation_na2t3"]
+resource_name = "default"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("logo:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("press_start_label:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.5)
+}
+
+[sub_resource type="Animation" id="Animation_8qsu5"]
+resource_name = "looping"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("logo:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("press_start_label:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 1.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2dct"]
+_data = {
+"default": SubResource("Animation_na2t3"),
+"looping": SubResource("Animation_8qsu5")
+}
+
+[node name="MainMenuScreen" type="Node2D"]
+script = ExtResource("1_4ry2v")
+
+[node name="root" type="CanvasLayer" parent="."]
+
+[node name="start_layer" type="CanvasLayer" parent="root"]
+
+[node name="logo" type="TextureRect" parent="root/start_layer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -64.8
+offset_right = 420.0
+offset_bottom = 64.8
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_j8ta0")
+
+[node name="press_start_label" type="Label" parent="root/start_layer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -562.0
+offset_top = 150.0
+offset_right = 562.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Press Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="animator" type="AnimationPlayer" parent="root/start_layer"]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_n2dct")
+}
