@@ -16,7 +16,6 @@
 
 - [x] Intro screen
   - [ ] Story (update `_skip_part` in that case)
-  - [ ] Set it as the default scene
 - [ ] Main Menu
 - [ ] Gameplay
   - [ ] During progress, ask whether to save game. This may be useful if the player forgets going to `System > Save Game`
