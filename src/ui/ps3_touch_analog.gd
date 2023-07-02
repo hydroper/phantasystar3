@@ -41,31 +41,34 @@ func _touch_hits_arc(touch_pos: Vector2) -> bool:
     var a := Rect2(touch_pos, Vector2(1.0, 1.0))
     return a.intersects(self._global_rect())
 
+const W: float = 60
+
 func _stick_analog(touch_position: Vector2) -> void:
     var global_rect = self._global_rect()
     $point.visible = true
     $point.global_position = Vector2(clampf(touch_position.x, global_rect.position.x, global_rect.position.x + global_rect.size.x) - $point.size.x / 2, clampf(touch_position.y, global_rect.position.y, global_rect.position.y + global_rect.size.y) - $point.size.y / 2)
     # determine turn direction
-    var p: Vector2 = $point.position
-    if Rect2(Vector2(-15, -15), Vector2(30, 30)).intersects(Rect2(p, $point.size)):
-        self._turn_dir = null
+    var p: Vector2 = ($point.global_position - self.global_position) - $point.size / 2
+    print(p)
+    print($point.position - $point.size / 2)
+    if p.x < -W and p.y < -W:
+        self._turn_dir = TurnDirection.UP_LEFT
+    elif p.x < -W and p.y > W:
+        self._turn_dir = TurnDirection.DOWN_LEFT
+    elif p.x < -W:
+        self._turn_dir = TurnDirection.LEFT
+    elif p.x > W and p.y < -W:
+        self._turn_dir = TurnDirection.UP_RIGHT
+    elif p.x > W and p.y > W:
+        self._turn_dir = TurnDirection.DOWN_RIGHT
+    elif p.x > W:
+        self._turn_dir = TurnDirection.RIGHT
+    elif p.y < -W:
+        self._turn_dir = TurnDirection.UP
+    elif p.y > W:
+        self._turn_dir = TurnDirection.DOWN
     else:
-        p = p - $point.size / 2
-        if p.x < 0 and p.y < 0:
-            self._turn_dir = TurnDirection.UP_LEFT
-        elif p.x < 0 and p.y > 0:
-            self._turn_dir = TurnDirection.DOWN_LEFT
-        elif p.x < 0:
-            self._turn_dir = TurnDirection.LEFT
-        elif p.x > 0 and p.y < 0:
-            self._turn_dir = TurnDirection.UP_RIGHT
-        elif p.x > 0 and p.y > 0:
-            self._turn_dir = TurnDirection.DOWN_RIGHT
-        elif p.x > 0:
-            self._turn_dir = TurnDirection.RIGHT
-        elif p.y < 0:
-            self._turn_dir = TurnDirection.UP
-        else: self._turn_dir = TurnDirection.DOWN
+        self._turn_dir = null
 
 func _release_analog() -> void:
     self._turn_dir = null
