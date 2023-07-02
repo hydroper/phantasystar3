@@ -60,6 +60,18 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
         state.linear_velocity.x = 0
     if not self.moving_vertically:
         state.linear_velocity.y = 0
+    var dir = self.turn_dir
+
+    # no smoothing
+    if (dir == TurnDirection.UP or dir == TurnDirection.UP_LEFT or dir == TurnDirection.UP_RIGHT) and state.linear_velocity.y > 0:
+        state.linear_velocity.y = 0
+    if (dir == TurnDirection.DOWN or dir == TurnDirection.DOWN_LEFT or dir == TurnDirection.DOWN_RIGHT) and state.linear_velocity.y < 0:
+        state.linear_velocity.y = 0
+    if (dir == TurnDirection.LEFT or dir == TurnDirection.UP_LEFT or dir == TurnDirection.DOWN_LEFT) and state.linear_velocity.x > 0:
+        state.linear_velocity.x = 0
+    if (dir == TurnDirection.RIGHT or dir == TurnDirection.UP_RIGHT or dir == TurnDirection.DOWN_RIGHT) and state.linear_velocity.x < 0:
+        state.linear_velocity.x = 0
+
     # max speed
     state.linear_velocity.x = clampf(state.linear_velocity.x, -self._max_speed, self._max_speed)
     state.linear_velocity.y = clampf(state.linear_velocity.y, -self._max_speed, self._max_speed)
