@@ -44,7 +44,6 @@ func _process(_delta: float) -> void:
 
     var player_entity = self.party_entities[self.game_data.party[0]]
     player_entity.turn_dir = TurnDirection.UP_LEFT if (pressing_up and pressing_left) else TurnDirection.UP_RIGHT if (pressing_up and pressing_right) else TurnDirection.UP if pressing_up else TurnDirection.DOWN_LEFT if (pressing_down and pressing_left) else TurnDirection.DOWN_RIGHT if (pressing_down and pressing_right) else TurnDirection.DOWN if pressing_down else TurnDirection.LEFT if pressing_left else TurnDirection.RIGHT if pressing_right else player_entity.turn_dir
-
     player_entity.moving = pressing_up or pressing_down or pressing_left or pressing_right
     player_entity.moving_horizontally = pressing_left or pressing_right
     player_entity.moving_vertically = pressing_up or pressing_down
@@ -53,7 +52,7 @@ func _process(_delta: float) -> void:
     for character in self.party_entities:
         var entity = self.party_entities[character]
         if entity != player_entity:
-            entity.follow_party(self.party_entities)
+            entity.follow_party(self.party_entities, player_entity)
 
 func _create_character_entity(character: PS3Character) -> PS3CharacterEntity:
     var entity = preload("res://src/entities/ps3_character_entity.tscn").instantiate()

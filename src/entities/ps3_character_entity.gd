@@ -78,9 +78,34 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
     state.linear_velocity.x = clampf(state.linear_velocity.x, -self._max_speed, self._max_speed)
     state.linear_velocity.y = clampf(state.linear_velocity.y, -self._max_speed, self._max_speed)
 
-func _follow_party(party_entities: Dictionary) -> void:
+const following_distance = Vector2(90.0, 90.0)
+
+func follow_party(party_entities: Dictionary, leader_entity: PS3CharacterEntity) -> void:
+    var needs_to_follow := true
+    var rect_a := Rect2(self.global_position, following_distance)
     for character in party_entities:
         var entity = party_entities[character]
         if entity == self:
             continue
-        pass
+        var rect_b := Rect2(entity.global_position, following_distance)
+        if rect_a.intersects(rect_b):
+            needs_to_follow = false
+            break
+    var pressing_up := false
+    var pressing_down := false
+    var pressing_left := false
+    var pressing_right := false
+    if needs_to_follow:
+        var rect_b := Rect2(leader_entity.global_position, following_distance)
+        if rect_a.position.x < rect_b.position.x:
+            pressing_right = true
+        elif rect_a.position.x > rect_b.position.x:
+            pressing_left = true
+        if rect_a.position.y < rect_b.position.y:
+            pressing_down = true
+        elif rect_a.position.y > rect_b.position.y:
+            pressing_up = true
+    self.turn_dir = TurnDirection.UP_LEFT if (pressing_up and pressing_left) else TurnDirection.UP_RIGHT if (pressing_up and pressing_right) else TurnDirection.UP if pressing_up else TurnDirection.DOWN_LEFT if (pressing_down and pressing_left) else TurnDirection.DOWN_RIGHT if (pressing_down and pressing_right) else TurnDirection.DOWN if pressing_down else TurnDirection.LEFT if pressing_left else TurnDirection.RIGHT if pressing_right else self.turn_dir
+    self.moving = pressing_up or pressing_down or pressing_left or pressing_right
+    self.moving_horizontally = pressing_left or pressing_right
+    self.moving_vertically = pressing_up or pressing_down
