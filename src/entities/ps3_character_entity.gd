@@ -97,9 +97,9 @@ func follow_party(party_entities: Dictionary, leader_entity: PS3CharacterEntity)
     var pressing_right := false
     if needs_to_follow:
         var rect_b := Rect2(leader_entity.global_position, following_distance)
-        if rect_a.position.x < rect_b.position.x:
+        if rect_a.position.x < rect_b.position.x - 30:
             pressing_right = true
-        elif rect_a.position.x > rect_b.position.x:
+        elif rect_a.position.x > rect_b.position.x + 30:
             pressing_left = true
         if rect_a.position.y < rect_b.position.y:
             pressing_down = true
