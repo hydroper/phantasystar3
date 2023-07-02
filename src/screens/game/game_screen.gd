@@ -11,8 +11,10 @@ var game_data_dependents = [
 var ui_menu: GameScMenu = $ui/menu
 
 @onready
-var world: Node2D = $world
+var ui_left_analog: PS3TouchAnalog = $ui/touch_controls/left_analog
 
+@onready
+var world: Node2D = $world
 @onready
 var world_entities: Node2D = $world/entities
 
@@ -31,19 +33,28 @@ func _ready() -> void:
         self.world_entities.add_child(entity)
 
 func _process(_delta: float) -> void:
+    var player_entity = self.party_entities[self.game_data.party[0]]
     var pressing_up := false
     var pressing_down := false
     var pressing_left := false
     var pressing_right := false
 
     if not self.ui_menu.is_open:
-        pressing_up = Input.is_action_pressed("move_up")
-        pressing_down = Input.is_action_pressed("move_down")
-        pressing_left = Input.is_action_pressed("move_left")
-        pressing_right = Input.is_action_pressed("move_right")
+        if self.ui_left_analog.direction == null:
+            pressing_up = Input.is_action_pressed("move_up")
+            pressing_down = Input.is_action_pressed("move_down")
+            pressing_left = Input.is_action_pressed("move_left")
+            pressing_right = Input.is_action_pressed("move_right")
+            player_entity.turn_dir = TurnDirection.UP_LEFT if (pressing_up and pressing_left) else TurnDirection.UP_RIGHT if (pressing_up and pressing_right) else TurnDirection.UP if pressing_up else TurnDirection.DOWN_LEFT if (pressing_down and pressing_left) else TurnDirection.DOWN_RIGHT if (pressing_down and pressing_right) else TurnDirection.DOWN if pressing_down else TurnDirection.LEFT if pressing_left else TurnDirection.RIGHT if pressing_right else player_entity.turn_dir
+        else:
+            player_entity.turn_dir = ui_left_analog.direction
+            pressing_up = player_entity.turn_dir == TurnDirection.UP or player_entity.turn_dir == TurnDirection.UP_LEFT or player_entity.turn_dir == TurnDirection.UP_RIGHT
+            pressing_down = player_entity.turn_dir == TurnDirection.DOWN or player_entity.turn_dir == TurnDirection.DOWN_LEFT or player_entity.turn_dir == TurnDirection.DOWN_RIGHT
+            pressing_left = player_entity.turn_dir == TurnDirection.LEFT or player_entity.turn_dir == TurnDirection.UP_LEFT or player_entity.turn_dir == TurnDirection.DOWN_LEFT
+            pressing_left = player_entity.turn_dir == TurnDirection.RIGHT or player_entity.turn_dir == TurnDirection.UP_RIGHT or player_entity.turn_dir == TurnDirection.DOWN_RIGHT
+    else:
+        player_entity.turn_dir = null
 
-    var player_entity = self.party_entities[self.game_data.party[0]]
-    player_entity.turn_dir = TurnDirection.UP_LEFT if (pressing_up and pressing_left) else TurnDirection.UP_RIGHT if (pressing_up and pressing_right) else TurnDirection.UP if pressing_up else TurnDirection.DOWN_LEFT if (pressing_down and pressing_left) else TurnDirection.DOWN_RIGHT if (pressing_down and pressing_right) else TurnDirection.DOWN if pressing_down else TurnDirection.LEFT if pressing_left else TurnDirection.RIGHT if pressing_right else player_entity.turn_dir
     player_entity.moving = pressing_up or pressing_down or pressing_left or pressing_right
     player_entity.moving_horizontally = pressing_left or pressing_right
     player_entity.moving_vertically = pressing_up or pressing_down

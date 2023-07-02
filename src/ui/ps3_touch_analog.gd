@@ -1,3 +1,4 @@
+class_name PS3TouchAnalog
 extends TouchScreenButton
 
 var disabled := false
@@ -31,18 +32,40 @@ func _input(event) -> void:
     elif event is InputEventScreenDrag and self._touch_index == event.index:
         self._stick_analog(event.position)
 
-func _touch_hits_arc(touch_pos: Vector2) -> bool:
-    var a := Rect2(touch_pos, Vector2(1.0, 1.0))
+func _global_rect() -> Rect2:
     var r := self._radius
     var size := Vector2(r, r)
-    var b := Rect2(self.global_position - size / 2, size)
-    return a.intersects(b)
+    return Rect2(self.global_position - size / 2, size)
 
-func _stick_analog(position: Vector2) -> void:
+func _touch_hits_arc(touch_pos: Vector2) -> bool:
+    var a := Rect2(touch_pos, Vector2(1.0, 1.0))
+    return a.intersects(self._global_rect())
+
+func _stick_analog(touch_position: Vector2) -> void:
+    var global_rect = self._global_rect()
     $point.visible = true
-    # assert(false, "Not yet done.")
+    $point.global_position = Vector2(clampf(touch_position.x, global_rect.position.x, global_rect.position.x + global_rect.size.x) - $point.size.x / 2, clampf(touch_position.y, global_rect.position.y, global_rect.position.y + global_rect.size.y) - $point.size.y / 2)
+    # determine turn direction
+    var p: Vector2 = $point.position
+    if Rect2(Vector2(-15, -15), Vector2(30, 30)).intersects(Rect2(p, $point.size)):
+        self._turn_dir = null
+    else:
+        if p.x < 0 and p.y < 0:
+            self._turn_dir = TurnDirection.UP_LEFT
+        elif p.x < 0 and p.y > 0:
+            self._turn_dir = TurnDirection.DOWN_LEFT
+        elif p.x < 0:
+            self._turn_dir = TurnDirection.LEFT
+        elif p.x > 0 and p.y < 0:
+            self._turn_dir = TurnDirection.UP_RIGHT
+        elif p.x > 0 and p.y > 0:
+            self._turn_dir = TurnDirection.DOWN_RIGHT
+        elif p.x > 0:
+            self._turn_dir = TurnDirection.RIGHT
+        elif p.y < 0:
+            self._turn_dir = TurnDirection.UP
+        else: self._turn_dir = TurnDirection.DOWN
 
 func _release_analog() -> void:
     self._turn_dir = null
     $point.visible = false
-    # assert(false, "Not yet done.")
