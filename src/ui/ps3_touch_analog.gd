@@ -41,16 +41,14 @@ func _touch_hits_arc(touch_pos: Vector2) -> bool:
     var a := Rect2(touch_pos, Vector2(1.0, 1.0))
     return a.intersects(self._global_rect())
 
-const W: float = 60
+const W: float = 30
 
 func _stick_analog(touch_position: Vector2) -> void:
     var global_rect = self._global_rect()
     $point.visible = true
     $point.global_position = Vector2(clampf(touch_position.x, global_rect.position.x, global_rect.position.x + global_rect.size.x) - $point.size.x / 2, clampf(touch_position.y, global_rect.position.y, global_rect.position.y + global_rect.size.y) - $point.size.y / 2)
     # determine turn direction
-    var p: Vector2 = ($point.global_position - self.global_position) - $point.size / 2
-    print(p)
-    print($point.position - $point.size / 2)
+    var p: Vector2 = $point.position
     if p.x < -W and p.y < -W:
         self._turn_dir = TurnDirection.UP_LEFT
     elif p.x < -W and p.y > W:
