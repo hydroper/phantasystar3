@@ -31,6 +31,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
     self._reflect_turn_dir()
+    if self._moving:
+        self.apply_central_force(self.turn_dir.speed * 600)
 
 func _reflect_turn_dir() -> void:
     if self.turn_dir == self._reflected_turn_dir and self._reflected_move_animation:
@@ -75,3 +77,10 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
     # max speed
     state.linear_velocity.x = clampf(state.linear_velocity.x, -self._max_speed, self._max_speed)
     state.linear_velocity.y = clampf(state.linear_velocity.y, -self._max_speed, self._max_speed)
+
+func _follow_party(party_entities: Dictionary) -> void:
+    for character in party_entities:
+        var entity = party_entities[character]
+        if entity == self:
+            continue
+        pass

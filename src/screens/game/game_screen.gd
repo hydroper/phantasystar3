@@ -48,8 +48,12 @@ func _process(_delta: float) -> void:
     player_entity.moving = pressing_up or pressing_down or pressing_left or pressing_right
     player_entity.moving_horizontally = pressing_left or pressing_right
     player_entity.moving_vertically = pressing_up or pressing_down
-    if player_entity.moving:
-        player_entity.apply_central_force(player_entity.turn_dir.speed * 600)
+
+    # make party follow the player
+    for character in self.party_entities:
+        var entity = self.party_entities[character]
+        if entity != player_entity:
+            entity.follow_party(self.party_entities)
 
 func _create_character_entity(character: PS3Character) -> PS3CharacterEntity:
     var entity = preload("res://src/entities/ps3_character_entity.tscn").instantiate()
