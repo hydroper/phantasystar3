@@ -51,7 +51,7 @@ func _process(_delta: float) -> void:
             pressing_up = player_entity.turn_dir == TurnDirection.UP or player_entity.turn_dir == TurnDirection.UP_LEFT or player_entity.turn_dir == TurnDirection.UP_RIGHT
             pressing_down = player_entity.turn_dir == TurnDirection.DOWN or player_entity.turn_dir == TurnDirection.DOWN_LEFT or player_entity.turn_dir == TurnDirection.DOWN_RIGHT
             pressing_left = player_entity.turn_dir == TurnDirection.LEFT or player_entity.turn_dir == TurnDirection.UP_LEFT or player_entity.turn_dir == TurnDirection.DOWN_LEFT
-            pressing_left = player_entity.turn_dir == TurnDirection.RIGHT or player_entity.turn_dir == TurnDirection.UP_RIGHT or player_entity.turn_dir == TurnDirection.DOWN_RIGHT
+            pressing_right = player_entity.turn_dir == TurnDirection.RIGHT or player_entity.turn_dir == TurnDirection.UP_RIGHT or player_entity.turn_dir == TurnDirection.DOWN_RIGHT
     else:
         player_entity.turn_dir = null
 

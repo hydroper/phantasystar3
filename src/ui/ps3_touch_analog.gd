@@ -50,6 +50,7 @@ func _stick_analog(touch_position: Vector2) -> void:
     if Rect2(Vector2(-15, -15), Vector2(30, 30)).intersects(Rect2(p, $point.size)):
         self._turn_dir = null
     else:
+        p = p - $point.size / 2
         if p.x < 0 and p.y < 0:
             self._turn_dir = TurnDirection.UP_LEFT
         elif p.x < 0 and p.y > 0:
