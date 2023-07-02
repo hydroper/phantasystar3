@@ -8,8 +8,8 @@ var characters: Dictionary = {
 }
 
 var party: Array[PS3Character] = [
-    PS3Character.RHYS,
     PS3Character.MIEU,
+    PS3Character.RHYS,
 ]
 
 var items: Array[PS3Item] = [
