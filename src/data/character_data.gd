@@ -86,6 +86,8 @@ var learned_tech: Array[PS3TechType]:
 
 var entity_animation: Node2D:
     get:
+        if self.character == PS3Character.TEMPLATE:
+            return preload("res://src/character_animations/mieu/ps3_mieu_entity_animation.tscn").instantiate()
         if self.character == PS3Character.MIEU:
             return preload("res://src/character_animations/mieu/ps3_mieu_entity_animation.tscn").instantiate()
         if self.character == PS3Character.RHYS:

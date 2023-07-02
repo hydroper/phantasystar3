@@ -3,11 +3,13 @@ class_name PS3GameData
 var meseta: int = 0
 
 var characters: Dictionary = {
+    PS3Character.TEMPLATE: PS3CharacterData.new(PS3Character.TEMPLATE),
     PS3Character.RHYS: PS3CharacterData.new(PS3Character.RHYS),
     PS3Character.MIEU: PS3CharacterData.new(PS3Character.MIEU),
 }
 
 var party: Array[PS3Character] = [
+    PS3Character.TEMPLATE,
     PS3Character.MIEU,
     PS3Character.RHYS,
 ]

@@ -10,6 +10,8 @@
 
 ## Implemented
 
+- [x] Overworld party
+  - [ ] It looks like it doesn't work properly with 3 or more characters since when one is close to the other, they stop. Fix this.
 - [x] Intro screen
   - [ ] Story (update `_skip_part` in that case)
 - [ ] Main Menu

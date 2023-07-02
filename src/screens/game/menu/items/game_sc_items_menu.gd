@@ -235,6 +235,7 @@ func _show_party_target_selection() -> void:
     list.get_child(0).grab_focus()
     list.get_child(0).focus_neighbor_top = list.get_child(-1).get_path()
     list.get_child(-1).focus_neighbor_bottom = list.get_child(0).get_path()
+    $target_char/outer.visible = true
     $target_char/target_char.popup()
 
 func _create_party_target_button(character: PS3Character) -> Button:
