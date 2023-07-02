@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dketti14gbjlt"]
+[gd_scene load_steps=25 format=3 uid="uid://dketti14gbjlt"]
 
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_kqwji"]
 [ext_resource type="Script" path="res://src/screens/game/menu/items/game_sc_items_menu.gd" id="1_qulef"]
@@ -29,6 +29,9 @@ content_margin_right = 10.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ogyt"]
 content_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7i8lg"]
+content_margin_right = 7.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nwvg"]
 
@@ -174,10 +177,17 @@ theme_override_fonts/font = ExtResource("5_kfj5e")
 theme_override_font_sizes/font_size = 30
 text = "Name"
 
-[node name="description" type="RichTextLabel" parent="item_details/container/container/main/scrollable/list"]
+[node name="scrollable_description" type="ScrollContainer" parent="item_details/container/container/main/scrollable/list"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Description"
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7i8lg")
+follow_focus = true
+
+[node name="description" type="RichTextLabel" parent="item_details/container/container/main/scrollable/list/scrollable_description"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Description."
 
 [node name="context" type="CanvasLayer" parent="."]
 layer = 6

@@ -195,7 +195,7 @@ func _update_item_details(item: PS3Item) -> void:
     if item == null:
         return
     self._details_container.get_node("list/name").text = item.name
-    self._details_container.get_node("list/description").text = item.description
+    self._details_container.get_node("list/scrollable_description/description").text = item.description
 
 # Called when, for example, the context menu collapses and returns
 # to the item selector.
