@@ -1,6 +1,9 @@
 class_name GameScMenu
 extends CanvasLayer
 
+signal on_open
+signal on_close
+
 var is_open: bool:
     get:
         return self._is_open
@@ -19,9 +22,11 @@ func open() -> void:
     root_layer.game_data = self.game_data
     self._is_open = true
     root_layer.on_close.connect(func(_data):
-        self._is_open = false)
+        self._is_open = false
+        self.on_close.emit())
     $sub.add_child(root_layer)
     $sub/root.open(null)
+    self.on_open.emit()
 
 func close() -> void:
     assert(self.is_open, "game_sc_menu.close() called when the menu is open.")

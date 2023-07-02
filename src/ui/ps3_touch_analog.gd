@@ -23,7 +23,7 @@ func _input(event) -> void:
             if self._touch_index == event.index:
                 self._touch_index = -1
                 self._release_analog()
-        elif self._touch_index == -1 and self._touch_hits_arc(event.position):
+        elif self._touch_index == -1 and self._touch_hits_arc(event.position) and not self.disabled:
             # hold
             self._stick_analog(event.position)
             self._touch_index = event.index

@@ -31,6 +31,10 @@ func _ready() -> void:
         entity.position.y = 400
         self.party_entities[character] = entity
         self.world_entities.add_child(entity)
+    self.ui_menu.on_open.connect(func():
+        self.ui_left_analog.disabled = true)
+    self.ui_menu.on_close.connect(func():
+        self.ui_left_analog.disabled = false)
 
 func _process(_delta: float) -> void:
     var player_entity = self.party_entities[self.game_data.party[0]]
