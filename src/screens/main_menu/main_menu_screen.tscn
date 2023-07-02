@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgd8c7rhxbnhm"]
+[gd_scene load_steps=14 format=3 uid="uid://bgd8c7rhxbnhm"]
 
 [ext_resource type="Script" path="res://src/screens/main_menu/main_menu_screen.gd" id="1_4ry2v"]
 [ext_resource type="Texture2D" uid="uid://cdvgues1ppokp" path="res://res/img/logo/logo.png" id="2_j8ta0"]
+[ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="3_aayvi"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="4_x1ksq"]
 
 [sub_resource type="Animation" id="Animation_na2t3"]
 resource_name = "default"
@@ -158,3 +160,33 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_p3i4w")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p4s4x")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8myo")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kgf0r")
+
+[node name="menu_layer" type="CanvasLayer" parent="root"]
+
+[node name="menu" parent="root/menu_layer" instance=ExtResource("3_aayvi")]
+custom_minimum_size = Vector2(595, 417)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -297.5
+offset_top = -208.5
+offset_right = 297.5
+offset_bottom = 208.5
+
+[node name="label" parent="root/menu_layer/menu/container/container/header" index="1"]
+text = "Main Menu"
+
+[node name="list" type="VBoxContainer" parent="root/menu_layer/menu/container/container/main" index="0"]
+layout_mode = 2
+
+[node name="new_game_btn" parent="root/menu_layer/menu/container/container/main/list" instance=ExtResource("4_x1ksq")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="label" parent="root/menu_layer/menu/container/container/main/list/new_game_btn/content" index="0"]
+text = "New Game"
+
+[editable path="root/menu_layer/menu"]
+[editable path="root/menu_layer/menu/container/container/main/list/new_game_btn"]
