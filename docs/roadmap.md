@@ -14,6 +14,10 @@
 
 ## Implemented
 
+- [x] Intro screen
+  - [ ] Story
+  - [ ] Set it as the default scene
+- [ ] Main Menu
 - [ ] Gameplay
   - [ ] During progress, ask whether to save game. This may be useful if the player forgets going to `System > Save Game`
   - [ ] Menu
