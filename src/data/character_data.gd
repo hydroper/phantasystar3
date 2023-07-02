@@ -84,6 +84,15 @@ var learned_tech: Array[PS3TechType]:
     get:
         return [PS3TechType.HEAL, PS3TechType.RES, PS3TechType.GIRES, PS3TechType.REVER, PS3TechType.ANTI, PS3TechType.ORDER, PS3TechType.FANBI, PS3TechType.FORSA, PS3TechType.NASAK, PS3TechType.SHU]
 
+var entity_animation: Node2D:
+    get:
+        if self.character == PS3Character.MIEU:
+            return preload("res://src/character_animations/mieu/ps3_mieu_entity_animation.tscn").instantiate()
+        if self.character == PS3Character.RHYS:
+            return preload("res://src/character_animations/rhys/ps3_rhys_entity_animation.tscn").instantiate()
+        assert(false, "Unimplemented animation.")
+        return null
+
 func can_equip(item: PS3Item) -> bool:
     return self.character.can_equip(item)
 

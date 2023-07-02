@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b16a773gost8e"]
+
+[ext_resource type="Script" path="res://src/entities/ps3_character_entity.gd" id="1_fdf6o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtkoy"]
+size = Vector2(96, 170)
+
+[node name="PS3CharacterEntity" type="RigidBody2D"]
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_fdf6o")
+
+[node name="look" type="Node2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gtkoy")
