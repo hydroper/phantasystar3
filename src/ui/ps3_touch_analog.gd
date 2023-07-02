@@ -1,3 +1,4 @@
+# Touch screen analog that yields a turn direction variant.
 class_name PS3TouchAnalog
 extends TouchScreenButton
 
@@ -15,9 +16,6 @@ var _radius: float:
 
 # $point.position
 
-# InputEventScreenTouch (has `index` and `pressed`)
-# InputEventScreenDrag (has `index` and `position`)
-# InputEventMouse (has `position`)
 func _input(event) -> void:
     if event is InputEventScreenTouch:
         if not event.pressed:
@@ -49,24 +47,7 @@ func _stick_analog(touch_position: Vector2) -> void:
     $point.global_position = Vector2(clampf(touch_position.x, global_rect.position.x, global_rect.position.x + global_rect.size.x) - $point.size.x / 2, clampf(touch_position.y, global_rect.position.y, global_rect.position.y + global_rect.size.y) - $point.size.y / 2)
     # determine turn direction
     var p: Vector2 = $point.position
-    if p.x < -W and p.y < -W:
-        self._turn_dir = TurnDirection.UP_LEFT
-    elif p.x < -W and p.y > W:
-        self._turn_dir = TurnDirection.DOWN_LEFT
-    elif p.x < -W:
-        self._turn_dir = TurnDirection.LEFT
-    elif p.x > W and p.y < -W:
-        self._turn_dir = TurnDirection.UP_RIGHT
-    elif p.x > W and p.y > W:
-        self._turn_dir = TurnDirection.DOWN_RIGHT
-    elif p.x > W:
-        self._turn_dir = TurnDirection.RIGHT
-    elif p.y < -W:
-        self._turn_dir = TurnDirection.UP
-    elif p.y > W:
-        self._turn_dir = TurnDirection.DOWN
-    else:
-        self._turn_dir = null
+    self._turn_dir = TurnDirection.UP_LEFT if p.x < -W and p.y < -W else TurnDirection.DOWN_LEFT if p.x < -W and p.y > W else TurnDirection.LEFT if p.x < -W else TurnDirection.UP_RIGHT if p.x > W and p.y < -W else TurnDirection.DOWN_RIGHT if p.x > W and p.y > W else TurnDirection.RIGHT if p.x > W else TurnDirection.UP if p.y < -W else TurnDirection.DOWN if p.y > W else null
 
 func _release_analog() -> void:
     self._turn_dir = null
