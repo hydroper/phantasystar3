@@ -1,7 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://1sogog3n2td7"]
+[gd_scene load_steps=7 format=3 uid="uid://1sogog3n2td7"]
 
 [ext_resource type="Script" path="res://src/screens/intro/intro_screen.gd" id="1_rlt2y"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="2_e1ahd"]
 [ext_resource type="Texture2D" uid="uid://dncxxdk65qjd6" path="res://res/img/sega-logo/logo.svg" id="2_ute3r"]
+[ext_resource type="Texture2D" uid="uid://b204qbkpjfcxv" path="res://res/img/skip-icon.svg" id="3_c8ob5"]
+
+[sub_resource type="Animation" id="Animation_yjj8d"]
+resource_name = "default"
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sega_logo:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1.7, 2.1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fan_disclaimer:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.6, 3, 4.2, 4.6)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t4h68"]
+_data = {
+"default": SubResource("Animation_yjj8d")
+}
 
 [node name="IntroScreen" type="Node2D"]
 script = ExtResource("1_rlt2y")
@@ -9,6 +42,7 @@ script = ExtResource("1_rlt2y")
 [node name="root" type="CanvasLayer" parent="."]
 
 [node name="sega_logo" type="TextureRect" parent="root"]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -21,3 +55,53 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ute3r")
+
+[node name="fan_disclaimer" type="Label" parent="root"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -637.0
+offset_top = -115.0
+offset_right = 637.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "This fan game is a remake of a Sega property."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="animator" type="AnimationPlayer" parent="root"]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_t4h68")
+}
+
+[node name="skip_btn" parent="root" instance=ExtResource("2_e1ahd")]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -80.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 80.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="label" parent="root/skip_btn/content" index="0"]
+visible = false
+
+[node name="icon" type="TextureRect" parent="root/skip_btn/content" index="1"]
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("3_c8ob5")
+expand_mode = 1
+stretch_mode = 3
+
+[editable path="root/skip_btn"]
