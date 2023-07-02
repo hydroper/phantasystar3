@@ -41,7 +41,7 @@ func _touch_hits_arc(touch_pos: Vector2) -> bool:
     var a := Rect2(touch_pos, Vector2(1.0, 1.0))
     return a.intersects(self._global_rect())
 
-const W: float = 30
+const W: float = 50
 
 func _stick_analog(touch_position: Vector2) -> void:
     var global_rect = self._global_rect()
