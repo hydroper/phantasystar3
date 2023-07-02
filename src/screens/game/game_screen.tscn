@@ -9,6 +9,7 @@ script = ExtResource("1_r6xri")
 [node name="world" type="Node2D" parent="."]
 
 [node name="entities" type="Node2D" parent="world"]
+y_sort_enabled = true
 
 [node name="ui" type="CanvasLayer" parent="."]
 

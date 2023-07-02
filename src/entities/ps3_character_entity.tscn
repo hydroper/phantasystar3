@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/entities/ps3_character_entity.gd" id="1_fdf6o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtkoy"]
-size = Vector2(96, 170)
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwxbr"]
+radius = 40.0
 
 [node name="PS3CharacterEntity" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -13,4 +13,5 @@ script = ExtResource("1_fdf6o")
 [node name="look" type="Node2D" parent="."]
 
 [node name="collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_gtkoy")
+position = Vector2(0, 22)
+shape = SubResource("CircleShape2D_jwxbr")
