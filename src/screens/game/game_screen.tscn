@@ -1,21 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckewe5sw03jor"]
+[gd_scene load_steps=4 format=3 uid="uid://ckewe5sw03jor"]
 
 [ext_resource type="Script" path="res://src/screens/game/game_screen.gd" id="1_r6xri"]
+[ext_resource type="PackedScene" uid="uid://cff8msbbje2f1" path="res://src/ui/ps3_touch_analog.tscn" id="2_q0vst"]
 [ext_resource type="PackedScene" uid="uid://mcwgjuq00mep" path="res://src/screens/game/menu/game_sc_menu.tscn" id="4_tvq7d"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03am4"]
-bg_color = Color(1, 1, 1, 0.352941)
-corner_radius_top_left = 130
-corner_radius_top_right = 130
-corner_radius_bottom_right = 130
-corner_radius_bottom_left = 130
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjtp2"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_r6xri")
@@ -29,39 +16,7 @@ y_sort_enabled = true
 
 [node name="touch_controls" type="CanvasLayer" parent="ui"]
 
-[node name="left_analog" type="Control" parent="ui/touch_controls"]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = -294.0
-offset_right = 294.0
-offset_bottom = -64.0
-grow_vertical = 0
-
-[node name="bg" type="PanelContainer" parent="ui/touch_controls/left_analog"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_03am4")
-
-[node name="point" type="PanelContainer" parent="ui/touch_controls/left_analog"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jjtp2")
+[node name="left_analog" parent="ui/touch_controls" instance=ExtResource("2_q0vst")]
+position = Vector2(184, 476)
 
 [node name="menu" parent="ui" instance=ExtResource("4_tvq7d")]
