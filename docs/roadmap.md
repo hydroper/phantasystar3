@@ -31,6 +31,7 @@
       - [ ] Talk
       - [ ] System
       - [ ] Log Out
+        - [ ] Ask before exiting game. If exitting, return to the intro.
 
 ## Controls
 

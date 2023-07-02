@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://1sogog3n2td7"]
+
+[ext_resource type="Script" path="res://src/screens/intro/intro_screen.gd" id="1_rlt2y"]
+[ext_resource type="Texture2D" uid="uid://dncxxdk65qjd6" path="res://res/img/sega-logo/logo.svg" id="2_ute3r"]
+
+[node name="IntroScreen" type="Node2D"]
+script = ExtResource("1_rlt2y")
+
+[node name="root" type="CanvasLayer" parent="."]
+
+[node name="sega_logo" type="TextureRect" parent="root"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ute3r")
