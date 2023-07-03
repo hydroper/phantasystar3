@@ -84,14 +84,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="example_character" type="Label" parent="result/main/scrollable/list"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 26
-text = "Example Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
 [editable path="remaining"]
 [editable path="result"]

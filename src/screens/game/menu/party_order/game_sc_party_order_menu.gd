@@ -7,6 +7,7 @@ func open(_data: Variant) -> void:
     $remaining.popup()
     $result.popup()
     self._list_selectable()
+    self._selectable_list.get_child(0).grab_focus()
 
 # Closes any sublayer and the current layer itself.
 func close(_data: Variant) -> void:
@@ -22,6 +23,8 @@ func close_sublayer(_data: Variant) -> void:
 var _result: Array[PS3Character] = []
 @onready
 var _selectable_list = $remaining/container/container/main/scrollable/list
+@onready
+var _result_nodes = $result/main/scrollable/list
 
 func _ready() -> void:
     # outer
@@ -38,4 +41,20 @@ func _create_selectable_button(character: PS3Character) -> PS3Button:
     var btn = preload("res://src/ui/ps3_button.tscn").instantiate()
     btn.get_node("content/label").text = character.name
     btn.custom_minimum_size.y = 75
+    btn.pressed.connect(func():
+        self._selectable_list.remove_child(btn)
+        self._result.append(character)
+        self._result_nodes.add_child(self._create_result_label(character))
+        if len(self._result) == len(self.game_data.party):
+            self.game_data.party.assign(self._result)
+            self.close(null))
     return btn
+
+func _create_result_label(character: PS3Character) -> Node:
+    var label := Label.new()
+    label.custom_minimum_size.y = 60
+    label.text = character.name
+    label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    label.add_theme_font_size_override("font_size", 26)
+    return label
