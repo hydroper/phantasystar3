@@ -30,6 +30,7 @@
         - [x] Tech
       - [x] Party Order
       - [ ] Macro
+        - [ ] Items that target someone at party, target by type, not by their unique identity.
       - [ ] Talk
       - [ ] System
         - [ ] Save Game
