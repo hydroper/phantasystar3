@@ -37,6 +37,9 @@ func _ready() -> void:
     $menu/list/char_btn.pressed.connect(func():
         self._last_focused_button = $menu/list/char_btn
         self._open_characters())
+    $menu/list/party_order_btn.pressed.connect(func():
+        self._last_focused_button = $menu/list/party_order_btn
+        self._open_party_order())
 
 func _open_items() -> void:
     self._temporarily_disabled.disabled = true
@@ -50,11 +53,25 @@ func _open_items() -> void:
             self.open(null))
     self._sublayer = sublayer
     self.add_child(sublayer)
-    sublayer.open(null)        
+    sublayer.open(null)
 
 func _open_characters() -> void:
     self._temporarily_disabled.disabled = true
     var sublayer = preload("res://src/screens/game/menu/char/game_sc_char_menu.tscn").instantiate()
+    sublayer.game_data = self.game_data
+    sublayer.on_close.connect(func(data):
+        self._sublayer = null
+        if data == "close_current":
+            self.close(null)
+        else:
+            self.open(null))
+    self._sublayer = sublayer
+    self.add_child(sublayer)
+    sublayer.open(null)
+
+func _open_party_order() -> void:
+    self._temporarily_disabled.disabled = true
+    var sublayer = preload("res://src/screens/game/menu/party_order/game_sc_party_order_menu.tscn").instantiate()
     sublayer.game_data = self.game_data
     sublayer.on_close.connect(func(data):
         self._sublayer = null

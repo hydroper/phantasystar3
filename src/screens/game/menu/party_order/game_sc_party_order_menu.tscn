@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://dqlo7lfyreqrh"]
+
+[ext_resource type="Script" path="res://src/screens/game/menu/party_order/game_sc_party_order_menu.gd" id="1_llwkj"]
+[ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_mfv6n"]
+[ext_resource type="PackedScene" uid="uid://cdonwod04qmwr" path="res://src/ui/ps3_headerless_panel.tscn" id="2_d4vpc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jo7gg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8m7e0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rq6w3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahmgb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8kj1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rhhxf"]
+content_margin_right = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vduu4"]
+content_margin_right = 10.0
+
+[node name="GameScPartyOrderMenu" type="CanvasLayer"]
+script = ExtResource("1_llwkj")
+
+[node name="outer" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jo7gg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8m7e0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rq6w3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ahmgb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h8kj1")
+
+[node name="remaining" parent="." instance=ExtResource("1_mfv6n")]
+custom_minimum_size = Vector2(400, 425)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -212.5
+offset_right = 448.0
+offset_bottom = 212.5
+grow_horizontal = 1
+
+[node name="label" parent="remaining/container/container/header" index="1"]
+text = "Choose Party Order"
+
+[node name="scrollable" type="ScrollContainer" parent="remaining/container/container/main" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rhhxf")
+follow_focus = true
+
+[node name="list" type="VBoxContainer" parent="remaining/container/container/main/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="result" parent="." instance=ExtResource("2_d4vpc")]
+custom_minimum_size = Vector2(360, 400)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -408.0
+offset_top = -200.0
+offset_right = -48.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="scrollable" type="ScrollContainer" parent="result/main" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vduu4")
+follow_focus = true
+
+[node name="list" type="VBoxContainer" parent="result/main/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="example_character" type="Label" parent="result/main/scrollable/list"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Example Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[editable path="remaining"]
+[editable path="result"]
