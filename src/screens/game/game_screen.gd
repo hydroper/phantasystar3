@@ -25,11 +25,7 @@ var camera: Camera2D = null
 func _ready() -> void:
     for o in self.game_data_dependents:
         o.game_data = self.game_data
-    self.camera = Camera2D.new()
-    self.camera.limit_left = -100
-    self.camera.limit_right = 1500
-    self.camera.limit_top = -200
-    self.camera.limit_bottom = 700
+    self.reconstruct_camera()
     for character in self.game_data.party:
         var entity = self._create_character_entity(character)
         entity.position.x = 400
@@ -84,11 +80,18 @@ func _create_character_entity(character: PS3Character) -> PS3CharacterEntity:
     entity.animation.play("standing_down")
     return entity
 
+func reconstruct_camera() -> void:
+    self.camera = Camera2D.new()
+    self.camera.limit_left = -100
+    self.camera.limit_right = 1500
+    self.camera.limit_top = -200
+    self.camera.limit_bottom = 700
+
 func attach_player_camera() -> void:
-    var player_character = self.game_data.party[0]
-    for character in self.party_entities:
-        var entity = self.party_entities[character]
-        if self.camera.get_parent() == entity:
-            entity.remove_child(self.camera)
-        if character == player_character:
-            entity.add_child(self.camera)
+    if self.camera != null:
+        for character in self.party_entities:
+            var entity = self.party_entities[character]
+            if self.camera.get_parent() == entity:
+                entity.remove_child(self.camera)
+    self.reconstruct_camera()
+    self.party_entities[self.game_data.party[0]].add_child(self.camera)
