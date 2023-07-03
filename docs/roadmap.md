@@ -15,7 +15,8 @@
   - [ ] Story (update `_skip_part` in that case)
 - [ ] Main Menu
 - [ ] Gameplay
-  - [ ] During progress, ask whether to save game. This may be useful if the player forgets going to `System > Save Game`
+  - [ ] Automatically save game on close
+  - [ ] Automatically save game on story progress
   - [ ] Menu
     - [ ] Local Shop
       - [ ] For weapons or armor, display which characters can equip the item and the status compared to the current equipment.
@@ -30,8 +31,10 @@
       - [ ] Macro
       - [ ] Talk
       - [ ] System
+        - [ ] Save Game
+          - [ ] If a different slot is chosen, the current gameplay will use that slot.
       - [ ] Log Out
-        - [ ] Ask before exiting game. If exitting, return to the intro.
+        - [ ] Save game automatically.
 
 ## Controls
 
