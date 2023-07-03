@@ -16,7 +16,7 @@ var ui_left_analog: PS3TouchAnalog = $ui/touch_controls/left_analog
 @onready
 var world = $world
 @onready
-var world_entities: Node2D = $world/entities
+var world_entities = $world/entities
 
 var party_entities: Dictionary = {}
 
@@ -25,14 +25,12 @@ var camera: Camera2D = null
 func _ready() -> void:
     for o in self.game_data_dependents:
         o.game_data = self.game_data
-    var party_reversed = self.game_data.party.slice(0)
-    party_reversed.reverse()
     self.camera = Camera2D.new()
     self.camera.limit_left = -100
     self.camera.limit_right = 1500
     self.camera.limit_top = -200
     self.camera.limit_bottom = 700
-    for character in party_reversed:
+    for character in self.game_data.party:
         var entity = self._create_character_entity(character)
         entity.position.x = 400
         entity.position.y = 400

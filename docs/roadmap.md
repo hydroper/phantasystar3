@@ -26,7 +26,7 @@
         - [x] Equipment
           - https://youtu.be/jz92sYbwIKw?t=1238
         - [x] Tech
-      - [ ] Party Order
+      - [x] Party Order
       - [ ] Macro
       - [ ] Talk
       - [ ] System

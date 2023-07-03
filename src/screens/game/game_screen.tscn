@@ -15,7 +15,7 @@ size = Vector2(53, 1031)
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_r6xri")
 
-[node name="world" type="CanvasLayer" parent="."]
+[node name="world" type="Node2D" parent="."]
 
 [node name="entities" type="Node2D" parent="world"]
 y_sort_enabled = true
