@@ -3,7 +3,7 @@ extends UISublayer
 var game_data: PS3GameData = null
 
 func open(data: Variant) -> void:
-    NodeExtFn.remove_all_children(self._char_list)
+    NodeUtil.remove_all_children(self._char_list)
     for character_type in self.game_data.party:
         var character = self.game_data.character(character_type)
         var char_btn = preload("res://src/ui/ps3_button.tscn").instantiate()
@@ -11,10 +11,10 @@ func open(data: Variant) -> void:
         char_btn.get_node("content/label").text = character.name
         char_btn.custom_minimum_size.y = 75
         char_btn.focus_entered.connect(func():
-            self._selected_character = (NodeExtFn.get_focused(self._char_list) as PS3Button).meta_data
+            self._selected_character = (NodeUtil.get_focused(self._char_list) as PS3Button).meta_data
             self._update_status())
         char_btn.pressed.connect(func():
-            var pressed_btn = NodeExtFn.get_pressed_button(self._char_list)
+            var pressed_btn = NodeUtil.get_pressed_button(self._char_list)
             $context/context.position.y = pressed_btn.global_position.y
             $context/context.popup()
             $context/outer.visible = true
@@ -93,18 +93,18 @@ func _update_status() -> void:
     var hl = $status/container/container/main/horizontal_list
     var vl = hl.get_node("scrollable/list")
     hl.get_node("portrait").texture = character.portrait_texture
-    vl.get_node("meseta/attr/value").text = NumberExtFn.comma_sep(self.game_data.meseta)
-    vl.get_node("hp/attr/value").text = NumberExtFn.comma_sep(character.hp) + "/" + NumberExtFn.comma_sep(character.max_hp)
-    vl.get_node("tp/attr/value").text = NumberExtFn.comma_sep(character.tp) + "/" + NumberExtFn.comma_sep(character.max_tp)
+    vl.get_node("meseta/attr/value").text = NumberUtil.comma_sep(self.game_data.meseta)
+    vl.get_node("hp/attr/value").text = NumberUtil.comma_sep(character.hp) + "/" + NumberUtil.comma_sep(character.max_hp)
+    vl.get_node("tp/attr/value").text = NumberUtil.comma_sep(character.tp) + "/" + NumberUtil.comma_sep(character.max_tp)
     vl.get_node("level/attr/value").text = str(character.level)
-    vl.get_node("needed_exp/attr/value").text = NumberExtFn.comma_sep(character.level_exp_goal - character.level_exp)
-    vl.get_node("speed/attr/value").text = NumberExtFn.comma_sep(character.speed)
-    vl.get_node("damage/attr/value").text = NumberExtFn.comma_sep(character.damage)
-    vl.get_node("defense/attr/value").text = NumberExtFn.comma_sep(character.defense)
-    vl.get_node("intellect/attr/value").text = NumberExtFn.comma_sep(character.intellect)
-    vl.get_node("stamina/attr/value").text = NumberExtFn.comma_sep(character.stamina)
-    vl.get_node("luck/attr/value").text = NumberExtFn.comma_sep(character.luck)
-    vl.get_node("skill/attr/value").text = NumberExtFn.comma_sep(character.skill)
+    vl.get_node("needed_exp/attr/value").text = NumberUtil.comma_sep(character.level_exp_goal - character.level_exp)
+    vl.get_node("speed/attr/value").text = NumberUtil.comma_sep(character.speed)
+    vl.get_node("damage/attr/value").text = NumberUtil.comma_sep(character.damage)
+    vl.get_node("defense/attr/value").text = NumberUtil.comma_sep(character.defense)
+    vl.get_node("intellect/attr/value").text = NumberUtil.comma_sep(character.intellect)
+    vl.get_node("stamina/attr/value").text = NumberUtil.comma_sep(character.stamina)
+    vl.get_node("luck/attr/value").text = NumberUtil.comma_sep(character.luck)
+    vl.get_node("skill/attr/value").text = NumberUtil.comma_sep(character.skill)
 
 func _open_item_selection() -> void:
     var sublayer = preload("res://src/screens/game/menu/char_item_selection/game_sc_char_item_selection_menu.tscn").instantiate()

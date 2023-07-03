@@ -10,7 +10,7 @@ var disabled: bool:
         return self._disabled
     set(value):
         self._disabled = value
-        NodeExtFn.set_disabled(self, value)
+        NodeUtil.set_disabled(self, value)
 
 var temporarily_disabled: bool:
     get:
@@ -92,7 +92,7 @@ func _ready() -> void:
         self._do_transition()
 
 func _input(event: InputEvent) -> void:
-    if self.is_open and !self._busy and NodeExtFn.outer_clicked(self, event):
+    if self.is_open and !self._busy and NodeUtil.outer_clicked(self, event):
         self.on_outer_click.emit()
 
 func _process(_delta: float) -> void:

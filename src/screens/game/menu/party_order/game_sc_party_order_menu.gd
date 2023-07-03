@@ -32,7 +32,6 @@ var _selectable_list = $remaining/container/container/main/scrollable/list
 var _result_nodes = $result/main/scrollable/list
 
 func _ready() -> void:
-    # outer
     $outer.pressed.connect(func(): self.close_sublayer(null))
     $remaining.on_collapse.connect(func(goal, _data):
         if goal == "close_current" or goal == "close_current_and_parent":

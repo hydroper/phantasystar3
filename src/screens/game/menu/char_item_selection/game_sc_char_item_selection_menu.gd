@@ -110,7 +110,7 @@ var _tab_type: String:
 
 func _update_items() -> void:
     var type = self._tab_type
-    NodeExtFn.remove_all_children(self._items_container)
+    NodeUtil.remove_all_children(self._items_container)
     var character: PS3CharacterData = self.game_data.characters[self._selected_character]
 
     if type == "left_hand" or type == "right_hand":

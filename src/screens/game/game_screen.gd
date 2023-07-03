@@ -25,7 +25,7 @@ var camera: Camera2D = null
 func _ready() -> void:
     for o in self.game_data_dependents:
         o.game_data = self.game_data
-    for character in self.game_data.party:
+    for character in ArrayUtil.to_reversed(self.game_data.party):
         var entity = self._create_character_entity(character)
         entity.position.x = 400
         entity.position.y = 400
@@ -38,6 +38,10 @@ func _ready() -> void:
         self.ui_left_analog.disabled = false)
     self.game_data.on_party_order_update.connect(func():
         self.attach_player_camera())
+
+func _notification(what: int) -> void:
+    if what == NOTIFICATION_WM_CLOSE_REQUEST:
+        self.game_data.save()
 
 func _process(_delta: float) -> void:
     var player_entity = self.party_entities[self.game_data.party[0]]

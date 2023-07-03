@@ -151,7 +151,7 @@ func _ask_target_char() -> void:
     $target_char/outer.visible = true
     $target_char/target_char.popup()
     var list = $target_char/target_char/container/container/main/scrollable/list
-    NodeExtFn.remove_all_children(list)
+    NodeUtil.remove_all_children(list)
     for character in self.game_data.party:
         list.add_child(self._create_target_char_btn(character))
     list.get_child(0).grab_focus()

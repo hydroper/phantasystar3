@@ -14,8 +14,9 @@
 - [x] Intro screen
   - [ ] Story (update `_skip_part` in that case)
 - [ ] Main Menu
+  - [ ] New Game
+    - [ ] Set the game data slot to the last one + 1.
 - [ ] Gameplay
-  - [ ] Automatically save game on close
   - [ ] Automatically save game on story progress
   - [ ] Menu
     - [ ] Local Shop
@@ -33,8 +34,7 @@
       - [ ] System
         - [ ] Save Game
           - [ ] If a different slot is chosen, the current gameplay will use that slot.
-      - [ ] Log Out
-        - [ ] Save game automatically.
+      - [x] Log Out
 
 ## Controls
 

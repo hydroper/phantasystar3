@@ -1,16 +1,16 @@
-class_name NodeExtFn
+class_name NodeUtil
 
 # Enables or disables a node recursively.
 static func set_disabled(node: Node, value: bool) -> void:
     if value:
-        NodeExtFn.disable(node)
-    else: NodeExtFn.enable(node)
+        NodeUtil.disable(node)
+    else: NodeUtil.enable(node)
 
 static func can_be_disabled(node: Node) -> bool:
     return node.has_method("set_disabled") or node.has_method("set_editable")
 
 static func get_enabled(node: Node) -> bool:
-    return not NodeExtFn.is_disabled(node)
+    return not NodeUtil.is_disabled(node)
 
 static func get_disabled(node: Node) -> bool:
     return node.get_disabled() if node.has_method("get_disabled") else not node.get_editable() if node.has_method("get_editable") else false
@@ -29,19 +29,19 @@ static func get_pressed_button(list: Variant) -> BaseButton:
     if list is Array:
         var f = list.filter(func(a): return a is BaseButton and a.button_pressed)
         return null if len(f) == 0 else f[0]
-    return NodeExtFn.get_pressed_button(list.get_children()) if list is Node else null
+    return NodeUtil.get_pressed_button(list.get_children()) if list is Node else null
 
 static func get_focused(list: Variant) -> Control:
     if list is Array:
         var f = list.filter(func(a): return a is Control and a.has_focus())
         return null if len(f) == 0 else f[0]
-    return NodeExtFn.get_focused(list.get_children()) if list is Node else null
+    return NodeUtil.get_focused(list.get_children()) if list is Node else null
 
 static func get_hovered_button(list: Variant) -> BaseButton:
     if list is Array:
         var f = list.filter(func(a): return a is BaseButton and a.is_hovered())
         return null if len(f) == 0 else f[0]
-    return NodeExtFn.get_hovered_button(list.get_children()) if list is Node else null
+    return NodeUtil.get_hovered_button(list.get_children()) if list is Node else null
 
 static func remove_all_children(node: Node) -> void:
     for child in node.get_children():

@@ -140,7 +140,7 @@ var _tab_type: String:
 
 func _update_items() -> void:
     var type = self._tab_type
-    NodeExtFn.remove_all_children(self._items_container)
+    NodeUtil.remove_all_children(self._items_container)
 
     var criteria: Callable
 
@@ -229,7 +229,7 @@ func _use_targetted(target: Variant) -> void:
 
 func _show_party_target_selection() -> void:
     var list = $target_char/target_char/container/container/main/scrollable/list
-    NodeExtFn.remove_all_children(list)
+    NodeUtil.remove_all_children(list)
     for character in self.game_data.party:
         list.add_child(self._create_party_target_button(character))
     list.get_child(0).grab_focus()
@@ -257,7 +257,7 @@ func _reflect_drop_or_focus_item_again() -> void:
     if self._selected_item.quantity == 0:
         self.game_data.items.remove_at(self.game_data.items.find(self._selected_item))
         self._selected_item = null
-        var i = NodeExtFn.child_index_from_parent(btn)
+        var i = NodeUtil.child_index_from_parent(btn)
         self._items_container.remove_child(btn)
         if self._items_container.get_child_count() == 0:
             i = 0

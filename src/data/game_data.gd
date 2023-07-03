@@ -4,6 +4,9 @@ class_name PS3GameData
 # the party order.
 signal on_party_order_update
 
+# The slot on which to save the game data.
+var slot: int = 0
+
 var meseta: int = 0
 
 var characters: Dictionary = {
@@ -97,3 +100,6 @@ func use_targetted_item(item: PS3Item, target: Variant) -> Dictionary:
 var inventory_is_full: bool:
     get:
         return false
+
+func save() -> void:
+    pass

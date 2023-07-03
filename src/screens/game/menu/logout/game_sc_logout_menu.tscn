@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dt0nhtxfnc733"]
+[gd_scene load_steps=9 format=3 uid="uid://dt0nhtxfnc733"]
 
+[ext_resource type="Script" path="res://src/screens/game/menu/logout/game_sc_logout_menu.gd" id="1_ocxyr"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="1_sf2q8"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="2_tylcv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5rd4c"]
 
@@ -13,6 +15,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_452e4"]
 
 [node name="GameScLogoutMenu" type="CanvasLayer"]
+script = ExtResource("1_ocxyr")
 
 [node name="outer" type="Button" parent="."]
 anchors_preset = 15
@@ -45,4 +48,20 @@ text = "Log Out"
 [node name="list" type="VBoxContainer" parent="logout/container/container/main" index="0"]
 layout_mode = 2
 
+[node name="exit_btn" parent="logout/container/container/main/list" instance=ExtResource("2_tylcv")]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+
+[node name="label" parent="logout/container/container/main/list/exit_btn/content" index="0"]
+text = "Exit Game"
+
+[node name="continue_btn" parent="logout/container/container/main/list" instance=ExtResource("2_tylcv")]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+
+[node name="label" parent="logout/container/container/main/list/continue_btn/content" index="0"]
+text = "Continue"
+
 [editable path="logout"]
+[editable path="logout/container/container/main/list/exit_btn"]
+[editable path="logout/container/container/main/list/continue_btn"]

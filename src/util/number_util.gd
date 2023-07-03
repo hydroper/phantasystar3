@@ -1,4 +1,4 @@
-class_name NumberExtFn
+class_name NumberUtil
 
 static func comma_sep(number: Variant) -> String:
     var string = str(number)
