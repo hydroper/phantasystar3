@@ -25,7 +25,6 @@ var camera: Camera2D = null
 func _ready() -> void:
     for o in self.game_data_dependents:
         o.game_data = self.game_data
-    self.reconstruct_camera()
     for character in self.game_data.party:
         var entity = self._create_character_entity(character)
         entity.position.x = 400
