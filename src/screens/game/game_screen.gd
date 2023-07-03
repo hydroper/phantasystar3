@@ -14,27 +14,37 @@ var ui_menu: GameScMenu = $ui/menu
 var ui_left_analog: PS3TouchAnalog = $ui/touch_controls/left_analog
 
 @onready
-var world: Node2D = $world
+var world = $world
 @onready
 var world_entities: Node2D = $world/entities
 
 var party_entities: Dictionary = {}
+
+var camera: Camera2D = null
 
 func _ready() -> void:
     for o in self.game_data_dependents:
         o.game_data = self.game_data
     var party_reversed = self.game_data.party.slice(0)
     party_reversed.reverse()
+    self.camera = Camera2D.new()
+    self.camera.limit_left = -100
+    self.camera.limit_right = 1500
+    self.camera.limit_top = -200
+    self.camera.limit_bottom = 700
     for character in party_reversed:
         var entity = self._create_character_entity(character)
         entity.position.x = 400
         entity.position.y = 400
         self.party_entities[character] = entity
         self.world_entities.add_child(entity)
+    self.attach_player_camera()
     self.ui_menu.on_open.connect(func():
         self.ui_left_analog.disabled = true)
     self.ui_menu.on_close.connect(func():
         self.ui_left_analog.disabled = false)
+    self.game_data.on_party_order_update.connect(func():
+        self.attach_player_camera())
 
 func _process(_delta: float) -> void:
     var player_entity = self.party_entities[self.game_data.party[0]]
@@ -75,3 +85,12 @@ func _create_character_entity(character: PS3Character) -> PS3CharacterEntity:
     entity.get_node("look").add_child(anim)
     entity.animation.play("standing_down")
     return entity
+
+func attach_player_camera() -> void:
+    var player_character = self.game_data.party[0]
+    for character in self.party_entities:
+        var entity = self.party_entities[character]
+        if self.camera.get_parent() == entity:
+            entity.remove_child(self.camera)
+        if character == player_character:
+            entity.add_child(self.camera)

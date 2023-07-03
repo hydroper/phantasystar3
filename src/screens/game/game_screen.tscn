@@ -1,16 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckewe5sw03jor"]
+[gd_scene load_steps=7 format=3 uid="uid://ckewe5sw03jor"]
 
 [ext_resource type="Script" path="res://src/screens/game/game_screen.gd" id="1_r6xri"]
 [ext_resource type="PackedScene" uid="uid://cff8msbbje2f1" path="res://src/ui/ps3_touch_analog.tscn" id="2_q0vst"]
 [ext_resource type="PackedScene" uid="uid://mcwgjuq00mep" path="res://src/screens/game/menu/game_sc_menu.tscn" id="4_tvq7d"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fkn55"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkc35"]
+size = Vector2(1638, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emq5e"]
+size = Vector2(53, 1031)
+
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_r6xri")
 
-[node name="world" type="Node2D" parent="."]
+[node name="world" type="CanvasLayer" parent="."]
 
 [node name="entities" type="Node2D" parent="world"]
 y_sort_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="world/entities"]
+physics_material_override = SubResource("PhysicsMaterial_fkn55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/entities/StaticBody2D"]
+position = Vector2(640, -165)
+shape = SubResource("RectangleShape2D_mkc35")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="world/entities/StaticBody2D"]
+position = Vector2(627, 814)
+shape = SubResource("RectangleShape2D_mkc35")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="world/entities/StaticBody2D"]
+position = Vector2(-165.5, 329.5)
+shape = SubResource("RectangleShape2D_emq5e")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="world/entities/StaticBody2D"]
+position = Vector2(1418.5, 329.5)
+shape = SubResource("RectangleShape2D_emq5e")
 
 [node name="ui" type="CanvasLayer" parent="."]
 

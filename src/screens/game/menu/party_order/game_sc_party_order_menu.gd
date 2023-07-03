@@ -17,8 +17,13 @@ func close(_data: Variant) -> void:
 # If there is any sublayer, closes only it; if none,
 # closes the current layer.
 func close_sublayer(_data: Variant) -> void:
-    $remaining.collapse("close_current")
-    $result.collapse()
+    if len(self._result) == 0:
+        $remaining.collapse("close_current")
+        $result.collapse()
+    else:
+        var character = self._result.pop_back()
+        self._selectable_list.add_child(self._create_selectable_button(character))
+        self._result_nodes.remove_child(self._result_nodes.get_child(-1))
 
 var _result: Array[PS3Character] = []
 @onready
@@ -47,7 +52,10 @@ func _create_selectable_button(character: PS3Character) -> PS3Button:
         self._result_nodes.add_child(self._create_result_label(character))
         if len(self._result) == len(self.game_data.party):
             self.game_data.party.assign(self._result)
-            self.close(null))
+            self.game_data.on_party_order_update.emit()
+            self.close(null)
+        else:
+            self._selectable_list.get_child(0).grab_focus())
     return btn
 
 func _create_result_label(character: PS3Character) -> Node:

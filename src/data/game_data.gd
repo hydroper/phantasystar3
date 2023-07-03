@@ -1,5 +1,9 @@
 class_name PS3GameData
 
+# Signal emitted manually by code that updates
+# the party order.
+signal on_party_order_update
+
 var meseta: int = 0
 
 var characters: Dictionary = {
