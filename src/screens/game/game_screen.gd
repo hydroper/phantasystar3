@@ -64,10 +64,10 @@ func _process(_delta: float) -> void:
     player_entity.moving_vertically = pressing_up or pressing_down
 
     # make party follow the player
-    for character in self.party_entities:
-        var entity = self.party_entities[character]
-        if entity != player_entity:
-            entity.follow_party(self.party_entities, player_entity)
+    for i in range(1, len(self.game_data.party)):
+        var entity = self.party_entities[self.game_data.party[i]]
+        var leader = self.party_entities[self.game_data.party[i - 1]]
+        entity.follow_party(leader)
 
 func _create_character_entity(character: PS3Character) -> PS3CharacterEntity:
     var entity = preload("res://src/entities/ps3_character_entity.tscn").instantiate()

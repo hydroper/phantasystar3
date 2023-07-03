@@ -80,23 +80,17 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 const following_distance = Vector2(90.0, 90.0)
 
-func follow_party(party_entities: Dictionary, leader_entity: PS3CharacterEntity) -> void:
-    var needs_to_follow := true
+func follow_party(leader_entity: PS3CharacterEntity) -> void:
     var rect_a := Rect2(self.global_position, following_distance)
-    for character in party_entities:
-        var entity = party_entities[character]
-        if entity == self:
-            continue
-        var rect_b := Rect2(entity.global_position, following_distance)
-        if rect_a.intersects(rect_b):
-            needs_to_follow = false
-            break
+    var rect_b := Rect2(leader_entity.global_position, following_distance)
+    var needs_to_follow := not rect_a.intersects(rect_b)
+
     var pressing_up := false
     var pressing_down := false
     var pressing_left := false
     var pressing_right := false
+
     if needs_to_follow:
-        var rect_b := Rect2(leader_entity.global_position, following_distance)
         if rect_a.position.x < rect_b.position.x - 30:
             pressing_right = true
         elif rect_a.position.x > rect_b.position.x + 30:
