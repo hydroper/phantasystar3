@@ -44,7 +44,7 @@ func _init():
     self.characters[PS3Character.RHYS].feet = PS3Item.new(PS3ItemType.BOOTS)
     # 8 macros
     for i in range(0, 8):
-        self.macros.append(PS3Macro.new())
+        self.macros.append(PS3Macro.new(i))
 
 # Returns {type} and additional properties,
 # where "type" is either:

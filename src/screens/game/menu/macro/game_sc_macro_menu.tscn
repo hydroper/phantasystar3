@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfkkggkd283tn"]
+[gd_scene load_steps=10 format=3 uid="uid://dfkkggkd283tn"]
 
 [ext_resource type="Script" path="res://src/screens/game/menu/macro/game_sc_macro_menu.gd" id="1_t2u22"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="2_syycl"]
@@ -14,6 +14,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18w5i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eguml"]
+content_margin_right = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vkj07"]
 content_margin_right = 10.0
 
 [node name="GameScMacroMenu" type="CanvasLayer"]
@@ -33,14 +36,14 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_lv2xr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_18w5i")
 
 [node name="macros" parent="." instance=ExtResource("2_syycl")]
-custom_minimum_size = Vector2(500, 390)
+custom_minimum_size = Vector2(440, 390)
 anchors_preset = 4
 anchor_top = 0.5
 anchor_right = 0.0
 anchor_bottom = 0.5
-offset_left = 80.0
+offset_left = 48.0
 offset_top = -195.0
-offset_right = 580.0
+offset_right = 488.0
 offset_bottom = 195.0
 grow_horizontal = 1
 
@@ -57,4 +60,30 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="preview" parent="." instance=ExtResource("2_syycl")]
+custom_minimum_size = Vector2(430, 530)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -265.0
+offset_right = -43.0
+offset_bottom = 265.0
+grow_horizontal = 0
+
+[node name="label" parent="preview/container/container/header" index="1"]
+text = "Preview"
+
+[node name="scrollable" type="ScrollContainer" parent="preview/container/container/main" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vkj07")
+follow_focus = true
+
+[node name="list" type="VBoxContainer" parent="preview/container/container/main/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [editable path="macros"]
+[editable path="preview"]
