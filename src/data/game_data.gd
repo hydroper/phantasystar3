@@ -31,6 +31,8 @@ var items: Array[PS3Item] = [
     PS3Item.new(PS3ItemType.KNIFE),
 ]
 
+var macros: Array[PS3Macro] = []
+
 func character(character: Variant) -> PS3CharacterData:
     if character is PS3CharacterData:
         return character
@@ -40,6 +42,9 @@ func character(character: Variant) -> PS3CharacterData:
 func _init():
     self.characters[PS3Character.RHYS].torso = PS3Item.new(PS3ItemType.GARMENT)
     self.characters[PS3Character.RHYS].feet = PS3Item.new(PS3ItemType.BOOTS)
+    # 8 macros
+    for i in range(0, 8):
+        self.macros.append(PS3Macro.new())
 
 # Returns {type} and additional properties,
 # where "type" is either:
