@@ -3,6 +3,10 @@
 [ext_resource type="Script" path="res://src/ui/macro/ps3_macro_turn_preview.gd" id="1_wed4r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dh2e"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
 
 [node name="PS3MacroTurnPreview" type="PanelContainer"]
 anchors_preset = 15
@@ -12,3 +16,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1dh2e")
 script = ExtResource("1_wed4r")
+
+[node name="list" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="character_label" type="Label" parent="list"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Character Name"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="action_label" type="Label" parent="list"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Action Label"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3

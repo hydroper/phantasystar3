@@ -1,8 +1,7 @@
 class_name PS3MacroTurnPreview
 extends PanelContainer
 
-func _ready():
-    pass
+var turn: PS3PartyTurn = null
 
-func _process(_delta: float) -> void:
-    pass
+func display_turn(turn: PS3PartyTurn) -> void:
+    self.turn = turn
