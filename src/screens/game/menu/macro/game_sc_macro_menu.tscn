@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfkkggkd283tn"]
+[gd_scene load_steps=12 format=3 uid="uid://dfkkggkd283tn"]
 
 [ext_resource type="Script" path="res://src/screens/game/menu/macro/game_sc_macro_menu.gd" id="1_t2u22"]
 [ext_resource type="PackedScene" uid="uid://baktjhv7oug4q" path="res://src/ui/ps3_panel.tscn" id="2_syycl"]
+[ext_resource type="PackedScene" uid="uid://cdonwod04qmwr" path="res://src/ui/ps3_headerless_panel.tscn" id="3_emqnr"]
+[ext_resource type="PackedScene" uid="uid://c6eieg4kf6hia" path="res://src/ui/ps3_button.tscn" id="4_peq1j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ed6my"]
 
@@ -102,5 +104,37 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_1vnwc")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lv2xr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_18w5i")
 
+[node name="context" parent="context" instance=ExtResource("3_emqnr")]
+custom_minimum_size = Vector2(330, 230)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -357.0
+offset_top = -147.0
+offset_right = -27.0
+offset_bottom = 83.0
+
+[node name="list" type="VBoxContainer" parent="context/context/main" index="0"]
+layout_mode = 2
+
+[node name="overwrite" parent="context/context/main/list" instance=ExtResource("4_peq1j")]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="label" parent="context/context/main/list/overwrite/content" index="0"]
+text = "Overwrite"
+
+[node name="erase" parent="context/context/main/list" instance=ExtResource("4_peq1j")]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="label" parent="context/context/main/list/erase/content" index="0"]
+text = "Erase"
+
 [editable path="macros"]
 [editable path="preview"]
+[editable path="context/context"]
+[editable path="context/context/main/list/overwrite"]
+[editable path="context/context/main/list/erase"]
