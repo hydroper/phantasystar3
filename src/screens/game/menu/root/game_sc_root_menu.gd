@@ -40,6 +40,9 @@ func _ready() -> void:
     $menu/list/party_order_btn.pressed.connect(func():
         self._last_focused_button = $menu/list/party_order_btn
         self._open_party_order())
+    $menu/list/macro_btn.pressed.connect(func():
+        self._last_focused_button = $menu/list/macro_btn
+        self._open_macro())
     $menu/list/log_out_btn.pressed.connect(func():
         self._last_focused_button = $menu/list/log_out_btn
         self._open_logout())
@@ -86,6 +89,20 @@ func _open_party_order() -> void:
     self.add_child(sublayer)
     sublayer.open(null)
 
+func _open_macro() -> void:
+    self._temporarily_disabled.disabled = true
+    var sublayer = preload("res://src/screens/game/menu/macro/game_sc_macro_menu.tscn").instantiate()
+    sublayer.game_data = self.game_data
+    sublayer.on_close.connect(func(data):
+        self._sublayer = null
+        if data == "close_current":
+            self.close(null)
+        else:
+            self.open(null))
+    self._sublayer = sublayer
+    self.add_child(sublayer)
+    sublayer.open(null)
+
 func _open_logout() -> void:
     self._temporarily_disabled.disabled = true
     var sublayer = preload("res://src/screens/game/menu/logout/game_sc_logout_menu.tscn").instantiate()
@@ -99,4 +116,3 @@ func _open_logout() -> void:
     self._sublayer = sublayer
     self.add_child(sublayer)
     sublayer.open(null)
-    

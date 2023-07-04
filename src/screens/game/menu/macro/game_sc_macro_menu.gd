@@ -34,7 +34,8 @@ func _list_macros() -> void:
     ul.get_child(0).grab_focus()
 
 func _create_macro_btn(index: int) -> Button:
+    var macro = self.game_data.macros[index]
     var btn = preload("res://src/ui/ps3_button.tscn").instantiate()
     btn.custom_minimum_size.y = 75
-    btn.get_node("content/label").text = index
+    btn.get_node("content/label").text = macro.letter
     return btn
