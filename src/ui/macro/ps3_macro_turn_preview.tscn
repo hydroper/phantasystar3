@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bso88dxneo5u0"]
+
+[ext_resource type="Script" path="res://src/ui/macro/ps3_macro_turn_preview.gd" id="1_wed4r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dh2e"]
+
+[node name="PS3MacroTurnPreview" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1dh2e")
+script = ExtResource("1_wed4r")
