@@ -85,5 +85,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="context" type="CanvasLayer" parent="."]
+layer = 7
+
+[node name="outer" type="Button" parent="context"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ed6my")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ft8q7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1vnwc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lv2xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_18w5i")
+
 [editable path="macros"]
 [editable path="preview"]

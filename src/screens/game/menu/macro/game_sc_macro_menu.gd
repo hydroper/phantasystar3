@@ -6,6 +6,7 @@ var game_data: PS3GameData = null
 func open(_data: Variant) -> void:
     $macros.popup()
     $preview.popup()
+    $context/outer.visible = false
     self._list_macros()
 
 # Closes any sublayer and the current layer itself.
@@ -39,3 +40,11 @@ func _create_macro_btn(index: int) -> Button:
     btn.custom_minimum_size.y = 75
     btn.get_node("content/label").text = macro.letter
     return btn
+
+func _preview(macro: PS3Macro) -> void:
+    var ul = $preview/container/container/main/scrollable/list
+    NodeUtil.remove_all_children(ul)
+    for turn in macro.party_turns:
+        var turn_preview = preload("res://src/ui/macro/ps3_macro_turn_preview.tscn").instantiate()
+        turn_preview.display_turn(turn)
+        ul.add_child(turn_preview)
